@@ -1,0 +1,9 @@
+{
+    "id" : "NameGenerator",
+    "version" : "0.1.0",
+    "author" : "Tobias 'skaldarnar' Nett",
+    "displayName" : "Random Name Generator",
+    "description" : "This module provides an interface for name generators and an implementation based on Markov models.",
+    "dependencies" : [],
+    "isServersideOnly" : false
+}
