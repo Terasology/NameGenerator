@@ -5,5 +5,5 @@
     "displayName" : "Random Name Generator",
     "description" : "This module provides an interface for name generators and an implementation based on Markov models.",
     "dependencies" : [],
-    "isServersideOnly" : false
+    "isServerSideOnly" : false
 }
