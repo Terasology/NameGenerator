@@ -17,7 +17,7 @@ package org.terasology.namegenerator.logic.generators;
 
 import org.terasology.asset.AssetUri;
 import org.terasology.asset.Assets;
-import org.terasology.utilities.procedural.FastRandom;
+import org.terasology.utilities.random.FastRandom;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -161,7 +161,7 @@ public class MarkovNameGenerator implements NameGenerator {
         for (int i : probabilities[characters.indexOf(last1)][characters.indexOf(last2)]) {
             total += i;
         }
-        total = RANDOM.randomIntAbs(total);
+        total = RANDOM.nextInt(total);
         int index = 0;
         int subTotal = 0;
         do {
