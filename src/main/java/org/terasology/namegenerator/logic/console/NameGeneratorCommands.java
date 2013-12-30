@@ -27,27 +27,31 @@ import org.terasology.namegenerator.logic.generators.NameGenerator;
  */
 @RegisterSystem
 public class NameGeneratorCommands implements ComponentSystem {
+    
+    private static final long DEFAULT_SEED = 0xDEADBEEF;
 
     private NameGenerator nameGen;
 
     @Override
     public void initialise() {
+        // empty
     }
 
     @Override
     public void shutdown() {
+        // empty
     }
 
     @Command(shortDescription = "Initialize a new name generator with the specified prefab.")
     public String initNameGen(@CommandParam("prefabName") String prefabName) {
-        nameGen = new MarkovNameGenerator(prefabName);
+        nameGen = new MarkovNameGenerator(DEFAULT_SEED, prefabName);
         return "Markov name generator initialized.";
     }
 
     @Command(shortDescription = "Generate next random name.")
     public String nextName() {
         if (nameGen == null) {
-            nameGen = new MarkovNameGenerator("NameGenerator:elvenMaleNames");
+            nameGen = new MarkovNameGenerator(DEFAULT_SEED, "NameGenerator:elvenMaleNames");
         }
         return nameGen.nextName();
     }
@@ -55,7 +59,7 @@ public class NameGeneratorCommands implements ComponentSystem {
     @Command(shortDescription = "Generate next random name with length >= minLength and <= maxLength.")
     public String nextName(@CommandParam("minLength") int minLength, @CommandParam("maxLength") int maxLength) {
         if (nameGen == null) {
-            nameGen = new MarkovNameGenerator("NameGenerator:elvenMaleNames");
+            nameGen = new MarkovNameGenerator(DEFAULT_SEED, "NameGenerator:elvenMaleNames");
         }
         return nameGen.nextName(minLength, maxLength);
     }

@@ -40,9 +40,10 @@ import java.util.Set;
 public class MarkovNameGenerator implements NameGenerator {
 
     private static final char TERMINATOR = '\0';
-    private static final FastRandom RANDOM = new FastRandom();
+    
+    private final FastRandom random;
 
-    private Set<String> results;
+    private final Set<String> results = new HashSet<>();
     private List<Character> characters;
     private int[][][] probabilities;
 
@@ -50,11 +51,12 @@ public class MarkovNameGenerator implements NameGenerator {
      * Create a new name generator, using the specified asset as example list.
      * <p/>
      * The asset URI must point to a valid name list prefab which has a {@link NameGeneratorComponent}.
-     *
+     * 
+     * @param seed the seed for the random number generator
      * @param assetUri valid asset uri with NameGeneratorComponent
      */
-    public MarkovNameGenerator(final AssetUri assetUri) {
-        this(assetUri.toNormalisedSimpleString());
+    public MarkovNameGenerator(long seed, AssetUri assetUri) {
+        this(seed, assetUri.toNormalisedSimpleString());
     }
 
     /**
@@ -62,11 +64,13 @@ public class MarkovNameGenerator implements NameGenerator {
      * <p/>
      * The String must denote a simple uri and the asset must contain a {@link NameGeneratorComponent}.
      *
+     * @param seed the seed for the random number generator
      * @param simpleUri simple asset uri as string
      */
-    public MarkovNameGenerator(String simpleUri) {
-        // initialize the result list
-        results = new HashSet<>();
+    public MarkovNameGenerator(long seed, String simpleUri) {
+        
+        random = new FastRandom(seed);
+        
         // load example names list from asset uri
         NameGeneratorComponent nameGenComp = Assets.getPrefab(simpleUri).getComponent(NameGeneratorComponent.class);
         // check if given uri was valid
@@ -88,11 +92,14 @@ public class MarkovNameGenerator implements NameGenerator {
     /**
      * Create a new name generator, using the given list as example source.
      *
+     * @param seed the seed for the random number generator
      * @param sourceNames a list of example names
      */
-    public MarkovNameGenerator(final List<String> sourceNames) {
+    public MarkovNameGenerator(long seed, List<String> sourceNames) {
+
+        random = new FastRandom(seed);
+
         // initialize result set
-        results = new HashSet<>();
         // initialize the list of used characters
         characters = determineUsedChars(sourceNames);
         characters.add(TERMINATOR);
@@ -161,7 +168,7 @@ public class MarkovNameGenerator implements NameGenerator {
         for (int i : probabilities[characters.indexOf(last1)][characters.indexOf(last2)]) {
             total += i;
         }
-        total = RANDOM.nextInt(total);
+        total = random.nextInt(total);
         int index = 0;
         int subTotal = 0;
         do {
