@@ -16,17 +16,16 @@
 
 package org.terasology.namegenerator;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
-
-import org.terasology.namegenerator.logic.generators.MarkovNameGenerator;
+import org.terasology.namegenerator.logic.generators.Markov2NameGenerator;
 
 /**
- * Runs a few tests on {@link MarkovNameGenerator}.
+ * Runs a few tests on {@link Markov2NameGenerator}.
  * @author Martin Steiger
  */
 public class NameGeneratorTest {
@@ -38,7 +37,7 @@ public class NameGeneratorTest {
      */
     @Test
     public void testLength() {
-        MarkovNameGenerator nameGen = new MarkovNameGenerator(DEFAULT_SEED, Arrays.asList(ElvenMaleNames.NAMES));
+        Markov2NameGenerator nameGen = new Markov2NameGenerator(DEFAULT_SEED, Arrays.asList(ElvenMaleNames.NAMES));
 
         int minLen = 2;
         int maxLen = 8;
@@ -55,7 +54,7 @@ public class NameGeneratorTest {
      */
     @Test
     public void testCount() {
-        MarkovNameGenerator nameGen = new MarkovNameGenerator(DEFAULT_SEED, Arrays.asList(ElvenMaleNames.NAMES));
+        Markov2NameGenerator nameGen = new Markov2NameGenerator(DEFAULT_SEED, Arrays.asList(ElvenMaleNames.NAMES));
 
         int count = 1000;
         List<String> list = nameGen.generateList(count, 2, 8);

@@ -37,7 +37,7 @@ import java.util.Set;
  *
  * @author Tobias 'skaldarnar' Nett <skaldarnar@googlemail.com>
  */
-public class MarkovNameGenerator implements NameGenerator {
+public class Markov2NameGenerator implements NameGenerator {
 
     private static final char TERMINATOR = '\0';
     
@@ -55,7 +55,7 @@ public class MarkovNameGenerator implements NameGenerator {
      * @param seed the seed for the random number generator
      * @param assetUri valid asset uri with NameGeneratorComponent
      */
-    public MarkovNameGenerator(long seed, AssetUri assetUri) {
+    public Markov2NameGenerator(long seed, AssetUri assetUri) {
         this(seed, assetUri.toNormalisedSimpleString());
     }
 
@@ -67,7 +67,7 @@ public class MarkovNameGenerator implements NameGenerator {
      * @param seed the seed for the random number generator
      * @param simpleUri simple asset uri as string
      */
-    public MarkovNameGenerator(long seed, String simpleUri) {
+    public Markov2NameGenerator(long seed, String simpleUri) {
         
         random = new FastRandom(seed);
         
@@ -95,7 +95,7 @@ public class MarkovNameGenerator implements NameGenerator {
      * @param seed the seed for the random number generator
      * @param sourceNames a list of example names
      */
-    public MarkovNameGenerator(long seed, List<String> sourceNames) {
+    public Markov2NameGenerator(long seed, List<String> sourceNames) {
 
         random = new FastRandom(seed);
 
