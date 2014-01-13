@@ -15,14 +15,12 @@
  */
 package org.terasology.namegenerator.logic.generators;
 
-import org.terasology.asset.AssetUri;
-import org.terasology.asset.Assets;
-import org.terasology.utilities.random.FastRandom;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import org.terasology.utilities.random.FastRandom;
 
 /**
  * Implementation of the {@link org.terasology.namegenerator.logic.generators.NameGenerator} interface, using Markov chain model.
@@ -43,52 +41,10 @@ public class Markov2NameGenerator implements NameGenerator {
     
     private final FastRandom random;
 
-    private final Set<String> results = new HashSet<>();
+    private final int[][][] probabilities;
+
     private List<Character> characters;
-    private int[][][] probabilities;
-
-    /**
-     * Create a new name generator, using the specified asset as example list.
-     * <p/>
-     * The asset URI must point to a valid name list prefab which has a {@link NameGeneratorComponent}.
-     * 
-     * @param seed the seed for the random number generator
-     * @param assetUri valid asset uri with NameGeneratorComponent
-     */
-    public Markov2NameGenerator(long seed, AssetUri assetUri) {
-        this(seed, assetUri.toNormalisedSimpleString());
-    }
-
-    /**
-     * Create a new name generator, using the given String as asset uri.
-     * <p/>
-     * The String must denote a simple uri and the asset must contain a {@link NameGeneratorComponent}.
-     *
-     * @param seed the seed for the random number generator
-     * @param simpleUri simple asset uri as string
-     */
-    public Markov2NameGenerator(long seed, String simpleUri) {
-        
-        random = new FastRandom(seed);
-        
-        // load example names list from asset uri
-        NameGeneratorComponent nameGenComp = Assets.getPrefab(simpleUri).getComponent(NameGeneratorComponent.class);
-        // check if given uri was valid
-        if (nameGenComp != null) {
-            // initialize the list of used characters
-            characters = determineUsedChars(nameGenComp.nameList);
-            characters.add(TERMINATOR);
-            // initialize probability matrix
-            probabilities = new int[characters.size()][characters.size()][characters.size()];
-            // build up the probability table from the given source names
-            for (final String name : nameGenComp.nameList) {
-                addStringToProbability(name);
-            }
-        } else {
-            throw new IllegalArgumentException("assetUri is not a valid name list:" + simpleUri);
-        }
-    }
-
+ 
     /**
      * Create a new name generator, using the given list as example source.
      *
@@ -179,7 +135,7 @@ public class Markov2NameGenerator implements NameGenerator {
 
     @Override
     public String nextName() {
-        String result = "";
+        StringBuilder sb = new StringBuilder();
         char last1 = TERMINATOR;
         char last2 = TERMINATOR;
         do {
@@ -187,10 +143,15 @@ public class Markov2NameGenerator implements NameGenerator {
             last1 = last2;
             last2 = temp;
             if (last2 != TERMINATOR) {
-                result += Character.toString(last2);
+                if (sb.length() == 0) {
+                    sb.append(Character.toUpperCase(last2));        // first letter is uppercase
+                } else {
+                    sb.append(last2);
+                }
             }
         } while (last2 != TERMINATOR);
-        return result.substring(0, 1).toUpperCase() + result.substring(1);
+        
+        return sb.toString();
     }
 
     @Override
@@ -200,27 +161,9 @@ public class Markov2NameGenerator implements NameGenerator {
             name = nextName();
         }
         if (name.length() >= minLength && name.length() <= maxLength) {
-            results.add(name);
             return name;
         }
         return null;
     }
 
-    @Override
-    public List<String> generateList(int size) {
-        final List<String> list = new ArrayList<>(size);
-        for (int i = 0; i < size; i++) {
-            list.add(nextName());
-        }
-        return list;
-    }
-
-    @Override
-    public List<String> generateList(int size, int minLength, int maxLength) {
-        final List<String> list = new ArrayList<>(size);
-        for (int i = 0; i < size; i++) {
-            list.add(nextName(minLength, maxLength));
-        }
-        return list;
-    }
 }

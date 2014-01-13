@@ -17,6 +17,7 @@
 package org.terasology.namegenerator;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,9 +42,10 @@ public class NameGeneratorTest {
 
         int minLen = 2;
         int maxLen = 8;
-        List<String> list = nameGen.generateList(1000, minLen, maxLen);
         
-        for (String name : list) {
+        for (int i = 0; i < 1000; i++) {
+            String name = nameGen.nextName(minLen, maxLen);
+            
             assertTrue("Length must be >= " + minLen, name.length() >= minLen);
             assertTrue("Length must be <= " + maxLen, name.length() <= maxLen);
         }
@@ -56,9 +58,11 @@ public class NameGeneratorTest {
     public void testCount() {
         Markov2NameGenerator nameGen = new Markov2NameGenerator(DEFAULT_SEED, Arrays.asList(ElvenMaleNames.NAMES));
 
-        int count = 1000;
-        List<String> list = nameGen.generateList(count, 2, 8);
+        for (int i = 0; i < 1000; i++) {
+            String name = nameGen.nextName();
         
-        assertTrue(list.size() == count);
+            assertNotNull(name);
+            assertTrue(!name.isEmpty());
+        }
     }    
 }

@@ -15,13 +15,16 @@
  */
 package org.terasology.namegenerator.logic.console;
 
+import java.util.List;
+
+import org.terasology.asset.Assets;
 import org.terasology.entitySystem.systems.ComponentSystem;
 import org.terasology.entitySystem.systems.RegisterSystem;
 import org.terasology.logic.console.Command;
 import org.terasology.logic.console.CommandParam;
 import org.terasology.namegenerator.logic.generators.Markov2NameGenerator;
-import org.terasology.namegenerator.logic.generators.Markov3NameGenerator;
 import org.terasology.namegenerator.logic.generators.NameGenerator;
+import org.terasology.namegenerator.logic.generators.NameGeneratorComponent;
 
 /**
  * @author Tobias 'skaldarnar' Nett <skaldarnar@googlemail.com>
@@ -34,7 +37,8 @@ public class NameGeneratorCommands implements ComponentSystem {
     private NameGenerator nameGen;
 
     private void initializeDefaultNameGenerator() {
-        nameGen = new Markov3NameGenerator(DEFAULT_SEED, "elvenMaleNames");
+        List<String> training = Assets.getPrefab("elvenMaleNames").getComponent(NameGeneratorComponent.class).nameList;
+        nameGen = new Markov2NameGenerator(DEFAULT_SEED, training);
     }
 
     @Override
@@ -45,12 +49,6 @@ public class NameGeneratorCommands implements ComponentSystem {
     @Override
     public void shutdown() {
         // empty
-    }
-
-    @Command(shortDescription = "Initialize a new name generator with the specified prefab.")
-    public String initNameGenerator(@CommandParam("prefabName") String prefabName) {
-        nameGen = new Markov2NameGenerator(DEFAULT_SEED, prefabName);
-        return "Markov name generator initialized.";
     }
 
     @Command(shortDescription = "Generate next random name.")
@@ -75,25 +73,15 @@ public class NameGeneratorCommands implements ComponentSystem {
             initializeDefaultNameGenerator();
         }
         StringBuilder builder = new StringBuilder();
-        for (String name : nameGen.generateList(length)) {
-            builder.append(name).append(", ");
+        
+        for (int i = 0; i < length; i++) {
+            if (builder.length() > 0) {
+                builder.append(", ");
+            }
+            
+            builder.append(nameGen.nextName());
         }
-        builder.delete(builder.length() - 2, builder.length() - 1);
-        return builder.toString();
-    }
-
-    @Command(shortDescription = "Generate a list with random names.")
-    public String generateNameList(@CommandParam("number of names") int length,
-                                   @CommandParam("minLenght") int minLength,
-                                   @CommandParam("maxLenght") int maxLength) {
-        if (nameGen == null) {
-            initializeDefaultNameGenerator();
-        }
-        StringBuilder builder = new StringBuilder();
-        for (String name : nameGen.generateList(length, minLength, maxLength)) {
-            builder.append(name).append(", ");
-        }
-        builder.delete(builder.length() - 2, builder.length() - 1);
+        
         return builder.toString();
     }
 }

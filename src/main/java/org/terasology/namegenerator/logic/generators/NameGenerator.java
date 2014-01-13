@@ -15,12 +15,10 @@
  */
 package org.terasology.namegenerator.logic.generators;
 
-import java.util.List;
-
 /**
  * Common interface for name generators.
  * <p/>
- * A name generator produces pseudo random names, either as a single name or as a list of multiple names. The desired
+ * A name generator produces pseudo random names. The desired
  * length of names can be specified as well.
  *
  * @author Tobias 'skaldarnar' Nett <skaldarnar@googlemail.com>
@@ -42,22 +40,4 @@ public interface NameGenerator {
      * @return a pseudo random name
      */
     String nextName(final int minLength, final int maxLength);
-
-    /**
-     * Generate a list of pseudo random names.
-     *
-     * @param size the size of the list
-     * @return a list with the specified number of names
-     */
-    List<String> generateList(final int size);
-
-    /**
-     * Generate a list of pseudo random names.
-     *
-     * @param size      the size of the list
-     * @param minLength minimal length of generated name
-     * @param maxLength maximal length of generated name
-     * @return a list with the specified number of names
-     */
-    List<String> generateList(final int size, final int minLength, final int maxLength);
 }
