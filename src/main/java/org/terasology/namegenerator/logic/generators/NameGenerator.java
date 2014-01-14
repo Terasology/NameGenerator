@@ -31,13 +31,4 @@ public interface NameGenerator {
      * @return a pseudo random name
      */
     String nextName();
-
-    /**
-     * Generates a new pseudo random name.
-     *
-     * @param minLength minimal length of generated name
-     * @param maxLength maximal length of generated name
-     * @return a pseudo random name
-     */
-    String nextName(final int minLength, final int maxLength);
 }

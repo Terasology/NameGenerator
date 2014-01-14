@@ -59,14 +59,6 @@ public class NameGeneratorCommands implements ComponentSystem {
         return nameGen.nextName();
     }
 
-    @Command(shortDescription = "Generate next random name with length >= minLength and <= maxLength.")
-    public String nextName(@CommandParam("minLength") int minLength, @CommandParam("maxLength") int maxLength) {
-        if (nameGen == null) {
-            initializeDefaultNameGenerator();
-        }
-        return nameGen.nextName(minLength, maxLength);
-    }
-
     @Command(shortDescription = "Generate a list with random names.")
     public String generateNameList(@CommandParam("number of names") int length) {
         if (nameGen == null) {

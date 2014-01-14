@@ -22,6 +22,8 @@ import java.util.Set;
 
 import org.terasology.utilities.random.FastRandom;
 
+import com.google.common.base.Preconditions;
+
 /**
  * Implementation of the {@link org.terasology.namegenerator.logic.generators.NameGenerator} interface, using Markov chain model.
  * <p/>
@@ -154,8 +156,19 @@ public class Markov2NameGenerator implements NameGenerator {
         return sb.toString();
     }
 
-    @Override
+
+    /**
+     * Generates a new pseudo random name.
+     *
+     * @param minLength minimal length of generated name [0..12]
+     * @param maxLength maximal length of generated name
+     * @return a pseudo random name
+     */
     public String nextName(int minLength, int maxLength) {
+        
+        Preconditions.checkArgument(minLength >= 0 && minLength <= 12);
+        Preconditions.checkArgument(maxLength >= minLength);
+        
         String name = nextName();
         while (name.length() < minLength || name.length() > maxLength) {
             name = nextName();
