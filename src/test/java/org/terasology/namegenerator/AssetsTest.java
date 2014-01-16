@@ -18,12 +18,9 @@ package org.terasology.namegenerator;
 
 import java.util.List;
 
-import org.junit.Test;
-import org.terasology.asset.AssetManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.terasology.asset.Assets;
-import org.terasology.engine.CoreRegistry;
-import org.terasology.engine.module.Module;
-import org.terasology.engine.module.ModuleManager;
 import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.namegenerator.logic.generators.NameGeneratorComponent;
 
@@ -31,25 +28,20 @@ import org.terasology.namegenerator.logic.generators.NameGeneratorComponent;
  * TODO Type description
  * @author Martin Steiger
  */
-public class AssetsTest extends HeadlessEnvironment {
+public class AssetsTest {
 
-    @Test
-    public void main() throws Exception {
-
-        ModuleManager moduleManager = CoreRegistry.get(ModuleManager.class);
-        for (Module m : moduleManager.getModules()) {
-            moduleManager.enableModule(m);
-        }
-
-        moduleManager.applyActiveModules();
-        AssetManager assetManager = CoreRegistry.get(AssetManager.class);
-        assetManager.clear();
-        assetManager.applyOverrides();
-
+    
+    private static final Logger logger = LoggerFactory.getLogger(AssetsTest.class);
+    
+    public static void main(String[] args) throws Exception {
         
-        Prefab prefab = Assets.getPrefab("namegenerator:elvenMaleNames");
+
+        HeadlessEnvironment.setupEnvironment();
+        
+        Prefab prefab = Assets.getPrefab("elvenMaleNames");
         NameGeneratorComponent component = prefab.getComponent(NameGeneratorComponent.class);
         List<String> training = component.nameList;
         System.out.println(training);
+        
     }
 }
