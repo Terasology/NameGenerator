@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 MovingBlocks
+ * Copyright 2013 MovingBlocks
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
-package org.terasology.namegenerator;
+package org.terasology.namegenerator.data;
+
+import org.terasology.entitySystem.Component;
+
+import java.util.List;
 
 /**
- * Defines different attribute affinities
- * @author Martin Steiger
+ * @author Tobias 'skaldarnar' Nett <skaldarnar@googlemail.com>
  */
-public interface AffinityVector {
-    // marker
+public class NameGeneratorComponent implements Component {
+    /**
+     * A list of training data names
+     */
+    public List<String> nameList;
 }

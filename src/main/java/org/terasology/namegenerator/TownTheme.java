@@ -19,19 +19,22 @@ package org.terasology.namegenerator;
 import java.util.List;
 
 /**
- * TODO Type description
+ * A theme for town names
  * @author Martin Steiger
  */
-public interface Theme {
+public interface TownTheme {
+    /**
+     * @return the names
+     */
+    List<String> getNames();
 
     /**
-     * @return
+     * @return the prefixes
      */
-    List<String> getTownNames();
+    List<String> getPrefixes();
 
     /**
-     * @return
+     * @return the postfixes
      */
-    List<String> getLakeNames();
-
+    List<String> getPostfixes();
 }

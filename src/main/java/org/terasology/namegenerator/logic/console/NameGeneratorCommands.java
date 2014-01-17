@@ -22,9 +22,9 @@ import org.terasology.entitySystem.systems.ComponentSystem;
 import org.terasology.entitySystem.systems.RegisterSystem;
 import org.terasology.logic.console.Command;
 import org.terasology.logic.console.CommandParam;
+import org.terasology.namegenerator.data.NameGeneratorComponent;
 import org.terasology.namegenerator.logic.generators.Markov2NameGenerator;
 import org.terasology.namegenerator.logic.generators.NameGenerator;
-import org.terasology.namegenerator.logic.generators.NameGeneratorComponent;
 
 /**
  * @author Tobias 'skaldarnar' Nett <skaldarnar@googlemail.com>

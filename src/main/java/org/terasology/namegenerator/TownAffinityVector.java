@@ -19,42 +19,67 @@ package org.terasology.namegenerator;
 import com.google.common.base.Preconditions;
 
 /**
- * TODO Type description
+ * Defines different attribute affinities for town names
  * @author Martin Steiger
  */
 public class TownAffinityVector implements AffinityVector {
 
-    private double heightAffinity;
-    private double lakeAffinity;
-    
-    /**
-     * @return the heightAffinity
-     */
-    public double getHeightAffinity() {
-        return this.heightAffinity;
-    }
-    /**
-     * @param heightAffinity the heightAffinity to set
-     */
-    public void setHeightAffinity(double heightAffinity) {
-        Preconditions.checkArgument(heightAffinity >= -1 && heightAffinity <= 1);
-        
-        this.heightAffinity = heightAffinity;
-    }
-    /**
-     * @return the lakeAffinity
-     */
-    public double getLakeAffinity() {
-        return this.lakeAffinity;
-    }
-    /**
-     * @param lakeAffinity the lakeAffinity to set
-     */
-    public void setLakeAffinity(double lakeAffinity) {
-        Preconditions.checkArgument(lakeAffinity >= -1 && lakeAffinity <= 1);
+    private double prefixAffinity;
+    private double postfixAffinity;
 
-        this.lakeAffinity = lakeAffinity;
+    /**
+     * Initializes default values
+     */
+    protected TownAffinityVector() {
+        // default values are 0
+        
+        // avoid direct instantiation
     }
     
+    /**
+     * @return an instance with default values
+     */
+    public static TownAffinityVector create() {
+        return new TownAffinityVector();
+    }
+    
+    /**
+     * @return the affinity to prefixes in [0..1]
+     */
+    public double getPrefixAffinity() {
+        return prefixAffinity;
+    }
+    
+    /**
+     * @return the affinity to postfixes in [0..1]
+     */
+    public double getPostfixAffinity() {
+        return postfixAffinity;
+    }
+
+    /**
+     * @param affinity the affinity to affixes in [0..1]
+     * @return this
+     */
+    public TownAffinityVector prefix(double affinity) {
+        Preconditions.checkArgument(affinity >= 0 && affinity <= 1);
+
+        this.prefixAffinity = affinity;
+        
+        return this;
+    }
+
+    /**
+     * @param affinity the affinity to affixes in [0..1]
+     * @return this
+     */
+    public TownAffinityVector postfix(double affinity) {
+        Preconditions.checkArgument(affinity >= 0 && affinity <= 1);
+
+        this.postfixAffinity = affinity;
+        
+        return this;
+    }
+
     
 }

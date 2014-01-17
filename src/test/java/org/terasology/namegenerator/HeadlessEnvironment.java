@@ -77,9 +77,7 @@ public abstract class HeadlessEnvironment {
      */
     public static void setupEnvironment() throws IOException {
 
-        final JavaArchive homeArchive = ShrinkWrap.create(JavaArchive.class);
-        final FileSystem vfs = ShrinkWrapFileSystems.newFileSystem(homeArchive);
-        PathManager.getInstance().useOverrideHomePath(vfs.getPath(""));
+        setupPathManager();
 
         ModuleManagerImpl moduleManager = new ModuleManagerImpl(new ModuleSecurityManager());
         moduleManager.applyActiveModules();
@@ -142,11 +140,7 @@ public abstract class HeadlessEnvironment {
 
         CollisionGroupManager collisionGroupManager = new CollisionGroupManager();
         CoreRegistry.put(CollisionGroupManager.class, collisionGroupManager);
-        PathManager.getInstance().setCurrentSaveTitle("world1");
-
         
-        CoreRegistry.put(ModuleManager.class, moduleManager);
-
         EngineTime mockTime = mock(EngineTime.class);
         CoreRegistry.put(Time.class, mockTime);
         NetworkSystemImpl networkSystem = new NetworkSystemImpl(mockTime);
@@ -179,6 +173,16 @@ public abstract class HeadlessEnvironment {
         moduleManager.applyActiveModules();
         assetManager.clear();
         assetManager.applyOverrides();        
+    }
+
+    /**
+     * @throws IOException ShrinkWrap errors
+     */
+    private static void setupPathManager() throws IOException {
+        final JavaArchive homeArchive = ShrinkWrap.create(JavaArchive.class);
+        final FileSystem vfs = ShrinkWrapFileSystems.newFileSystem(homeArchive);
+        PathManager.getInstance().useOverrideHomePath(vfs.getPath(""));
+        PathManager.getInstance().setCurrentSaveTitle("world1");
     }
 
 }

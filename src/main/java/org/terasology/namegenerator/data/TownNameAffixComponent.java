@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 MovingBlocks
+ * Copyright 2014 MovingBlocks
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,15 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.terasology.namegenerator.logic.generators;
 
-import org.terasology.entitySystem.Component;
+package org.terasology.namegenerator.data;
 
 import java.util.List;
 
+import org.terasology.entitySystem.Component;
+
 /**
- * @author Tobias 'skaldarnar' Nett <skaldarnar@googlemail.com>
+ * Contains affixes for town names
+ * @author Martin Steiger
  */
-public class NameGeneratorComponent implements Component {
-    public List<String> nameList;
+public class TownNameAffixComponent implements Component {
+    /**
+     * A list of pre-fixes such as "Old" and "Nether"
+     */
+    public List<String> prefixes;
+
+    /**
+     * A list of post-fixes such as "Heights" and "Beach"
+     */
+    public List<String> postfixes;
+
 }
