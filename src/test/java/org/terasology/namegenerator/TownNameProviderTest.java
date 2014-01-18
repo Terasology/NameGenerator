@@ -18,6 +18,7 @@ package org.terasology.namegenerator;
 
 import java.io.IOException;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -32,6 +33,7 @@ import static org.junit.Assert.*;
 public class TownNameProviderTest {
 
     private static final Logger logger = LoggerFactory.getLogger(TownNameProviderTest.class);
+    private static HeadlessEnvironment env;
 
     /**
      * Setup headless environment
@@ -39,9 +41,18 @@ public class TownNameProviderTest {
      */
     @BeforeClass
     public static void setUp() throws IOException {
-        HeadlessEnvironment.setupEnvironment();
+        env = new HeadlessEnvironment();
     }
 
+    /**
+     * Clean up
+     * @throws Exception never
+     */
+    @AfterClass
+    public static void tearDown() throws Exception {
+        env.close();
+    }
+    
     /**
      * Requires that original training data names do <b>NOT</b> contain any spaces
      */
