@@ -39,11 +39,11 @@ TownAffinityVector.create().prefix(0.33).postfix(0.33);
 
 This will give you 1/3 prefixed names, 1/3 postfixed names and 1/3 without.
 
->Nether Kirchen
->Dunharsden
->Southophall
->Green Hophall
->Old Guildhey
+>Nether Kirchen,
+>Dunharsden,
+>Southophall,
+>Green Hophall,
+>Old Guildhey,
 >Halgh Barrens
 
 Similarly, you can create creature names:
@@ -60,7 +60,7 @@ This gives:
 >Suss Camth,
 >Vel Our,
 >Estalandra Ilve,
->Laethalandrieldralae Whiiliazym the Noble[/QUOTE]
+>Laethalandrieldralae Whiiliazym the Noble
 
 
 ### License
