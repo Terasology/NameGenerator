@@ -40,7 +40,7 @@ public class TownNameProviderTest {
      * @throws IOException if environment cannot be loaded 
      */
     @BeforeClass
-    public static void setUp() throws IOException {
+    public static void setUpClass() throws IOException {
         env = new HeadlessEnvironment();
     }
 
@@ -49,7 +49,7 @@ public class TownNameProviderTest {
      * @throws Exception never
      */
     @AfterClass
-    public static void tearDown() throws Exception {
+    public static void tearDownClass() throws Exception {
         env.close();
     }
     

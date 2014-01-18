@@ -16,6 +16,7 @@
 
 package org.terasology.namegenerator;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.terasology.asset.Assets;
@@ -45,7 +46,7 @@ public enum TownAssetTheme implements TownTheme {
 
     /**
      * @param namePrefab valid prefab with {@link NameGeneratorComponent}
-     * @param affixPrefab valid prefab with {link {@link TownNameAffixComponent}
+     * @param affixPrefab valid prefab with {@link TownNameAffixComponent}
      */
     TownAssetTheme(String namePrefab, String affixPrefab) {
         this(Assets.getPrefab(namePrefab), Assets.getPrefab(affixPrefab));
@@ -56,13 +57,12 @@ public enum TownAssetTheme implements TownTheme {
      * @param affixPrefab valid prefab with {link {@link TownNameAffixComponent}
      */
     TownAssetTheme(Prefab namePrefab, Prefab affixPrefab) {
-        NameGeneratorComponent nameGenComp = namePrefab.getComponent(NameGeneratorComponent.class);
-        names = nameGenComp.nameList;
+        NameGeneratorComponent basenames = namePrefab.getComponent(NameGeneratorComponent.class);
+        names = Collections.unmodifiableList(basenames.nameList);
         
         TownNameAffixComponent affixes = affixPrefab.getComponent(TownNameAffixComponent.class);
-
-        prefixes = affixes.prefixes;
-        postfixes  = affixes.postfixes;
+        prefixes = Collections.unmodifiableList(affixes.prefixes);
+        postfixes  = Collections.unmodifiableList(affixes.postfixes);
     }
 
     @Override
