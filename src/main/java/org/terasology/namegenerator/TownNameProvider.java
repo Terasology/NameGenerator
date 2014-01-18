@@ -16,7 +16,7 @@
 
 package org.terasology.namegenerator;
 
-import org.terasology.namegenerator.logic.generators.Markov2NameGenerator;
+import org.terasology.namegenerator.logic.generators.MarkovNameGenerator;
 import org.terasology.namegenerator.logic.generators.NameGenerator;
 import org.terasology.namegenerator.logic.generators.TrainingGenerator;
 import org.terasology.utilities.random.MersenneRandom;
@@ -49,7 +49,7 @@ public class TownNameProvider {
 
         random = new MersenneRandom(seed);
         
-        nameGen = new Markov2NameGenerator(seed, theme.getNames());
+        nameGen = new MarkovNameGenerator(seed, theme.getNames());
         prefixGen = new TrainingGenerator(seed, theme.getPrefixes());
         postfixGen = new TrainingGenerator(seed, theme.getPostfixes());
     }
@@ -68,19 +68,20 @@ public class TownNameProvider {
     public synchronized String generateTownName(TownAffinityVector affinity) {
         
         String name = nameGen.nextName();
-        
-        // try prefixes first
-        if (random.nextDouble() < affinity.getPrefixAffinity()) { 
-            String postFix = postfixGen.nextName();
-            return name + " " + postFix;
-        }
 
-        // then postfixes
-        if (random.nextDouble() < affinity.getPostfixAffinity()) { 
+        // add an affix?
+        if (random.nextDouble() < affinity.getPrefixAffinity() + affinity.getPostfixAffinity()) {
+            // try prefixes first
+            if (random.nextDouble() < affinity.getPrefixAffinity()) {
+                String postFix = postfixGen.nextName();
+                return name + " " + postFix;
+            }
+
+            // then postfixes
             String preFix = prefixGen.nextName();
             return preFix + " " + name;
         }
-        
+
         return name;
     }
 }

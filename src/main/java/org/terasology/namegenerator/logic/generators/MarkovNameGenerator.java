@@ -37,7 +37,7 @@ import com.google.common.base.Preconditions;
  *
  * @author Tobias 'skaldarnar' Nett <skaldarnar@googlemail.com>
  */
-public class Markov2NameGenerator implements NameGenerator {
+public class MarkovNameGenerator implements NameGenerator {
 
     private static final char TERMINATOR = '\0';
     
@@ -53,7 +53,7 @@ public class Markov2NameGenerator implements NameGenerator {
      * @param seed the seed for the random number generator
      * @param sourceNames a list of example names
      */
-    public Markov2NameGenerator(long seed, List<String> sourceNames) {
+    public MarkovNameGenerator(long seed, List<String> sourceNames) {
 
         random = new FastRandom(seed);
 

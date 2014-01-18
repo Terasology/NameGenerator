@@ -76,7 +76,7 @@ public class TownNameProviderTest {
         TownNameProvider townNameProv = new TownNameProvider(123455);
               
         int hits = 0;
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 1000; i++) {
             TownAffinityVector aff = TownAffinityVector.create().postfix(0.5);
             String name = townNameProv.generateTownName(aff);
             if (name.contains(" ")) {
@@ -84,8 +84,8 @@ public class TownNameProviderTest {
             }
         }
         
-        logger.info("Towns with postfix out of 10000: " + hits);
-        assertTrue(hits > 4000 && hits < 6000); // should be 50% 
+        logger.info("Towns with postfix out of 1000: " + hits);
+        assertTrue(hits > 400 && hits < 600); // should be 50% 
     }
     
     /**
@@ -96,7 +96,7 @@ public class TownNameProviderTest {
         TownNameProvider townNameProv = new TownNameProvider(123455);
               
         int hits = 0;
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 1000; i++) {
             TownAffinityVector aff = TownAffinityVector.create().prefix(0.5).postfix(0.5);
             String name = townNameProv.generateTownName(aff);
             if (name.contains(" ")) {
@@ -104,7 +104,23 @@ public class TownNameProviderTest {
             }
         }
         
-        logger.info("Towns with postfix out of 10000: " + hits);
-        assertTrue(hits > 7000 && hits < 8000); // should be 50% + 50% * 50% = 75%
+        logger.info("Towns with postfix out of 1000: " + hits);
+        assertTrue(hits == 1000); // should be 50% + 50%
     }
+    
+    /**
+     * Single affix > 1
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidArgs1() {
+        TownAffinityVector.create().prefix(1.5);
+    }
+
+    /**
+     * Combined affixes > 1
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidArgs2() {
+        TownAffinityVector.create().prefix(0.5).postfix(0.7);
+    }    
 }

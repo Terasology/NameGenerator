@@ -58,25 +58,29 @@ public class TownAffinityVector implements AffinityVector {
     }
 
     /**
-     * @param affinity the affinity to affixes in [0..1]
+     * @param aff the affinity to affixes in [0..1]
      * @return this
      */
-    public TownAffinityVector prefix(double affinity) {
-        Preconditions.checkArgument(affinity >= 0 && affinity <= 1);
+    public TownAffinityVector prefix(double aff) {
+        double combAff = aff + postfixAffinity;
+        Preconditions.checkArgument(aff >= 0 && aff <= 1, "Affinity must be in [0..1], but is " + aff);
+        Preconditions.checkArgument(combAff >= 0 && combAff <= 1, "Pre + postfix affinity must be in [0..1], but is " + combAff);
 
-        this.prefixAffinity = affinity;
+        this.prefixAffinity = aff;
         
         return this;
     }
 
     /**
-     * @param affinity the affinity to affixes in [0..1]
+     * @param aff the affinity to affixes in [0..1]
      * @return this
      */
-    public TownAffinityVector postfix(double affinity) {
-        Preconditions.checkArgument(affinity >= 0 && affinity <= 1);
+    public TownAffinityVector postfix(double aff) {
+        double combAff = aff + prefixAffinity;
+        Preconditions.checkArgument(aff >= 0 && aff <= 1, "Affinity must be in [0..1], but is " + aff);
+        Preconditions.checkArgument(combAff >= 0 && combAff <= 1, "Pre + postfix affinity must be in [0..1], but is " + combAff);
 
-        this.postfixAffinity = affinity;
+        this.postfixAffinity = aff;
         
         return this;
     }

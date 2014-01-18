@@ -22,10 +22,10 @@ import static org.junit.Assert.assertNotNull;
 import java.util.Arrays;
 
 import org.junit.Test;
-import org.terasology.namegenerator.logic.generators.Markov2NameGenerator;
+import org.terasology.namegenerator.logic.generators.MarkovNameGenerator;
 
 /**
- * Runs a few tests on {@link Markov2NameGenerator}.
+ * Runs a few tests on {@link MarkovNameGenerator}.
  * @author Martin Steiger
  */
 public class NameGeneratorTest {
@@ -37,7 +37,7 @@ public class NameGeneratorTest {
      */
     @Test
     public void testLength() {
-        Markov2NameGenerator nameGen = new Markov2NameGenerator(DEFAULT_SEED, Arrays.asList(ElvenMaleNames.NAMES));
+        MarkovNameGenerator nameGen = new MarkovNameGenerator(DEFAULT_SEED, Arrays.asList(ElvenMaleNames.NAMES));
 
         int minLen = 2;
         int maxLen = 8;
@@ -55,7 +55,7 @@ public class NameGeneratorTest {
      */
     @Test
     public void testCount() {
-        Markov2NameGenerator nameGen = new Markov2NameGenerator(DEFAULT_SEED, Arrays.asList(ElvenMaleNames.NAMES));
+        MarkovNameGenerator nameGen = new MarkovNameGenerator(DEFAULT_SEED, Arrays.asList(ElvenMaleNames.NAMES));
 
         for (int i = 0; i < 1000; i++) {
             String name = nameGen.nextName();

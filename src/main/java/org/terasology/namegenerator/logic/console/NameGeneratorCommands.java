@@ -23,7 +23,7 @@ import org.terasology.entitySystem.systems.RegisterSystem;
 import org.terasology.logic.console.Command;
 import org.terasology.logic.console.CommandParam;
 import org.terasology.namegenerator.data.NameGeneratorComponent;
-import org.terasology.namegenerator.logic.generators.Markov2NameGenerator;
+import org.terasology.namegenerator.logic.generators.MarkovNameGenerator;
 import org.terasology.namegenerator.logic.generators.NameGenerator;
 
 /**
@@ -38,7 +38,7 @@ public class NameGeneratorCommands implements ComponentSystem {
 
     private void initializeDefaultNameGenerator() {
         List<String> training = Assets.getPrefab("elvenMaleNames").getComponent(NameGeneratorComponent.class).nameList;
-        nameGen = new Markov2NameGenerator(DEFAULT_SEED, training);
+        nameGen = new MarkovNameGenerator(DEFAULT_SEED, training);
     }
 
     @Override
