@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.namegenerator.town;
+package org.terasology.namegenerator.waters;
 
 import java.util.Collections;
 import java.util.List;
@@ -25,44 +25,37 @@ import org.terasology.namegenerator.data.NameGeneratorComponent;
 import org.terasology.namegenerator.data.TownNameAffixComponent;
 
 /**
- * Asset-based themes for towns
+ * Asset-based themes for waters
  * @author Martin Steiger
  */
-public enum TownAssetTheme implements TownTheme {
+public enum WaterAssetTheme implements WaterTheme {
     
     /**
      * Conventional English names
      */
-    ENGLISH("englishTownNames", "englishTownNameAffixes"),
-    
-    /**
-     * Fantasy names, English affixes
-     */
-    FANTASY("fantasyTownNames", "englishTownNameAffixes");
+    ENGLISH("humanFemaleOldEnglishNames3", "waterTypes");
     
     private final List<String> names;
-    private final List<String> prefixes;
-    private final List<String> postfixes;
+    private final List<String> types;
 
     /**
      * @param namePrefab valid prefab with {@link NameGeneratorComponent}
-     * @param affixPrefab valid prefab with {@link TownNameAffixComponent}
+     * @param typePrefab valid prefab with {@link NameGeneratorComponent}
      */
-    TownAssetTheme(String namePrefab, String affixPrefab) {
-        this(Assets.getPrefab(namePrefab), Assets.getPrefab(affixPrefab));
+    WaterAssetTheme(String namePrefab, String typePrefab) {
+        this(Assets.getPrefab(namePrefab), Assets.getPrefab(typePrefab));
     }
     
     /**
      * @param namePrefab valid prefab with {@link NameGeneratorComponent}
      * @param affixPrefab valid prefab with {link {@link TownNameAffixComponent}
      */
-    TownAssetTheme(Prefab namePrefab, Prefab affixPrefab) {
+    WaterAssetTheme(Prefab namePrefab, Prefab affixPrefab) {
         NameGeneratorComponent basenames = namePrefab.getComponent(NameGeneratorComponent.class);
         names = Collections.unmodifiableList(basenames.nameList);
         
-        TownNameAffixComponent affixes = affixPrefab.getComponent(TownNameAffixComponent.class);
-        prefixes = Collections.unmodifiableList(affixes.prefixes);
-        postfixes  = Collections.unmodifiableList(affixes.postfixes);
+        NameGeneratorComponent typeComp = affixPrefab.getComponent(NameGeneratorComponent.class);
+        types  = Collections.unmodifiableList(typeComp.nameList);
     }
 
     @Override
@@ -71,13 +64,8 @@ public enum TownAssetTheme implements TownTheme {
     }
 
     @Override
-    public List<String> getPrefixes() {
-        return this.prefixes;
-    }
-
-    @Override
-    public List<String> getPostfixes() {
-        return this.postfixes;
+    public List<String> getWaterTypes() {
+        return this.types;
     }
 
     
