@@ -32,7 +32,12 @@ public enum CreatureAssetTheme implements CreatureTheme {
     /**
      * Elven theme set
      */
-    ELVEN("elvenMaleNames", "elvenFemaleNames", "elvenSurnames", "nobilityAttribs");
+    ELVEN("elvenMaleNames", "elvenFemaleNames", "elvenSurnames", "nobilityAttribs"),
+
+    /**
+     * Dwarf names - surnames are not properly defined
+     */
+    DWARF("dwarvenMaleNames", "dwarvenFemaleNames", "dwarvenMaleNames", "nobilityAttribs");
     
     private final List<String> maleNames;
     private final List<String> femaleNames;
