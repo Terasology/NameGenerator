@@ -16,23 +16,20 @@
 
 package org.terasology.namegenerator;
 
+import static org.junit.Assert.assertFalse;
+
 import java.io.IOException;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import static org.junit.Assert.*;
 
 /**
- * Tests {@link CreatureNameProvider}
+ * Tests {@link RegionNameProvider}
  * @author Martin Steiger
  */
-public class EntityNameProviderTest {
+public class RegionNameProviderTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(EntityNameProviderTest.class);
     private static HeadlessEnvironment env;
 
     /**
@@ -59,17 +56,11 @@ public class EntityNameProviderTest {
     @Test
     public void testBase() {
         
-        CreatureNameProvider prov = new CreatureNameProvider(123455);
+        RegionNameProvider prov = new RegionNameProvider(123455);
         
         for (int i = 0; i < 100; i++) {
             String name = prov.generateName();
-            assertTrue(name.contains(" "));
-        }
-
-        for (int i = 0; i < 100; i++) {
-            CreatureAffinityVector aff = CreatureAffinityVector.create().maleOnly().nobility(1);
-            String name = prov.generateName(aff);
-            assertTrue("Name \"" + name + "\" has not the form <FIRST> <LAST> the <ATTR>", name.matches("[\\S]+ [\\S]+ the [\\S]+"));
+            assertFalse(name.isEmpty());
         }
     }
     
