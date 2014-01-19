@@ -103,10 +103,8 @@ public class MarkovNameGenerator implements NameGenerator {
                 probabilities[characters.indexOf(last1)][characters.indexOf(last2)][characters.indexOf(current)]++;
                 last1 = last2;
                 last2 = current;
-                index++;
-            } else {
-                index++;
-            }
+            } 
+            index++;
         }
         char current = TERMINATOR;
         probabilities[characters.indexOf(last1)][characters.indexOf(last2)][characters.indexOf(current)]++;
@@ -135,28 +133,6 @@ public class MarkovNameGenerator implements NameGenerator {
         return (characters.get(--index));
     }
 
-    @Override
-    public String nextName() {
-        StringBuilder sb = new StringBuilder();
-        char last1 = TERMINATOR;
-        char last2 = TERMINATOR;
-        do {
-            char temp = nextCharByLast(last1, last2);
-            last1 = last2;
-            last2 = temp;
-            if (last2 != TERMINATOR) {
-                if (sb.length() == 0) {
-                    sb.append(Character.toUpperCase(last2));        // first letter is uppercase
-                } else {
-                    sb.append(last2);
-                }
-            }
-        } while (last2 != TERMINATOR);
-        
-        return sb.toString();
-    }
-
-
     /**
      * Generates a new pseudo random name.
      *
@@ -165,18 +141,38 @@ public class MarkovNameGenerator implements NameGenerator {
      * @return a pseudo random name
      */
     public String nextName(int minLength, int maxLength) {
-        
-        Preconditions.checkArgument(minLength >= 0 && minLength <= 12);
         Preconditions.checkArgument(maxLength >= minLength);
+
+        StringBuilder sb = new StringBuilder();
+        char last1 = TERMINATOR;
+        char last2 = TERMINATOR;
+        char next;
+        do {
+            next = nextCharByLast(last1, last2);
+            if (next != TERMINATOR) {
+                last1 = last2;
+                last2 = next;
+
+                if (sb.length() == 0) {
+                    sb.append(Character.toUpperCase(next));        // first letter is uppercase
+                } else {
+                    sb.append(next);
+                }
+            }
+            // it would be better, if the probability of TERMINATOR was
+            // continuously increased as the name gets longer. Truncating can
+            // produce ugly names.
+        } while ((next != TERMINATOR || sb.length() < minLength) && sb.length() < maxLength);
         
-        String name = nextName();
-        while (name.length() < minLength || name.length() > maxLength) {
-            name = nextName();
-        }
-        if (name.length() >= minLength && name.length() <= maxLength) {
-            return name;
-        }
-        return null;
+        // cut of trailing whitespace
+        return sb.toString().trim();
+    }
+
+
+    @Override
+    public String nextName() {
+        
+        return nextName(4, 12);
     }
 
 }
