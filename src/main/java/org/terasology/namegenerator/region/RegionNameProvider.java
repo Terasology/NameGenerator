@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package org.terasology.namegenerator;
+package org.terasology.namegenerator.region;
 
-import org.terasology.namegenerator.logic.generators.MarkovNameGenerator;
-import org.terasology.namegenerator.logic.generators.NameGenerator;
+import org.terasology.namegenerator.generators.MarkovNameGenerator;
+import org.terasology.namegenerator.generators.NameGenerator;
 
 /**
  * Provides access to generated names. Thread-safe.

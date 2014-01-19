@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 MovingBlocks
+ * Copyright 2013 MovingBlocks
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,13 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package org.terasology.namegenerator;
+package org.terasology.namegenerator.generators;
 
 /**
- * Defines affinities to certain region names
- * @author Martin Steiger
+ * Common interface for name generators.
+ * <p/>
+ * A name generator produces pseudo random names. The desired
+ * length of names can be specified as well.
+ *
+ * @author Tobias 'skaldarnar' Nett <skaldarnar@googlemail.com>
  */
-public class RegionAffinityVector implements AffinityVector {
-    // empty
+public interface NameGenerator {
+
+    /**
+     * Generates a pseudo random name.
+     *
+     * @return a pseudo random name
+     */
+    String nextName();
 }

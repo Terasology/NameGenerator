@@ -14,32 +14,14 @@
  * limitations under the License.
  */
 
-package org.terasology.namegenerator;
+package org.terasology.namegenerator.region;
 
-import java.util.List;
+import org.terasology.namegenerator.AffinityVector;
 
 /**
- * A theme for town names
+ * Defines affinities to certain region names
  * @author Martin Steiger
  */
-public interface CreatureTheme {
-    /**
-     * @return male first names
-     */
-    List<String> getMaleNames();
-
-    /**
-     * @return female first names
-     */
-    List<String> getFemaleNames();
-
-    /**
-     * @return surnames
-     */
-    List<String> getSurnames();
-    
-    /**
-     * @return nobility attributes
-     */
-    List<String> getNobilityAttributes();
+public class RegionAffinityVector implements AffinityVector {
+    // empty
 }

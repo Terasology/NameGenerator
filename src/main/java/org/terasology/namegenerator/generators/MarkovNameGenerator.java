@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.terasology.namegenerator.logic.generators;
+package org.terasology.namegenerator.generators;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -25,7 +25,7 @@ import org.terasology.utilities.random.FastRandom;
 import com.google.common.base.Preconditions;
 
 /**
- * Implementation of the {@link org.terasology.namegenerator.logic.generators.NameGenerator} interface, using Markov chain model.
+ * Implementation of the {@link org.terasology.namegenerator.generators.NameGenerator} interface, using Markov chain model.
  * <p/>
  * The look-ahead for analysis and generation is two characters.
  * <p/>

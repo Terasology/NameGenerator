@@ -23,6 +23,8 @@ import java.io.IOException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.terasology.namegenerator.creature.CreatureAffinityVector;
+import org.terasology.namegenerator.creature.CreatureNameProvider;
 
 /**
  * Tests {@link CreatureNameProvider}

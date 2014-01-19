@@ -23,6 +23,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.terasology.namegenerator.town.TownAffinityVector;
+import org.terasology.namegenerator.town.TownNameProvider;
 
 import static org.junit.Assert.*;
 
@@ -62,19 +64,19 @@ public class TownNameProviderTest {
         TownNameProvider townNameProv = new TownNameProvider(123455);
         
         for (int i = 0; i < 1000; i++) {
-            String name = townNameProv.generateTownName();
+            String name = townNameProv.generateName();
             assertFalse(name.contains(" "));
         }
         
         for (int i = 0; i < 1000; i++) {
             TownAffinityVector aff = TownAffinityVector.create().prefix(1);
-            String name = townNameProv.generateTownName(aff);
+            String name = townNameProv.generateName(aff);
             assertTrue("The name \"" + name + "\" does not contain an affix", name.contains(" "));
         }
         
         for (int i = 0; i < 1000; i++) {
             TownAffinityVector aff = TownAffinityVector.create().postfix(1);
-            String name = townNameProv.generateTownName(aff);
+            String name = townNameProv.generateName(aff);
             assertTrue("The name \"" + name + "\" does not contain an affix", name.contains(" "));
         }
     }
@@ -89,7 +91,7 @@ public class TownNameProviderTest {
         int hits = 0;
         for (int i = 0; i < 1000; i++) {
             TownAffinityVector aff = TownAffinityVector.create().postfix(0.5);
-            String name = townNameProv.generateTownName(aff);
+            String name = townNameProv.generateName(aff);
             if (name.contains(" ")) {
                 hits++;
             }
@@ -109,7 +111,7 @@ public class TownNameProviderTest {
         int hits = 0;
         for (int i = 0; i < 1000; i++) {
             TownAffinityVector aff = TownAffinityVector.create().prefix(0.5).postfix(0.5);
-            String name = townNameProv.generateTownName(aff);
+            String name = townNameProv.generateName(aff);
             if (name.contains(" ")) {
                 hits++;
             }

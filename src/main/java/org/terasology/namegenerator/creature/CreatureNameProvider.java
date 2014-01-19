@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.terasology.namegenerator;
+package org.terasology.namegenerator.creature;
 
-import org.terasology.namegenerator.logic.generators.MarkovNameGenerator;
-import org.terasology.namegenerator.logic.generators.NameGenerator;
-import org.terasology.namegenerator.logic.generators.TrainingGenerator;
+import org.terasology.namegenerator.generators.MarkovNameGenerator;
+import org.terasology.namegenerator.generators.NameGenerator;
+import org.terasology.namegenerator.generators.TrainingGenerator;
 import org.terasology.utilities.random.MersenneRandom;
 import org.terasology.utilities.random.Random;
 

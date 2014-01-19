@@ -22,7 +22,7 @@ import static org.junit.Assert.assertNotNull;
 import java.util.Arrays;
 
 import org.junit.Test;
-import org.terasology.namegenerator.logic.generators.MarkovNameGenerator;
+import org.terasology.namegenerator.generators.MarkovNameGenerator;
 
 /**
  * Runs a few tests on {@link MarkovNameGenerator}.

@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.terasology.namegenerator;
+package org.terasology.namegenerator.town;
 
-import org.terasology.namegenerator.logic.generators.MarkovNameGenerator;
-import org.terasology.namegenerator.logic.generators.NameGenerator;
-import org.terasology.namegenerator.logic.generators.TrainingGenerator;
+import org.terasology.namegenerator.generators.MarkovNameGenerator;
+import org.terasology.namegenerator.generators.NameGenerator;
+import org.terasology.namegenerator.generators.TrainingGenerator;
 import org.terasology.utilities.random.MersenneRandom;
 import org.terasology.utilities.random.Random;
 
@@ -57,15 +57,15 @@ public class TownNameProvider {
     /**
      * @return a town name without any affinities
      */
-    public String generateTownName() {
-        return generateTownName(new TownAffinityVector());
+    public String generateName() {
+        return generateName(new TownAffinityVector());
     }
     
     /**
      * @param affinity the list of affinities
      * @return the town name
      */
-    public synchronized String generateTownName(TownAffinityVector affinity) {
+    public synchronized String generateName(TownAffinityVector affinity) {
         
         String name = nameGen.nextName();
 

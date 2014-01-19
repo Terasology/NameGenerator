@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.namegenerator.logic.generators;
+package org.terasology.namegenerator.generators;
 
 import java.util.Collection;
 import java.util.Collections;

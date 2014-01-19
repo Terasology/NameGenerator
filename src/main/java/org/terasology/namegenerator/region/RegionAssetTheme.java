@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.namegenerator;
+package org.terasology.namegenerator.region;
 
 import java.util.Collections;
 import java.util.List;

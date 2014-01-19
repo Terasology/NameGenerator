@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 MovingBlocks
+ * Copyright 2014 MovingBlocks
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,22 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.terasology.namegenerator.logic.generators;
+
+package org.terasology.namegenerator.region;
+
+import java.util.List;
 
 /**
- * Common interface for name generators.
- * <p/>
- * A name generator produces pseudo random names. The desired
- * length of names can be specified as well.
- *
- * @author Tobias 'skaldarnar' Nett <skaldarnar@googlemail.com>
+ * A theme for town names
+ * @author Martin Steiger
  */
-public interface NameGenerator {
-
+public interface RegionTheme {
     /**
-     * Generates a pseudo random name.
-     *
-     * @return a pseudo random name
+     * @return a list of region names
      */
-    String nextName();
+    List<String> getNames();
+
 }

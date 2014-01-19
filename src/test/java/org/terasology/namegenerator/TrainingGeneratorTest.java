@@ -22,7 +22,7 @@ import java.util.Arrays;
 import java.util.Set;
 
 import org.junit.Test;
-import org.terasology.namegenerator.logic.generators.TrainingGenerator;
+import org.terasology.namegenerator.generators.TrainingGenerator;
 
 import com.google.common.collect.Sets;
 

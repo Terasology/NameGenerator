@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.namegenerator;
+package org.terasology.namegenerator.creature;
 
 import java.util.List;
 
@@ -22,10 +22,24 @@ import java.util.List;
  * A theme for town names
  * @author Martin Steiger
  */
-public interface RegionTheme {
+public interface CreatureTheme {
     /**
-     * @return a list of region names
+     * @return male first names
      */
-    List<String> getNames();
+    List<String> getMaleNames();
 
+    /**
+     * @return female first names
+     */
+    List<String> getFemaleNames();
+
+    /**
+     * @return surnames
+     */
+    List<String> getSurnames();
+    
+    /**
+     * @return nobility attributes
+     */
+    List<String> getNobilityAttributes();
 }

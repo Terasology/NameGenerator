@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package org.terasology.namegenerator;
+package org.terasology.namegenerator.creature;
+
+import org.terasology.namegenerator.AffinityVector;
 
 import com.google.common.base.Preconditions;
 
