@@ -59,7 +59,7 @@ import org.terasology.physics.CollisionGroupManager;
 import org.terasology.rendering.nui.skin.UISkin;
 import org.terasology.rendering.nui.skin.UISkinData;
 import org.terasology.world.block.BlockManager;
-import org.terasology.world.block.family.AlignToSurfaceFamilyFactory;
+import org.terasology.world.block.family.AttachedToSurfaceFamilyFactory;
 import org.terasology.world.block.family.DefaultBlockFamilyFactoryRegistry;
 import org.terasology.world.block.family.HorizontalBlockFamilyFactory;
 import org.terasology.world.block.internal.BlockManagerImpl;
@@ -120,7 +120,7 @@ public class HeadlessEnvironment extends Environment {
     protected void setupBlockManager() {
         DefaultBlockFamilyFactoryRegistry blockFamilyFactoryRegistry = new DefaultBlockFamilyFactoryRegistry();
         blockFamilyFactoryRegistry.setBlockFamilyFactory("horizontal", new HorizontalBlockFamilyFactory());
-        blockFamilyFactoryRegistry.setBlockFamilyFactory("alignToSurface", new AlignToSurfaceFamilyFactory());
+        blockFamilyFactoryRegistry.setBlockFamilyFactory("alignToSurface", new AttachedToSurfaceFamilyFactory());
         WorldAtlas worldAtlas = mock(WorldAtlas.class);
         BlockManagerImpl blockManager = new BlockManagerImpl(worldAtlas, blockFamilyFactoryRegistry);
         CoreRegistry.put(BlockManager.class, blockManager);
