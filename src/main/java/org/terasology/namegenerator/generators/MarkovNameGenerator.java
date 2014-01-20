@@ -20,6 +20,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.terasology.utilities.random.FastRandom;
 
 import com.google.common.base.Preconditions;
@@ -38,6 +40,8 @@ import com.google.common.base.Preconditions;
  * @author Tobias 'skaldarnar' Nett <skaldarnar@googlemail.com>
  */
 public class MarkovNameGenerator implements NameGenerator {
+
+    private static final Logger logger = LoggerFactory.getLogger(MarkovNameGenerator.class);
 
     private static final char TERMINATOR = '\0';
     
@@ -147,6 +151,8 @@ public class MarkovNameGenerator implements NameGenerator {
         char last1 = TERMINATOR;
         char last2 = TERMINATOR;
         char next;
+        int tries = 0;
+        int maxTries = maxLength + 100;
         do {
             next = nextCharByLast(last1, last2);
             if (next != TERMINATOR) {
@@ -159,13 +165,20 @@ public class MarkovNameGenerator implements NameGenerator {
                     sb.append(next);
                 }
             }
+            tries++;
             // it would be better, if the probability of TERMINATOR was
             // continuously increased as the name gets longer. Truncating can
             // produce ugly names.
-        } while ((next != TERMINATOR || sb.length() < minLength) && sb.length() < maxLength);
+        } while ((next != TERMINATOR || sb.length() < minLength) && sb.length() < maxLength && tries < maxTries);
         
         // cut of trailing whitespace
-        return sb.toString().trim();
+        String name = sb.toString().trim();
+
+        if (tries == maxTries) {
+            logger.warn("Could not generate name of desired length - result: " + name);
+        }
+        
+        return name;
     }
 
 
