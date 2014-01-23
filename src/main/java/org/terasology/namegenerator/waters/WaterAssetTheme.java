@@ -22,7 +22,6 @@ import java.util.List;
 import org.terasology.asset.Assets;
 import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.namegenerator.data.NameGeneratorComponent;
-import org.terasology.namegenerator.data.TownNameAffixComponent;
 
 /**
  * Asset-based themes for waters
@@ -48,7 +47,7 @@ public enum WaterAssetTheme implements WaterTheme {
     
     /**
      * @param namePrefab valid prefab with {@link NameGeneratorComponent}
-     * @param affixPrefab valid prefab with {link {@link TownNameAffixComponent}
+     * @param affixPrefab valid prefab with {link NameGeneratorComponent}
      */
     WaterAssetTheme(Prefab namePrefab, Prefab affixPrefab) {
         NameGeneratorComponent basenames = namePrefab.getComponent(NameGeneratorComponent.class);
