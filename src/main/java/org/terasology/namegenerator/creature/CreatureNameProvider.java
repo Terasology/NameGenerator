@@ -46,7 +46,7 @@ public class CreatureNameProvider {
      * @param seed the seed value
      * @param theme the naming theme
      */
-    public CreatureNameProvider(long seed, CreatureAssetTheme theme) {
+    public CreatureNameProvider(long seed, CreatureTheme theme) {
 
         random = new MersenneRandom(seed);
         

@@ -39,6 +39,12 @@ public enum CreatureAssetTheme implements CreatureTheme {
      */
     DWARF("dwarvenMaleNames", "dwarvenFemaleNames", "dwarvenMaleNames", "nobilityAttribs");
     
+    
+    /**
+     * Returns the default theme
+     */
+    public static final CreatureAssetTheme DEFAULT = ELVEN;
+    
     private final List<String> maleNames;
     private final List<String> femaleNames;
     private final List<String> surnames;

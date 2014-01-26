@@ -39,7 +39,7 @@ public class RegionNameProvider {
      * @param seed the seed value
      * @param theme the naming theme
      */
-    public RegionNameProvider(long seed, RegionAssetTheme theme) {
+    public RegionNameProvider(long seed, RegionTheme theme) {
 
         nameGen = new MarkovNameGenerator(seed, theme.getNames());
     }
