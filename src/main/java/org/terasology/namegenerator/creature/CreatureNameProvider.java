@@ -65,26 +65,32 @@ public class CreatureNameProvider {
     
     /**
      * @param affinity the list of affinities
-     * @return the town name
+     * @return the creature name
      */
-    public synchronized String generateName(CreatureAffinityVector affinity) {
-        
-        String surname = surnameGen.nextName();
-        String firstName;
+    public String generateName(CreatureAffinityVector affinity) {
+        return generateNameComponent(affinity).toString();
+    }
+    
+    /**
+     * @param affinity the list of affinities
+     * @return the creature name
+     */
+    public synchronized CreatureNameComponent generateNameComponent(CreatureAffinityVector affinity) {
+                    
+        CreatureNameComponent comp = new CreatureNameComponent();
+        comp.surname = surnameGen.nextName();
 
         // check for female names
         if (random.nextDouble() < affinity.getGenderRatio()) {
-            firstName = maleNameGen.nextName();
+            comp.firstName = maleNameGen.nextName();
         } else {
-            firstName = femaleNameGen.nextName();
+            comp.firstName = femaleNameGen.nextName();
         }
 
-        String name = firstName + " " + surname;
-        
         if (random.nextDouble() < affinity.getNobility()) {
-            name += " the " + nobilityGen.nextName();
+            comp.attr = nobilityGen.nextName();
         }
         
-        return name;
+        return comp;
     }
 }
