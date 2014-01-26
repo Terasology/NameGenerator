@@ -16,13 +16,12 @@
 
 package org.terasology.namegenerator;
 
-import java.io.IOException;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.terasology.HeadlessEnvironment;
 import org.terasology.namegenerator.town.TownAffinityVector;
 import org.terasology.namegenerator.town.TownNameProvider;
 
@@ -39,10 +38,9 @@ public class TownNameProviderTest {
 
     /**
      * Setup headless environment
-     * @throws IOException if environment cannot be loaded 
      */
     @BeforeClass
-    public static void setUpClass() throws IOException {
+    public static void setUpClass() {
         env = new HeadlessEnvironment();
     }
 

@@ -18,11 +18,10 @@ package org.terasology.namegenerator;
 
 import static org.junit.Assert.assertTrue;
 
-import java.io.IOException;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.terasology.HeadlessEnvironment;
 import org.terasology.namegenerator.creature.CreatureAffinityVector;
 import org.terasology.namegenerator.creature.CreatureNameProvider;
 
@@ -36,10 +35,9 @@ public class CreatureNameProviderTest {
 
     /**
      * Setup headless environment
-     * @throws IOException if environment cannot be loaded 
      */
     @BeforeClass
-    public static void setUpClass() throws IOException {
+    public static void setUpClass() {
         env = new HeadlessEnvironment();
     }
 
