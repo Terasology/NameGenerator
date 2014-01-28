@@ -39,6 +39,7 @@ public class CreatureNameProviderTest {
     @BeforeClass
     public static void setUpClass() {
         env = new HeadlessEnvironment();
+        env.activateAllModules();
     }
 
     /**

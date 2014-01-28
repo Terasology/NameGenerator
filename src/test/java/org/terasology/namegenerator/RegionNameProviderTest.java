@@ -38,6 +38,7 @@ public class RegionNameProviderTest {
     @BeforeClass
     public static void setUpClass() {
         env = new HeadlessEnvironment();
+        env.activateAllModules();
     }
 
     /**

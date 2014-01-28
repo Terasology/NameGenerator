@@ -42,6 +42,7 @@ public class TownNameProviderTest {
     @BeforeClass
     public static void setUpClass() {
         env = new HeadlessEnvironment();
+        env.activateAllModules();
     }
 
     /**

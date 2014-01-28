@@ -38,6 +38,7 @@ public class WaterNameProviderTest {
     @BeforeClass
     public static void setUpClass() {
         env = new HeadlessEnvironment();
+        env.activateAllModules();
     }
 
     /**
