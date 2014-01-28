@@ -45,7 +45,7 @@ public class CreatureNameGeneratorSystem implements ComponentSystem {
     public void onAdded(OnAddedComponent event, EntityRef entityRef, CreatureNameGeneratorComponent genComp) {
         CreatureNameComponent nameComp = entityRef.getComponent(CreatureNameComponent.class);
 
-        if (nameComp != null) {
+        if (isNullOrEmpty(nameComp)) {
             // this makes the generation deterministic
             long seed = entityRef.hashCode();
             
@@ -67,6 +67,22 @@ public class CreatureNameGeneratorSystem implements ComponentSystem {
             entityRef.addComponent(nameComp);
         }
 
+    }
+
+    private boolean isNullOrEmpty(CreatureNameComponent nameComp) {
+        if (nameComp == null) {
+            return true;
+        }
+        
+        if (nameComp.firstName == null) {
+            return true;
+        }
+
+        if (nameComp.lastName == null) {
+            return true;
+        }
+
+        return false;
     }
 }
 

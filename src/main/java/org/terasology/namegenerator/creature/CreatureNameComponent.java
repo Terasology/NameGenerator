@@ -26,12 +26,12 @@ import org.terasology.logic.common.DisplayInformationComponent;
 public class CreatureNameComponent implements Component {
     
     public String firstName;
-    public String surname;
+    public String lastName;
     public String attr;
     
     @Override
     public String toString() {
-        String name = firstName + " " + surname;
+        String name = firstName + " " + lastName;
         
         if (attr != null && !attr.isEmpty()) {
             name += " the " + attr;
@@ -46,7 +46,7 @@ public class CreatureNameComponent implements Component {
     public DisplayInformationComponent toDisplayInformation() {
         DisplayInformationComponent dic = new DisplayInformationComponent();
         
-        dic.name = firstName + " " + surname;
+        dic.name = firstName + " " + lastName;
         
         if (attr != null && !attr.isEmpty()) {
             dic.description = "The " + attr;

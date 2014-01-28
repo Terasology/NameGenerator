@@ -28,6 +28,8 @@ import org.terasology.utilities.random.Random;
  */
 public class CreatureNameProvider {
 
+    private static final long SALT = 1337;
+    
     private final NameGenerator surnameGen;
     private final Random random;
     private final NameGenerator nobilityGen;
@@ -50,10 +52,17 @@ public class CreatureNameProvider {
 
         random = new MersenneRandom(seed);
         
-        maleNameGen = new MarkovNameGenerator(seed, theme.getMaleNames());
-        femaleNameGen = new MarkovNameGenerator(seed, theme.getFemaleNames());
-        surnameGen = new MarkovNameGenerator(seed, theme.getSurnames());
-        nobilityGen = new TrainingGenerator(seed, theme.getNobilityAttributes());
+        long saltedSeed = seed + SALT;
+        maleNameGen = new MarkovNameGenerator(saltedSeed, theme.getMaleNames());
+
+        saltedSeed += SALT;
+        femaleNameGen = new MarkovNameGenerator(saltedSeed, theme.getFemaleNames());
+        
+        saltedSeed += SALT;
+        surnameGen = new MarkovNameGenerator(saltedSeed, theme.getSurnames());
+        
+        saltedSeed += SALT;
+        nobilityGen = new TrainingGenerator(saltedSeed, theme.getNobilityAttributes());
     }
     
     /**
@@ -78,7 +87,7 @@ public class CreatureNameProvider {
     public synchronized CreatureNameComponent generateNameComponent(CreatureAffinityVector affinity) {
                     
         CreatureNameComponent comp = new CreatureNameComponent();
-        comp.surname = surnameGen.nextName();
+        comp.lastName = surnameGen.nextName();
 
         // check for female names
         if (random.nextDouble() < affinity.getGenderRatio()) {
