@@ -25,7 +25,7 @@ import org.terasology.HeadlessEnvironment;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.entitySystem.entity.internal.EngineEntityManager;
 import org.terasology.entitySystem.entity.lifecycleEvents.OnAddedComponent;
-import org.terasology.logic.common.DisplayInformationComponent;
+import org.terasology.logic.common.DisplayNameComponent;
 import org.terasology.namegenerator.creature.CreatureNameComponent;
 import org.terasology.namegenerator.creature.CreatureNameGeneratorComponent;
 import org.terasology.namegenerator.creature.CreatureNameGeneratorSystem;
@@ -79,8 +79,8 @@ public class CreatureNameGeneratorSystemTest {
             cngs.onAdded(event, entityRef, genComp);
             
             CreatureNameComponent nameComp = entityRef.getComponent(CreatureNameComponent.class);
-            
-            DisplayInformationComponent comp = nameComp.toDisplayInformation();
+
+            DisplayNameComponent comp = nameComp.toDisplayInformation();
             
             logger.info(comp.toString());
         }

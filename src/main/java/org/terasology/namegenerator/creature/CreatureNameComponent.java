@@ -17,7 +17,7 @@
 package org.terasology.namegenerator.creature;
 
 import org.terasology.entitySystem.Component;
-import org.terasology.logic.common.DisplayInformationComponent;
+import org.terasology.logic.common.DisplayNameComponent;
 
 /**
  * Defines a creature name
@@ -43,8 +43,8 @@ public class CreatureNameComponent implements Component {
     /**
      * @return a DIC that reflects the same information
      */
-    public DisplayInformationComponent toDisplayInformation() {
-        DisplayInformationComponent dic = new DisplayInformationComponent();
+    public DisplayNameComponent toDisplayInformation() {
+        DisplayNameComponent dic = new DisplayNameComponent();
         
         dic.name = firstName + " " + lastName;
         
