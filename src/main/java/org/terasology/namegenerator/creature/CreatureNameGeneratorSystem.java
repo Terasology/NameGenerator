@@ -15,13 +15,13 @@
  */
 package org.terasology.namegenerator.creature;
 
+import java.util.Locale;
+
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.entitySystem.entity.lifecycleEvents.OnAddedComponent;
 import org.terasology.entitySystem.event.ReceiveEvent;
-import org.terasology.entitySystem.systems.ComponentSystem;
+import org.terasology.entitySystem.systems.BaseComponentSystem;
 import org.terasology.entitySystem.systems.RegisterSystem;
-
-import java.util.Locale;
 
 /**
  * Triggers the generation of a name if a {@link CreatureNameGeneratorComponent} is present
@@ -29,18 +29,8 @@ import java.util.Locale;
  * @author Martin Steiger
  */
 @RegisterSystem
-public class CreatureNameGeneratorSystem implements ComponentSystem {
+public class CreatureNameGeneratorSystem extends BaseComponentSystem {
     
-    @Override
-    public void initialise() {
-        // nothing to do
-    }
-
-    @Override
-    public void shutdown() {
-        // nothing to do
-    }
-
     @ReceiveEvent
     public void onAdded(OnAddedComponent event, EntityRef entityRef, CreatureNameGeneratorComponent genComp) {
         CreatureNameComponent nameComp = entityRef.getComponent(CreatureNameComponent.class);

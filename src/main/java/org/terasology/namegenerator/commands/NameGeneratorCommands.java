@@ -15,7 +15,7 @@
  */
 package org.terasology.namegenerator.commands;
 
-import org.terasology.entitySystem.systems.ComponentSystem;
+import org.terasology.entitySystem.systems.BaseComponentSystem;
 import org.terasology.entitySystem.systems.RegisterSystem;
 import org.terasology.logic.console.Command;
 import org.terasology.namegenerator.creature.CreatureNameProvider;
@@ -26,23 +26,13 @@ import org.terasology.namegenerator.town.TownNameProvider;
  * @author Martin Steiger
  */
 @RegisterSystem
-public class NameGeneratorCommands implements ComponentSystem {
+public class NameGeneratorCommands extends BaseComponentSystem {
     
     private static final long DEFAULT_SEED = 0xDEADBEEF;
 
     private final CreatureNameProvider creatureNameGen = new CreatureNameProvider(DEFAULT_SEED);
     private final RegionNameProvider regionNameGen = new RegionNameProvider(DEFAULT_SEED);
     private final TownNameProvider townNameGen = new TownNameProvider(DEFAULT_SEED);
-
-    @Override
-    public void initialise() {
-        // empty
-    }
-
-    @Override
-    public void shutdown() {
-        // empty
-    }
 
     /**
      * @return a random creature name.
