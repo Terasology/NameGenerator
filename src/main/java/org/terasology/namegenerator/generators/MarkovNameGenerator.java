@@ -15,16 +15,16 @@
  */
 package org.terasology.namegenerator.generators;
 
+import com.google.common.base.Preconditions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.terasology.utilities.random.FastRandom;
+import org.terasology.utilities.random.Random;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.terasology.utilities.random.FastRandom;
-
-import com.google.common.base.Preconditions;
 
 /**
  * Implementation of the {@link org.terasology.namegenerator.generators.NameGenerator} interface, using Markov chain model.
@@ -181,11 +181,64 @@ public class MarkovNameGenerator implements NameGenerator {
         return name;
     }
 
+    public String getName(int minLength, int maxLength, String seed) {
+        Preconditions.checkArgument(maxLength >= minLength);
+
+        StringBuilder sb = new StringBuilder();
+        char last1 = TERMINATOR;
+        char last2 = TERMINATOR;
+        char next;
+        int tries = 0;
+        int maxTries = maxLength + 100;
+
+        do {
+            next = nextCharByLast(last1, last2, seed);
+            if (next != TERMINATOR) {
+                last1 = last2;
+                last2 = next;
+
+                if (sb.length() == 0) {
+                    sb.append(Character.toUpperCase(next));
+                } else {
+                    sb.append(next);
+                }
+            }
+            tries++;
+        } while ((next != TERMINATOR || sb.length() < minLength) && sb.length() < maxLength && tries < maxTries);
+        // cut of trailing whitespace
+        String name = sb.toString().trim();
+
+        if (tries == maxTries) {
+            logger.warn("Could not generate name of desired length - result: " + name);
+        }
+
+        return name;
+    }
+
+    private char nextCharByLast(char last1, char last2, String seed) {
+        Random r = new FastRandom(seed.hashCode());
+
+        int total = 0;
+        for (int i : probabilities[characters.indexOf(last1)][characters.indexOf(last2)]) {
+            total += i;
+        }
+        total = r.nextInt(total);
+        int index = 0;
+        int subTotal = 0;
+        do {
+            subTotal += probabilities[characters.indexOf(last1)][characters.indexOf(last2)][index++];
+        } while (subTotal <= total);
+        return (characters.get(--index));
+    }
 
     @Override
     public String nextName() {
-        
         return nextName(4, 12);
+    }
+
+    @Override
+    public String getName(final String seed) {
+        return getName(4, 16, seed);
     }
 
 }

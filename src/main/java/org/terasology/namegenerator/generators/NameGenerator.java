@@ -31,4 +31,13 @@ public interface NameGenerator {
      * @return a pseudo random name
      */
     String nextName();
+
+    /**
+     * Generates a pseudo random name, using the given seed. Requesting two names with the same seed will result in the
+     * same name.
+     *
+     * @param seed the seed to use
+     * @return a pseudo random name based on the seed
+     */
+    String getName(String seed);
 }

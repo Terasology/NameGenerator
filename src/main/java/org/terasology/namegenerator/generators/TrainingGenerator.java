@@ -16,14 +16,13 @@
 
 package org.terasology.namegenerator.generators;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
+import com.google.common.collect.Lists;
 import org.terasology.utilities.random.FastRandom;
 import org.terasology.utilities.random.Random;
 
-import com.google.common.collect.Lists;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Returns the training data set as-is in randomized order
@@ -56,5 +55,13 @@ public class TrainingGenerator implements NameGenerator {
         
         return name;
     }
+
+    @Override
+    public String getName(final String seed) {
+        int index = Math.abs(seed.hashCode()) % names.size();
+
+        return names.get(index);
+    }
+
 
 }
