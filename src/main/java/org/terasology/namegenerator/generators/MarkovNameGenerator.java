@@ -15,16 +15,16 @@
  */
 package org.terasology.namegenerator.generators;
 
+import com.google.common.base.Preconditions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.terasology.utilities.random.FastRandom;
+import org.terasology.utilities.random.Random;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.terasology.utilities.random.FastRandom;
-
-import com.google.common.base.Preconditions;
 
 /**
  * Implementation of the {@link org.terasology.namegenerator.generators.NameGenerator} interface, using Markov chain model.
@@ -115,20 +115,60 @@ public class MarkovNameGenerator implements NameGenerator {
     }
 
     /**
+     * Generate the next name using the given random number generator.
+     * @param minLength minimal length of generated name [0..12]
+     * @param maxLength maximal length of generated name
+     * @param rand random number generator to use for generation
+     * @return the next character based on the last two characters and probability matrix
+     */
+    private String generateNameWithGenerator(int minLength, int maxLength, Random rand) {
+        Preconditions.checkArgument(maxLength >= minLength);
+        StringBuilder sb = new StringBuilder();
+        char last1 = TERMINATOR;
+        char last2 = TERMINATOR;
+        char next;
+        int tries = 0;
+        int maxTries = maxLength + 100;
+        do {
+            next = nextCharByLast(last1, last2, rand);
+            if (next != TERMINATOR) {
+                last1 = last2;
+                last2 = next;
+
+                if (sb.length() == 0) {
+                    sb.append(Character.toUpperCase(next));
+                } else {
+                    sb.append(next);
+                }
+            }
+            tries++;
+        } while ((next != TERMINATOR || sb.length() < minLength) && sb.length() < maxLength && tries < maxTries);
+        // cut of trailing whitespace
+        String name = sb.toString().trim();
+
+        if (tries == maxTries) {
+            logger.warn("Could not generate name of desired length - result: " + name);
+        }
+
+        return name;
+    }
+
+    /**
      * Chooses a random character from the probability matrix based on the previous two characters.
      * Note that {@code last1} and {@code last2} have to be recognized characters that have previously appeared in that
      * particular order.
      *
      * @param last1 the second last character
      * @param last2 the last character
+     * @param rand random number generator to use for generation
      * @return the next character based on the last two characters and probability matrix
      */
-    private char nextCharByLast(char last1, char last2) {
+    private char nextCharByLast(char last1, char last2, Random rand) {
         int total = 0;
         for (int i : probabilities[characters.indexOf(last1)][characters.indexOf(last2)]) {
             total += i;
         }
-        total = random.nextInt(total);
+        total = rand.nextInt(total);
         int index = 0;
         int subTotal = 0;
         do {
@@ -145,47 +185,29 @@ public class MarkovNameGenerator implements NameGenerator {
      * @return a pseudo random name
      */
     public String nextName(int minLength, int maxLength) {
-        Preconditions.checkArgument(maxLength >= minLength);
-
-        StringBuilder sb = new StringBuilder();
-        char last1 = TERMINATOR;
-        char last2 = TERMINATOR;
-        char next;
-        int tries = 0;
-        int maxTries = maxLength + 100;
-        do {
-            next = nextCharByLast(last1, last2);
-            if (next != TERMINATOR) {
-                last1 = last2;
-                last2 = next;
-
-                if (sb.length() == 0) {
-                    sb.append(Character.toUpperCase(next));        // first letter is uppercase
-                } else {
-                    sb.append(next);
-                }
-            }
-            tries++;
-            // it would be better, if the probability of TERMINATOR was
-            // continuously increased as the name gets longer. Truncating can
-            // produce ugly names.
-        } while ((next != TERMINATOR || sb.length() < minLength) && sb.length() < maxLength && tries < maxTries);
-        
-        // cut of trailing whitespace
-        String name = sb.toString().trim();
-
-        if (tries == maxTries) {
-            logger.warn("Could not generate name of desired length - result: " + name);
-        }
-        
-        return name;
+        return generateNameWithGenerator(minLength, maxLength, random);
     }
 
+    /**
+     * Generates a new pseudo random name, based on the given seed.
+     *
+     * @param minLength minimal length of generated name [0..12]
+     * @param maxLength maximal length of generated name
+     * @param seed      the seed value to use for this name
+     * @return a pseudo random name
+     */
+    public String getName(int minLength, int maxLength, String seed) {
+        return generateNameWithGenerator(minLength, maxLength, new FastRandom(seed.hashCode()));
+    }
 
     @Override
     public String nextName() {
-        
         return nextName(4, 12);
+    }
+
+    @Override
+    public String getName(final String seed) {
+        return getName(4, 16, seed);
     }
 
 }
