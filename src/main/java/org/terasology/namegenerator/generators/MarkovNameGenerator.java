@@ -115,38 +115,14 @@ public class MarkovNameGenerator implements NameGenerator {
     }
 
     /**
-     * Chooses a random character from the probability matrix based on the previous two characters.
-     * Note that {@code last1} and {@code last2} have to be recognized characters that have previously appeared in that
-     * particular order.
-     *
-     * @param last1 the second last character
-     * @param last2 the last character
-     * @return the next character based on the last two characters and probability matrix
-     */
-    private char nextCharByLast(char last1, char last2) {
-        int total = 0;
-        for (int i : probabilities[characters.indexOf(last1)][characters.indexOf(last2)]) {
-            total += i;
-        }
-        total = random.nextInt(total);
-        int index = 0;
-        int subTotal = 0;
-        do {
-            subTotal += probabilities[characters.indexOf(last1)][characters.indexOf(last2)][index++];
-        } while (subTotal <= total);
-        return (characters.get(--index));
-    }
-
-    /**
-     * Generates a new pseudo random name.
-     *
+     * Generate the next name using the given random number generator.
      * @param minLength minimal length of generated name [0..12]
      * @param maxLength maximal length of generated name
-     * @return a pseudo random name
+     * @param rand random number generator to use for generation
+     * @return the next character based on the last two characters and probability matrix
      */
-    public String nextName(int minLength, int maxLength) {
+    private String generateNameWithGenerator(int minLength, int maxLength, Random rand) {
         Preconditions.checkArgument(maxLength >= minLength);
-
         StringBuilder sb = new StringBuilder();
         char last1 = TERMINATOR;
         char last2 = TERMINATOR;
@@ -154,45 +130,7 @@ public class MarkovNameGenerator implements NameGenerator {
         int tries = 0;
         int maxTries = maxLength + 100;
         do {
-            next = nextCharByLast(last1, last2);
-            if (next != TERMINATOR) {
-                last1 = last2;
-                last2 = next;
-
-                if (sb.length() == 0) {
-                    sb.append(Character.toUpperCase(next));        // first letter is uppercase
-                } else {
-                    sb.append(next);
-                }
-            }
-            tries++;
-            // it would be better, if the probability of TERMINATOR was
-            // continuously increased as the name gets longer. Truncating can
-            // produce ugly names.
-        } while ((next != TERMINATOR || sb.length() < minLength) && sb.length() < maxLength && tries < maxTries);
-        
-        // cut of trailing whitespace
-        String name = sb.toString().trim();
-
-        if (tries == maxTries) {
-            logger.warn("Could not generate name of desired length - result: " + name);
-        }
-        
-        return name;
-    }
-
-    public String getName(int minLength, int maxLength, String seed) {
-        Preconditions.checkArgument(maxLength >= minLength);
-
-        StringBuilder sb = new StringBuilder();
-        char last1 = TERMINATOR;
-        char last2 = TERMINATOR;
-        char next;
-        int tries = 0;
-        int maxTries = maxLength + 100;
-
-        do {
-            next = nextCharByLast(last1, last2, seed);
+            next = nextCharByLast(last1, last2, rand);
             if (next != TERMINATOR) {
                 last1 = last2;
                 last2 = next;
@@ -215,20 +153,51 @@ public class MarkovNameGenerator implements NameGenerator {
         return name;
     }
 
-    private char nextCharByLast(char last1, char last2, String seed) {
-        Random r = new FastRandom(seed.hashCode());
-
+    /**
+     * Chooses a random character from the probability matrix based on the previous two characters.
+     * Note that {@code last1} and {@code last2} have to be recognized characters that have previously appeared in that
+     * particular order.
+     *
+     * @param last1 the second last character
+     * @param last2 the last character
+     * @param rand random number generator to use for generation
+     * @return the next character based on the last two characters and probability matrix
+     */
+    private char nextCharByLast(char last1, char last2, Random rand) {
         int total = 0;
         for (int i : probabilities[characters.indexOf(last1)][characters.indexOf(last2)]) {
             total += i;
         }
-        total = r.nextInt(total);
+        total = rand.nextInt(total);
         int index = 0;
         int subTotal = 0;
         do {
             subTotal += probabilities[characters.indexOf(last1)][characters.indexOf(last2)][index++];
         } while (subTotal <= total);
         return (characters.get(--index));
+    }
+
+    /**
+     * Generates a new pseudo random name.
+     *
+     * @param minLength minimal length of generated name [0..12]
+     * @param maxLength maximal length of generated name
+     * @return a pseudo random name
+     */
+    public String nextName(int minLength, int maxLength) {
+        return generateNameWithGenerator(minLength, maxLength, random);
+    }
+
+    /**
+     * Generates a new pseudo random name, based on the given seed.
+     *
+     * @param minLength minimal length of generated name [0..12]
+     * @param maxLength maximal length of generated name
+     * @param seed      the seed value to use for this name
+     * @return a pseudo random name
+     */
+    public String getName(int minLength, int maxLength, String seed) {
+        return generateNameWithGenerator(minLength, maxLength, new FastRandom(seed.hashCode()));
     }
 
     @Override
