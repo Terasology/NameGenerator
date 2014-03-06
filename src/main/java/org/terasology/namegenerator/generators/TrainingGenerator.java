@@ -58,9 +58,9 @@ public class TrainingGenerator implements NameGenerator {
 
     @Override
     public String getName(final String seed) {
-        int index = Math.abs(seed.hashCode()) % names.size();
+        int idx = Math.abs(seed.hashCode()) % names.size();
 
-        return names.get(index);
+        return names.get(idx);
     }
 
 

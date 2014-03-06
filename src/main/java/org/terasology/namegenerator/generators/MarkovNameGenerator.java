@@ -136,12 +136,15 @@ public class MarkovNameGenerator implements NameGenerator {
                 last2 = next;
 
                 if (sb.length() == 0) {
-                    sb.append(Character.toUpperCase(next));
+                    sb.append(Character.toUpperCase(next));        // first letter is uppercase
                 } else {
                     sb.append(next);
                 }
             }
             tries++;
+            // it would be better, if the probability of TERMINATOR was
+            // continuously increased as the name gets longer. Truncating can
+            // produce ugly names.
         } while ((next != TERMINATOR || sb.length() < minLength) && sb.length() < maxLength && tries < maxTries);
         // cut of trailing whitespace
         String name = sb.toString().trim();
