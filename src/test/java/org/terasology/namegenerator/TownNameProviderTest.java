@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import org.terasology.HeadlessEnvironment;
 import org.terasology.namegenerator.town.TownAffinityVector;
 import org.terasology.namegenerator.town.TownNameProvider;
+import org.terasology.naming.Name;
 
 import static org.junit.Assert.*;
 
@@ -41,8 +42,7 @@ public class TownNameProviderTest {
      */
     @BeforeClass
     public static void setUpClass() {
-        env = new HeadlessEnvironment();
-        env.activateAllModules();
+        env = new HeadlessEnvironment(new Name("NameGenerator"));
     }
 
     /**

@@ -24,6 +24,7 @@ import org.junit.Test;
 import org.terasology.HeadlessEnvironment;
 import org.terasology.namegenerator.creature.CreatureAffinityVector;
 import org.terasology.namegenerator.creature.CreatureNameProvider;
+import org.terasology.naming.Name;
 
 /**
  * Tests {@link CreatureNameProvider}
@@ -38,8 +39,7 @@ public class CreatureNameProviderTest {
      */
     @BeforeClass
     public static void setUpClass() {
-        env = new HeadlessEnvironment();
-        env.activateAllModules();
+        env = new HeadlessEnvironment(new Name("NameGenerator"));
     }
 
     /**

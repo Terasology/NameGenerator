@@ -29,6 +29,7 @@ import org.terasology.logic.common.DisplayNameComponent;
 import org.terasology.namegenerator.creature.CreatureNameComponent;
 import org.terasology.namegenerator.creature.CreatureNameGeneratorComponent;
 import org.terasology.namegenerator.creature.CreatureNameGeneratorSystem;
+import org.terasology.naming.Name;
 import org.terasology.registry.CoreRegistry;
 
 /**
@@ -46,8 +47,7 @@ public class CreatureNameGeneratorSystemTest {
      */
     @BeforeClass
     public static void setUpClass() {
-        env = new HeadlessEnvironment();
-        env.activateAllModules();
+        env = new HeadlessEnvironment(new Name("NameGenerator"));
     }
 
     /**

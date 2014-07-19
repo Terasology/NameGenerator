@@ -23,6 +23,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.terasology.HeadlessEnvironment;
 import org.terasology.namegenerator.region.RegionNameProvider;
+import org.terasology.naming.Name;
 
 /**
  * Tests {@link RegionNameProvider}
@@ -37,8 +38,7 @@ public class RegionNameProviderTest {
      */
     @BeforeClass
     public static void setUpClass() {
-        env = new HeadlessEnvironment();
-        env.activateAllModules();
+        env = new HeadlessEnvironment(new Name("NameGenerator"));
     }
 
     /**
