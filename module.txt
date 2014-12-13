@@ -1,9 +1,14 @@
 {
     "id" : "NameGenerator",
-    "version" : "0.3.0",
+    "version" : "0.4.0",
     "author" : "msteiger and Tobias 'skaldarnar' Nett",
     "displayName" : "Random Name Generator",
     "description" : "This module provides randomized name for different entities.",
-    "dependencies" : [],
+    "dependencies" : [
+        {
+            "id" : "MarkovChains",
+            "minVersion" : "1.0.0"
+        }
+    ],
     "isServerSideOnly" : false
 }
