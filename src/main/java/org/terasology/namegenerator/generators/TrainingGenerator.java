@@ -46,19 +46,19 @@ public class TrainingGenerator implements NameGenerator {
             Collections.swap(names, i - 1, random.nextInt(i));
         }
     }
-    
+
     @Override
     public String nextName() {
         String name = names.get(index);
-        
+
         index = (index + 1) % names.size();
-        
+
         return name;
     }
 
     @Override
-    public String getName(final String seed) {
-        int idx = Math.abs(seed.hashCode()) % names.size();
+    public String getName(final long seed) {
+        int idx = (int) Math.abs(seed % names.size());
 
         return names.get(idx);
     }

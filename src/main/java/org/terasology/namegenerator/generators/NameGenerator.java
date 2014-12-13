@@ -39,5 +39,5 @@ public interface NameGenerator {
      * @param seed the seed to use
      * @return a pseudo random name based on the seed
      */
-    String getName(String seed);
+    String getName(long seed);
 }

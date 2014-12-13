@@ -168,8 +168,8 @@ public class MarkovNameGenerator implements NameGenerator {
      * @param seed      the seed value to use for this name
      * @return a pseudo random name
      */
-    public String getName(int minLength, int maxLength, String seed) {
-        return generateNameWithGenerator(minLength, maxLength, new FastRandom(seed.hashCode()));
+    public String getName(int minLength, int maxLength, long seed) {
+        return generateNameWithGenerator(minLength, maxLength, new FastRandom(seed));
     }
 
     @Override
@@ -178,7 +178,7 @@ public class MarkovNameGenerator implements NameGenerator {
     }
 
     @Override
-    public String getName(final String seed) {
+    public String getName(long seed) {
         return getName(4, 16, seed);
     }
 
