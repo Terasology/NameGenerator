@@ -20,9 +20,13 @@ import com.google.common.base.Preconditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.terasology.markovChains.MarkovChain;
+import org.terasology.markovChains.MarkovChainBase;
+import org.terasology.markovChains.RawMarkovChain;
+import org.terasology.markovChains.TrainingAlgorithms;
 import org.terasology.utilities.random.FastRandom;
 import org.terasology.utilities.random.Random;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -57,15 +61,32 @@ public class MarkovNameGenerator implements NameGenerator {
         List<Character> characters = determineUsedChars(sourceNames);
         characters.add(TERMINATOR);
 
-        // initialize probability matrix
-        final float[][][] probabilities = new float[characters.size()][characters.size()][characters.size()];
+        // wrap training data
+        List<Character[]> sampleSequences = new AbstractList<Character[]>() {
 
-        // build up the probability table from the given source names
-        for (final String name : sourceNames) {
-            addStringToProbability(probabilities, characters, name);
+            @Override
+            public Character[] get(int index) {
+                return wrapChars(sourceNames.get(index));
+            }
+
+            @Override
+            public int size() {
+                return sourceNames.size();
+            }
+        };
+
+        markovChain = TrainingAlgorithms.forwardAlgorithm(2, characters, sampleSequences, TERMINATOR);
+        markovChain.setRandom(new FastRandom(seed));
+    }
+
+    private static Character[] wrapChars(final String name) {
+        Character[] arr = new Character[name.length()];
+        for (int i = 0; i < name.length(); i++) {
+            char ch = name.charAt(i);
+            char lc = Character.toLowerCase(ch);
+            arr[i] = Character.valueOf(lc);
         }
-
-        markovChain = new MarkovChain<Character>(characters, probabilities);
+        return arr;
     }
 
     /**
@@ -83,30 +104,6 @@ public class MarkovNameGenerator implements NameGenerator {
             }
         }
         return new ArrayList<>(chars);
-    }
-
-    /**
-     * Update the internal probability matrix with the given name. The given name example is analyzed in the sense of
-     * the Markov model.
-     *
-     * @param name example name to anaylse
-     */
-    private static void addStringToProbability(float[][][] probabilities, List<Character> characters, final String name) {
-        String lowerName = name.toLowerCase();
-        char last1 = TERMINATOR;
-        char last2 = TERMINATOR;
-        int index = 0;
-        while (index < lowerName.length()) {
-            if (characters.indexOf(lowerName.charAt(index)) != -1) {
-                char current = lowerName.charAt(index);
-                probabilities[characters.indexOf(current)][characters.indexOf(last2)][characters.indexOf(last1)]++;
-                last1 = last2;
-                last2 = current;
-            }
-            index++;
-        }
-        char current = TERMINATOR;
-        probabilities[characters.indexOf(current)][characters.indexOf(last2)][characters.indexOf(last1)]++;
     }
 
     /**
