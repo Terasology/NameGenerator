@@ -22,7 +22,7 @@ package org.terasology.namegenerator;
  * @author Martin Steiger
  */
 final class ElvenMaleNames {
-    
+
     static final String[] NAMES = {
         "Abadda",
         "Abarat",
@@ -418,7 +418,7 @@ final class ElvenMaleNames {
         "Pyrder",
         "Pyrravym",
         "Pywaln",
-        "Pyxaanthal,",
+        "Pyxaanthal",
         "Qildor",
         "Quastarte",
         "Quynn",
@@ -458,7 +458,7 @@ final class ElvenMaleNames {
         "Rychell",
         "Ryfon",
         "Ryul",
-        "Ryvvik,",
+        "Ryvvik",
         "Sadalymn",
         "Saelethil",
         "Saevel",
@@ -599,7 +599,7 @@ final class ElvenMaleNames {
         "Zhoron",
         "Zulae"
     };
-    
+
     private ElvenMaleNames() {
         // private constructor
     }
