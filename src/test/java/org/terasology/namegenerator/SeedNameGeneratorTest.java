@@ -40,7 +40,7 @@ public class SeedNameGeneratorTest {
         Random random = new FastRandom(DEFAULT_SEED);
 
         for (int i = 0; i < 1000; i++) {
-            String seed = random.nextString(10);
+            int seed = random.nextInt();
             assertNotNull(tg.getName(seed));
             assertEquals(tg.getName(seed), tg.getName(seed));
         }
@@ -53,7 +53,7 @@ public class SeedNameGeneratorTest {
         Random random = new FastRandom(DEFAULT_SEED);
 
         for (int i = 0; i < 100; i++) {
-            String seed = random.nextString(10);
+            int seed = random.nextInt();
             assertNotNull(nameGen.getName(seed));
             assertEquals(nameGen.getName(seed), nameGen.getName(seed));
         }

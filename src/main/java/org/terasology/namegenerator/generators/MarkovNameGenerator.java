@@ -16,11 +16,15 @@
 package org.terasology.namegenerator.generators;
 
 import com.google.common.base.Preconditions;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.terasology.markovChains.MarkovChain;
+import org.terasology.markovChains.TrainingAlgorithms;
 import org.terasology.utilities.random.FastRandom;
 import org.terasology.utilities.random.Random;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -28,15 +32,7 @@ import java.util.Set;
 
 /**
  * Implementation of the {@link org.terasology.namegenerator.generators.NameGenerator} interface, using Markov chain model.
- * <p/>
  * The look-ahead for analysis and generation is two characters.
- * <p/>
- * This class is based on David Legare's NameGenerator, licensed under Creative Commons
- * Attribution-ShareAlike 3.0 Unported License.
- * It has been adopted to the use in Terasology. You can find the original project on github:
- * <p/>
- * <a href="https://github.com/excaliburHisSheath/NameGenerator">NameGenerator by David Legare</a>.
- *
  * @author Tobias 'skaldarnar' Nett <skaldarnar@googlemail.com>
  */
 public class MarkovNameGenerator implements NameGenerator {
@@ -44,33 +40,51 @@ public class MarkovNameGenerator implements NameGenerator {
     private static final Logger logger = LoggerFactory.getLogger(MarkovNameGenerator.class);
 
     private static final char TERMINATOR = '\0';
-    
+
     private final FastRandom random;
 
-    private final int[][][] probabilities;
+    private MarkovChain<Character> markovChain;
 
-    private List<Character> characters;
- 
     /**
      * Create a new name generator, using the given list as example source.
      *
      * @param seed the seed for the random number generator
      * @param sourceNames a list of example names
      */
-    public MarkovNameGenerator(long seed, List<String> sourceNames) {
+    public MarkovNameGenerator(long seed, final List<String> sourceNames) {
 
         random = new FastRandom(seed);
 
-        // initialize result set
         // initialize the list of used characters
-        characters = determineUsedChars(sourceNames);
+        List<Character> characters = determineUsedChars(sourceNames);
         characters.add(TERMINATOR);
-        // initialize probability matrix
-        probabilities = new int[characters.size()][characters.size()][characters.size()];
-        // build up the probability table from the given source names
-        for (final String name : sourceNames) {
-            addStringToProbability(name);
+
+        // wrap training data
+        List<Character[]> sampleSequences = new AbstractList<Character[]>() {
+
+            @Override
+            public Character[] get(int index) {
+                return wrapChars(sourceNames.get(index));
+            }
+
+            @Override
+            public int size() {
+                return sourceNames.size();
+            }
+        };
+
+        markovChain = TrainingAlgorithms.forwardAlgorithm(2, characters, sampleSequences, TERMINATOR);
+        markovChain.setRandom(new FastRandom(seed));
+    }
+
+    private static Character[] wrapChars(final String name) {
+        Character[] arr = new Character[name.length()];
+        for (int i = 0; i < name.length(); i++) {
+            char ch = name.charAt(i);
+            char lc = Character.toLowerCase(ch);
+            arr[i] = Character.valueOf(lc);
         }
+        return arr;
     }
 
     /**
@@ -80,7 +94,7 @@ public class MarkovNameGenerator implements NameGenerator {
      * @param sourceNames list of example names
      * @return list of used characters, all lower case
      */
-    private List<Character> determineUsedChars(List<String> sourceNames) {
+    private static List<Character> determineUsedChars(List<String> sourceNames) {
         final Set<Character> chars = new HashSet<>();
         for (String name : sourceNames) {
             for (char c : name.toLowerCase().toCharArray()) {
@@ -88,30 +102,6 @@ public class MarkovNameGenerator implements NameGenerator {
             }
         }
         return new ArrayList<>(chars);
-    }
-
-    /**
-     * Update the internal probability matrix with the given name. The given name example is analyzed in the sense of
-     * the Markov model.
-     *
-     * @param name example name to anaylse
-     */
-    private void addStringToProbability(final String name) {
-        String lowerName = name.toLowerCase();
-        char last1 = TERMINATOR;
-        char last2 = TERMINATOR;
-        int index = 0;
-        while (index < lowerName.length()) {
-            if (characters.indexOf(lowerName.charAt(index)) != -1) {
-                char current = lowerName.charAt(index);
-                probabilities[characters.indexOf(last1)][characters.indexOf(last2)][characters.indexOf(current)]++;
-                last1 = last2;
-                last2 = current;
-            } 
-            index++;
-        }
-        char current = TERMINATOR;
-        probabilities[characters.indexOf(last1)][characters.indexOf(last2)][characters.indexOf(current)]++;
     }
 
     /**
@@ -123,17 +113,15 @@ public class MarkovNameGenerator implements NameGenerator {
      */
     private String generateNameWithGenerator(int minLength, int maxLength, Random rand) {
         Preconditions.checkArgument(maxLength >= minLength);
-        StringBuilder sb = new StringBuilder();
-        char last1 = TERMINATOR;
-        char last2 = TERMINATOR;
+        StringBuilder sb = new StringBuilder(maxLength);
+        markovChain.setRandom(rand);
+        markovChain.resetHistory();
         char next;
         int tries = 0;
         int maxTries = maxLength + 100;
         do {
-            next = nextCharByLast(last1, last2, rand);
+            next = markovChain.next();
             if (next != TERMINATOR) {
-                last1 = last2;
-                last2 = next;
 
                 if (sb.length() == 0) {
                     sb.append(Character.toUpperCase(next));        // first letter is uppercase
@@ -157,30 +145,6 @@ public class MarkovNameGenerator implements NameGenerator {
     }
 
     /**
-     * Chooses a random character from the probability matrix based on the previous two characters.
-     * Note that {@code last1} and {@code last2} have to be recognized characters that have previously appeared in that
-     * particular order.
-     *
-     * @param last1 the second last character
-     * @param last2 the last character
-     * @param rand random number generator to use for generation
-     * @return the next character based on the last two characters and probability matrix
-     */
-    private char nextCharByLast(char last1, char last2, Random rand) {
-        int total = 0;
-        for (int i : probabilities[characters.indexOf(last1)][characters.indexOf(last2)]) {
-            total += i;
-        }
-        total = rand.nextInt(total);
-        int index = 0;
-        int subTotal = 0;
-        do {
-            subTotal += probabilities[characters.indexOf(last1)][characters.indexOf(last2)][index++];
-        } while (subTotal <= total);
-        return (characters.get(--index));
-    }
-
-    /**
      * Generates a new pseudo random name.
      *
      * @param minLength minimal length of generated name [0..12]
@@ -199,8 +163,8 @@ public class MarkovNameGenerator implements NameGenerator {
      * @param seed      the seed value to use for this name
      * @return a pseudo random name
      */
-    public String getName(int minLength, int maxLength, String seed) {
-        return generateNameWithGenerator(minLength, maxLength, new FastRandom(seed.hashCode()));
+    public String getName(int minLength, int maxLength, long seed) {
+        return generateNameWithGenerator(minLength, maxLength, new FastRandom(seed));
     }
 
     @Override
@@ -209,7 +173,7 @@ public class MarkovNameGenerator implements NameGenerator {
     }
 
     @Override
-    public String getName(final String seed) {
+    public String getName(long seed) {
         return getName(4, 16, seed);
     }
 
