@@ -17,7 +17,7 @@ package org.terasology.namegenerator.commands;
 
 import org.terasology.entitySystem.systems.BaseComponentSystem;
 import org.terasology.entitySystem.systems.RegisterSystem;
-import org.terasology.logic.console.commands.referenced.CommandDefinition;
+import org.terasology.logic.console.commandSystem.annotations.Command;
 import org.terasology.namegenerator.creature.CreatureNameProvider;
 import org.terasology.namegenerator.region.RegionNameProvider;
 import org.terasology.namegenerator.town.TownNameProvider;
@@ -37,7 +37,7 @@ public class NameGeneratorCommands extends BaseComponentSystem {
     /**
      * @return a random creature name.
      */
-    @CommandDefinition(shortDescription = "Generate next random creature name.")
+    @Command(shortDescription = "Generate next random creature name.")
     public String nextCreatureName() {
         return creatureNameGen.generateName();
     }
@@ -45,7 +45,7 @@ public class NameGeneratorCommands extends BaseComponentSystem {
     /**
      * @return a random region name.
      */
-    @CommandDefinition(shortDescription = "Generate next random region name.")
+    @Command(shortDescription = "Generate next random region name.")
     public String nextRegionName() {
         return regionNameGen.generateName();
     }
@@ -53,7 +53,7 @@ public class NameGeneratorCommands extends BaseComponentSystem {
     /**
      * @return a random town name.
      */
-    @CommandDefinition(shortDescription = "Generate next random town name.")
+    @Command(shortDescription = "Generate next random town name.")
     public String nextTownName() {
         return townNameGen.generateName();
     }
