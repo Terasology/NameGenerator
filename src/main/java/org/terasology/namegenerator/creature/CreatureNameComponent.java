@@ -21,37 +21,36 @@ import org.terasology.logic.common.DisplayNameComponent;
 
 /**
  * Defines a creature name
- * @author Martin Steiger
  */
 public class CreatureNameComponent implements Component {
-    
+
     public String firstName;
     public String lastName;
     public String attr;
-    
+
     @Override
     public String toString() {
         String name = firstName + " " + lastName;
-        
+
         if (attr != null && !attr.isEmpty()) {
             name += " the " + attr;
         }
-        
+
         return name;
     }
-    
+
     /**
      * @return a DIC that reflects the same information
      */
     public DisplayNameComponent toDisplayInformation() {
         DisplayNameComponent dic = new DisplayNameComponent();
-        
+
         dic.name = firstName + " " + lastName;
-        
+
         if (attr != null && !attr.isEmpty()) {
             dic.description = "The " + attr;
         }
-        
+
         return dic;
     }
 }

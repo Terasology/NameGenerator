@@ -20,7 +20,6 @@ import org.terasology.namegenerator.AffinityVector;
 
 /**
  * Defines affinities to certain region names
- * @author Martin Steiger
  */
 public class RegionAffinityVector implements AffinityVector {
     // empty

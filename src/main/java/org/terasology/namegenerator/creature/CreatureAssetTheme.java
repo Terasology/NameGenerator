@@ -25,10 +25,9 @@ import org.terasology.namegenerator.data.NameGeneratorComponent;
 
 /**
  * A {@link CreatureTheme} that is based on Asset data
- * @author Martin Steiger
  */
 public enum CreatureAssetTheme implements CreatureTheme {
-    
+
     /**
      * Elven theme set
      */
@@ -38,13 +37,13 @@ public enum CreatureAssetTheme implements CreatureTheme {
      * Dwarf names - surnames are not properly defined
      */
     DWARF("dwarvenMaleNames", "dwarvenFemaleNames", "dwarvenMaleNames", "nobilityAttribs");
-    
-    
+
+
     /**
      * Returns the default theme
      */
     public static final CreatureAssetTheme DEFAULT = ELVEN;
-    
+
     private final List<String> maleNames;
     private final List<String> femaleNames;
     private final List<String> surnames;
@@ -57,12 +56,12 @@ public enum CreatureAssetTheme implements CreatureTheme {
      * @param nobilityAttribs valid prefab with {@link NameGeneratorComponent}
      */
     CreatureAssetTheme(String maleNames, String femaleNames, String surnames, String nobilityAttribs) {
-        this(Assets.getPrefab(maleNames), 
-             Assets.getPrefab(femaleNames), 
-             Assets.getPrefab(surnames), 
+        this(Assets.getPrefab(maleNames),
+             Assets.getPrefab(femaleNames),
+             Assets.getPrefab(surnames),
              Assets.getPrefab(nobilityAttribs));
     }
-    
+
     /**
      * @param maleNamesPf valid prefab with {@link NameGeneratorComponent}
      * @param femaleNamesPf valid prefab with {@link NameGeneratorComponent}
@@ -71,7 +70,7 @@ public enum CreatureAssetTheme implements CreatureTheme {
      */
     CreatureAssetTheme(Prefab maleNamesPf, Prefab femaleNamesPf, Prefab surnamesPf, Prefab nobilityAttribsPf) {
         NameGeneratorComponent comp;
-        
+
         comp = maleNamesPf.getComponent(NameGeneratorComponent.class);
         maleNames = Collections.unmodifiableList(comp.nameList);
 
@@ -80,7 +79,7 @@ public enum CreatureAssetTheme implements CreatureTheme {
 
         comp = surnamesPf.getComponent(NameGeneratorComponent.class);
         surnames = Collections.unmodifiableList(comp.nameList);
-        
+
         comp = nobilityAttribsPf.getComponent(NameGeneratorComponent.class);
         nobAttribs = Collections.unmodifiableList(comp.nameList);
     }
@@ -117,5 +116,5 @@ public enum CreatureAssetTheme implements CreatureTheme {
         return this.nobAttribs;
     }
 
-    
+
 }

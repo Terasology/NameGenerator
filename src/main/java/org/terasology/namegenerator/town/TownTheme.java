@@ -20,7 +20,6 @@ import java.util.List;
 
 /**
  * A theme for town names
- * @author Martin Steiger
  */
 public interface TownTheme {
     /**

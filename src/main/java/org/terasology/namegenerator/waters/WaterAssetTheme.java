@@ -25,15 +25,14 @@ import org.terasology.namegenerator.data.NameGeneratorComponent;
 
 /**
  * Asset-based themes for waters
- * @author Martin Steiger
  */
 public enum WaterAssetTheme implements WaterTheme {
-    
+
     /**
      * Conventional English names
      */
     ENGLISH("humanFemaleOldEnglishNames3", "waterTypes");
-    
+
     private final List<String> names;
     private final List<String> types;
 
@@ -44,7 +43,7 @@ public enum WaterAssetTheme implements WaterTheme {
     WaterAssetTheme(String namePrefab, String typePrefab) {
         this(Assets.getPrefab(namePrefab), Assets.getPrefab(typePrefab));
     }
-    
+
     /**
      * @param namePrefab valid prefab with {@link NameGeneratorComponent}
      * @param affixPrefab valid prefab with {link NameGeneratorComponent}
@@ -52,7 +51,7 @@ public enum WaterAssetTheme implements WaterTheme {
     WaterAssetTheme(Prefab namePrefab, Prefab affixPrefab) {
         NameGeneratorComponent basenames = namePrefab.getComponent(NameGeneratorComponent.class);
         names = Collections.unmodifiableList(basenames.nameList);
-        
+
         NameGeneratorComponent typeComp = affixPrefab.getComponent(NameGeneratorComponent.class);
         types  = Collections.unmodifiableList(typeComp.nameList);
     }
@@ -67,5 +66,5 @@ public enum WaterAssetTheme implements WaterTheme {
         return this.types;
     }
 
-    
+
 }

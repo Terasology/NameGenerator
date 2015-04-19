@@ -21,7 +21,6 @@ import org.terasology.namegenerator.generators.NameGenerator;
 
 /**
  * Provides access to generated names. Thread-safe.
- * @author Martin Steiger
  */
 public class RegionNameProvider {
 
@@ -34,7 +33,7 @@ public class RegionNameProvider {
     public RegionNameProvider(long seed) {
         this(seed, RegionAssetTheme.REAL);
     }
-    
+
     /**
      * @param seed the seed value
      * @param theme the naming theme
@@ -43,22 +42,22 @@ public class RegionNameProvider {
 
         nameGen = new MarkovNameGenerator(seed, theme.getNames());
     }
-    
+
     /**
      * @return a town name without any affinities
      */
     public String generateName() {
         return generateName(new RegionAffinityVector());
     }
-    
+
     /**
      * @param affinity the list of affinities
      * @return the town name
      */
     public synchronized String generateName(RegionAffinityVector affinity) {
-        
+
         String name = nameGen.nextName();
-        
+
         return name;
     }
 }

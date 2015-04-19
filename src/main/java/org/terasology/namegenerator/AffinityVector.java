@@ -18,7 +18,6 @@ package org.terasology.namegenerator;
 
 /**
  * Defines different attribute affinities
- * @author Martin Steiger
  */
 public interface AffinityVector {
     // marker

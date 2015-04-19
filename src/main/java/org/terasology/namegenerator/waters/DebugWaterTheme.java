@@ -21,14 +21,13 @@ import java.util.List;
 
 /**
  * Simple theme that works without assets
- * @author Martin Steiger
  */
 public class DebugWaterTheme implements WaterTheme {
 
     @Override
     public List<String> getNames() {
-        return Arrays.asList("Kynborough", "Alison", "Roos", "Cristina", "Isata", "Mawde", "Maud", "Godlefe", "Jenefer", 
-                "Sanche", "Margareta", "Katerine", "Elysabeth", "Dorathea", "Janet", "Sybyll", "Amphelice", "Margaret", 
+        return Arrays.asList("Kynborough", "Alison", "Roos", "Cristina", "Isata", "Mawde", "Maud", "Godlefe", "Jenefer",
+                "Sanche", "Margareta", "Katerine", "Elysabeth", "Dorathea", "Janet", "Sybyll", "Amphelice", "Margaret",
                 "Joan", "Barbery", "Elen", "Rosa", "Ibbet", "Amphillis");
     }
 

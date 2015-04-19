@@ -24,7 +24,6 @@ import org.terasology.utilities.random.Random;
 
 /**
  * Provides access to generated names. Thread-safe.
- * @author Martin Steiger
  */
 public class TownNameProvider {
 
@@ -40,7 +39,7 @@ public class TownNameProvider {
     public TownNameProvider(long seed) {
         this(seed, TownAssetTheme.ENGLISH);
     }
-    
+
     /**
      * @param seed the seed value
      * @param theme the naming theme
@@ -48,25 +47,25 @@ public class TownNameProvider {
     public TownNameProvider(long seed, TownTheme theme) {
 
         random = new MersenneRandom(seed);
-        
+
         nameGen = new MarkovNameGenerator(seed, theme.getNames());
         prefixGen = new TrainingGenerator(seed, theme.getPrefixes());
         postfixGen = new TrainingGenerator(seed, theme.getPostfixes());
     }
-    
+
     /**
      * @return a town name without any affinities
      */
     public String generateName() {
         return generateName(new TownAffinityVector());
     }
-    
+
     /**
      * @param affinity the list of affinities
      * @return the town name
      */
     public synchronized String generateName(TownAffinityVector affinity) {
-        
+
         String name = nameGen.nextName();
 
         // add an affix?

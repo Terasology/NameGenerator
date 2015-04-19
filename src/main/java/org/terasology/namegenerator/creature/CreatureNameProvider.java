@@ -24,12 +24,11 @@ import org.terasology.utilities.random.Random;
 
 /**
  * Provides access to generated names. Thread-safe.
- * @author Martin Steiger
  */
 public class CreatureNameProvider {
 
     private static final long SALT = 1337;
-    
+
     private final NameGenerator surnameGen;
     private final Random random;
     private final NameGenerator nobilityGen;
@@ -43,7 +42,7 @@ public class CreatureNameProvider {
     public CreatureNameProvider(long seed) {
         this(seed, CreatureAssetTheme.ELVEN);
     }
-    
+
     /**
      * @param seed the seed value
      * @param theme the naming theme
@@ -51,27 +50,27 @@ public class CreatureNameProvider {
     public CreatureNameProvider(long seed, CreatureTheme theme) {
 
         random = new MersenneRandom(seed);
-        
+
         long saltedSeed = seed + SALT;
         maleNameGen = new MarkovNameGenerator(saltedSeed, theme.getMaleNames());
 
         saltedSeed += SALT;
         femaleNameGen = new MarkovNameGenerator(saltedSeed, theme.getFemaleNames());
-        
+
         saltedSeed += SALT;
         surnameGen = new MarkovNameGenerator(saltedSeed, theme.getSurnames());
-        
+
         saltedSeed += SALT;
         nobilityGen = new TrainingGenerator(saltedSeed, theme.getNobilityAttributes());
     }
-    
+
     /**
      * @return a town name without any affinities
      */
     public String generateName() {
         return generateName(new CreatureAffinityVector());
     }
-    
+
     /**
      * @param affinity the list of affinities
      * @return the creature name
@@ -79,13 +78,13 @@ public class CreatureNameProvider {
     public String generateName(CreatureAffinityVector affinity) {
         return generateNameComponent(affinity).toString();
     }
-    
+
     /**
      * @param affinity the list of affinities
      * @return the creature name
      */
     public synchronized CreatureNameComponent generateNameComponent(CreatureAffinityVector affinity) {
-                    
+
         CreatureNameComponent comp = new CreatureNameComponent();
         comp.lastName = surnameGen.nextName();
 
@@ -99,7 +98,7 @@ public class CreatureNameProvider {
         if (random.nextDouble() < affinity.getNobility()) {
             comp.attr = nobilityGen.nextName();
         }
-        
+
         return comp;
     }
 }

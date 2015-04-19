@@ -25,7 +25,6 @@ import org.terasology.utilities.random.Random;
 
 /**
  * Provides access to generated names. Thread-safe.
- * @author Martin Steiger
  */
 public class WaterNameProvider {
 
@@ -40,7 +39,7 @@ public class WaterNameProvider {
     public WaterNameProvider(long seed) {
         this(seed, WaterAssetTheme.ENGLISH);
     }
-    
+
     /**
      * @param seed the seed value
      * @param theme the naming theme
@@ -48,11 +47,11 @@ public class WaterNameProvider {
     public WaterNameProvider(long seed, WaterTheme theme) {
 
         random = new MersenneRandom(seed);
-        
+
         nameGen = new MarkovNameGenerator(seed, theme.getNames());
         waterTypes = theme.getWaterTypes();
     }
-    
+
     /**
      * @return a water name with default affinities
      */
@@ -60,20 +59,20 @@ public class WaterNameProvider {
         double type = random.nextDouble();
         return generateName(WaterAffinityVector.create().type(type));
     }
-    
+
     /**
      * @param affinity the list of affinities
      * @return the town name
      */
     public synchronized String generateName(WaterAffinityVector affinity) {
-        
+
         String name = nameGen.nextName();
 
         // add an affix?
         double type = affinity.getWaterType();
 
         int typeIndex = (int) (type * waterTypes.size());
-        
+
         String postFix = waterTypes.get(typeIndex);
 
         return name + " " + postFix;

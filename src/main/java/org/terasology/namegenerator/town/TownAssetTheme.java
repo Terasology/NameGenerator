@@ -26,20 +26,19 @@ import org.terasology.namegenerator.data.TownNameAffixComponent;
 
 /**
  * Asset-based themes for towns
- * @author Martin Steiger
  */
 public enum TownAssetTheme implements TownTheme {
-    
+
     /**
      * Conventional English names
      */
     ENGLISH("englishTownNames", "englishTownNameAffixes"),
-    
+
     /**
      * Fantasy names, English affixes
      */
     FANTASY("fantasyTownNames", "englishTownNameAffixes");
-    
+
     private final List<String> names;
     private final List<String> prefixes;
     private final List<String> postfixes;
@@ -51,7 +50,7 @@ public enum TownAssetTheme implements TownTheme {
     TownAssetTheme(String namePrefab, String affixPrefab) {
         this(Assets.getPrefab(namePrefab), Assets.getPrefab(affixPrefab));
     }
-    
+
     /**
      * @param namePrefab valid prefab with {@link NameGeneratorComponent}
      * @param affixPrefab valid prefab with {link {@link TownNameAffixComponent}
@@ -59,7 +58,7 @@ public enum TownAssetTheme implements TownTheme {
     TownAssetTheme(Prefab namePrefab, Prefab affixPrefab) {
         NameGeneratorComponent basenames = namePrefab.getComponent(NameGeneratorComponent.class);
         names = Collections.unmodifiableList(basenames.nameList);
-        
+
         TownNameAffixComponent affixes = affixPrefab.getComponent(TownNameAffixComponent.class);
         prefixes = Collections.unmodifiableList(affixes.prefixes);
         postfixes  = Collections.unmodifiableList(affixes.postfixes);
@@ -80,5 +79,5 @@ public enum TownAssetTheme implements TownTheme {
         return this.postfixes;
     }
 
-    
+
 }

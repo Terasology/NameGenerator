@@ -25,12 +25,10 @@ import org.terasology.entitySystem.systems.RegisterSystem;
 
 /**
  * Triggers the generation of a name if a {@link CreatureNameGeneratorComponent} is present
- * @author synopia
- * @author Martin Steiger
  */
 @RegisterSystem
 public class CreatureNameGeneratorSystem extends BaseComponentSystem {
-    
+
     @ReceiveEvent
     public void onAdded(OnAddedComponent event, EntityRef entityRef, CreatureNameGeneratorComponent genComp) {
         CreatureNameComponent nameComp = entityRef.getComponent(CreatureNameComponent.class);
@@ -38,7 +36,7 @@ public class CreatureNameGeneratorSystem extends BaseComponentSystem {
         if (isNullOrEmpty(nameComp)) {
             // this makes the generation deterministic
             long seed = entityRef.hashCode();
-            
+
             CreatureTheme theme;
             try {
                 String normThemeName = genComp.theme.toUpperCase(Locale.ENGLISH);
@@ -46,12 +44,12 @@ public class CreatureNameGeneratorSystem extends BaseComponentSystem {
             } catch (IllegalArgumentException | NullPointerException e) {
                 theme = CreatureAssetTheme.DEFAULT;
             }
-            
+
             CreatureNameProvider p = new CreatureNameProvider(seed, theme);
             CreatureAffinityVector affinity = CreatureAffinityVector.create();
             affinity.genderRatio(genComp.genderRatio);
             affinity.nobility(genComp.nobility);
-            
+
             nameComp = p.generateNameComponent(affinity);
 
             entityRef.addComponent(nameComp);
@@ -63,7 +61,7 @@ public class CreatureNameGeneratorSystem extends BaseComponentSystem {
         if (nameComp == null) {
             return true;
         }
-        
+
         if (nameComp.firstName == null) {
             return true;
         }

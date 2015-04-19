@@ -26,7 +26,6 @@ import org.terasology.namegenerator.generators.MarkovNameGenerator;
 
 /**
  * Runs a few tests on {@link MarkovNameGenerator}.
- * @author Martin Steiger
  */
 public class NameGeneratorTest {
 
@@ -41,10 +40,10 @@ public class NameGeneratorTest {
 
         int minLen = 2;
         int maxLen = 8;
-        
+
         for (int i = 0; i < 1000; i++) {
             String name = nameGen.nextName(minLen, maxLen);
-            
+
             assertTrue("Length must be >= " + minLen, name.length() >= minLen);
             assertTrue("Length must be <= " + maxLen, name.length() <= maxLen);
         }
@@ -59,9 +58,9 @@ public class NameGeneratorTest {
 
         for (int i = 0; i < 1000; i++) {
             String name = nameGen.nextName();
-        
+
             assertNotNull(name);
             assertTrue(!name.isEmpty());
         }
-    }    
+    }
 }

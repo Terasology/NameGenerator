@@ -34,12 +34,11 @@ import org.terasology.registry.CoreRegistry;
 
 /**
  * Tests {@link CreatureNameGeneratorSystem}
- * @author Martin Steiger
  */
 public class CreatureNameGeneratorSystemTest {
-    
+
     private static HeadlessEnvironment env;
-    
+
     private static final Logger logger = LoggerFactory.getLogger(CreatureNameGeneratorSystemTest.class);
 
     /**
@@ -63,7 +62,7 @@ public class CreatureNameGeneratorSystemTest {
     public void test() {
         CreatureNameGeneratorSystem cngs = new CreatureNameGeneratorSystem();
         cngs.initialise();
-               
+
         CreatureNameGeneratorComponent genComp = new CreatureNameGeneratorComponent();
         genComp.genderRatio = 0.5;
         genComp.nobility = 0.1;
@@ -73,18 +72,18 @@ public class CreatureNameGeneratorSystemTest {
 
         for (int i = 0; i < 10; i++) {
             OnAddedComponent event = OnAddedComponent.newInstance();
-            
+
             EntityRef entityRef = mgr.create();
-    
+
             cngs.onAdded(event, entityRef, genComp);
-            
+
             CreatureNameComponent nameComp = entityRef.getComponent(CreatureNameComponent.class);
 
             DisplayNameComponent comp = nameComp.toDisplayInformation();
-            
+
             logger.info(comp.toString());
         }
-        
+
         cngs.shutdown();
     }
 }

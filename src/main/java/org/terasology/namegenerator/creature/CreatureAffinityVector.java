@@ -22,7 +22,6 @@ import com.google.common.base.Preconditions;
 
 /**
  * Defines affinities to certain creature names
- * @author Martin Steiger
  */
 public class CreatureAffinityVector implements AffinityVector {
 
@@ -35,16 +34,16 @@ public class CreatureAffinityVector implements AffinityVector {
     protected CreatureAffinityVector() {
         // empty
     }
-    
+
     /**
      * @return an instance with default values
      */
     public static CreatureAffinityVector create() {
         return new CreatureAffinityVector();
     }
-    
+
     /**
-     * @param ratio Gender Ratio in [0..1] representing [male..female] 
+     * @param ratio Gender Ratio in [0..1] representing [male..female]
      * @return this
      */
     public CreatureAffinityVector genderRatio(double ratio) {
@@ -53,9 +52,9 @@ public class CreatureAffinityVector implements AffinityVector {
         this.genderRatio = ratio;
         return this;
     }
-    
+
     /**
-     * @param aff nobility in [0..1] 
+     * @param aff nobility in [0..1]
      * @return this
      */
     public CreatureAffinityVector nobility(double aff) {
@@ -64,7 +63,7 @@ public class CreatureAffinityVector implements AffinityVector {
         this.nobility = aff;
         return this;
     }
-    
+
     /**
      * Create male names only
      * @return this
@@ -82,7 +81,7 @@ public class CreatureAffinityVector implements AffinityVector {
     }
 
     /**
-     * @return the gender ratio in [0..1] representing [male..female] 
+     * @return the gender ratio in [0..1] representing [male..female]
      */
     public double getGenderRatio() {
         return this.genderRatio;
@@ -94,5 +93,5 @@ public class CreatureAffinityVector implements AffinityVector {
     public double getNobility() {
         return this.nobility;
     }
-    
+
 }

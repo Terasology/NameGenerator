@@ -19,8 +19,7 @@ package org.terasology.namegenerator.creature;
 import java.util.List;
 
 /**
- * A theme for town names
- * @author Martin Steiger
+ * A theme for creature names
  */
 public interface CreatureTheme {
     /**
@@ -37,7 +36,7 @@ public interface CreatureTheme {
      * @return surnames
      */
     List<String> getSurnames();
-    
+
     /**
      * @return nobility attributes
      */

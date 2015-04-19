@@ -22,7 +22,6 @@ import com.google.common.base.Preconditions;
 
 /**
  * Defines different attribute affinities for town names
- * @author Martin Steiger
  */
 public class TownAffinityVector implements AffinityVector {
 
@@ -34,24 +33,24 @@ public class TownAffinityVector implements AffinityVector {
      */
     protected TownAffinityVector() {
         // default values are 0
-        
+
         // avoid direct instantiation
     }
-    
+
     /**
      * @return an instance with default values
      */
     public static TownAffinityVector create() {
         return new TownAffinityVector();
     }
-    
+
     /**
      * @return the affinity to prefixes in [0..1]
      */
     public double getPrefixAffinity() {
         return prefixAffinity;
     }
-    
+
     /**
      * @return the affinity to postfixes in [0..1]
      */
@@ -69,7 +68,7 @@ public class TownAffinityVector implements AffinityVector {
         Preconditions.checkArgument(combAff >= 0 && combAff <= 1, "Pre + postfix affinity must be in [0..1], but is " + combAff);
 
         this.prefixAffinity = aff;
-        
+
         return this;
     }
 
@@ -83,9 +82,9 @@ public class TownAffinityVector implements AffinityVector {
         Preconditions.checkArgument(combAff >= 0 && combAff <= 1, "Pre + postfix affinity must be in [0..1], but is " + combAff);
 
         this.postfixAffinity = aff;
-        
+
         return this;
     }
 
-    
+
 }

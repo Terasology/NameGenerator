@@ -20,12 +20,11 @@ import org.terasology.entitySystem.Component;
 
 /**
  * Defines a creature affinity vector
- * @author Martin Steiger
  */
 public class CreatureNameGeneratorComponent implements Component {
-    
+
     public double genderRatio;
     public double nobility;
     public String theme;
-    
+
 }

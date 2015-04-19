@@ -22,7 +22,6 @@ import com.google.common.base.Preconditions;
 
 /**
  * Defines different attribute affinities for water names
- * @author Martin Steiger
  */
 public class WaterAffinityVector implements AffinityVector {
 
@@ -33,24 +32,24 @@ public class WaterAffinityVector implements AffinityVector {
      */
     protected WaterAffinityVector() {
         // default values are 0
-        
+
         // avoid direct instantiation
     }
-    
+
     /**
      * @return an instance with default values
      */
     public static WaterAffinityVector create() {
         return new WaterAffinityVector();
     }
-    
+
     /**
      * @return the water type affinity in [0..1]
      */
     public double getWaterType() {
         return typeAffinity;
     }
-    
+
     /**
      * @param type the water type in [0..1]
      * @return this
@@ -59,8 +58,8 @@ public class WaterAffinityVector implements AffinityVector {
         Preconditions.checkArgument(type >= 0 && type <= 1, "Type must be in [0..1], but is " + type);
 
         this.typeAffinity = type;
-        
+
         return this;
     }
-    
+
 }

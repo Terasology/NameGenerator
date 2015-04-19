@@ -27,7 +27,6 @@ import org.terasology.naming.Name;
 
 /**
  * Tests {@link WaterNameProvider}
- * @author Martin Steiger
  */
 public class WaterNameProviderTest {
 
@@ -49,19 +48,19 @@ public class WaterNameProviderTest {
     public static void tearDownClass() throws Exception {
         env.close();
     }
-    
+
     /**
      * A very simple test
      */
     @Test
     public void testBase() {
-        
+
         WaterNameProvider prov = new WaterNameProvider(123455);
-        
+
         for (int i = 0; i < 100; i++) {
             String name = prov.generateName();
             assertFalse(name.isEmpty());
         }
     }
-    
+
 }

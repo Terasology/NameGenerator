@@ -27,7 +27,6 @@ import org.terasology.naming.Name;
 
 /**
  * Tests {@link RegionNameProvider}
- * @author Martin Steiger
  */
 public class RegionNameProviderTest {
 
@@ -49,19 +48,19 @@ public class RegionNameProviderTest {
     public static void tearDownClass() throws Exception {
         env.close();
     }
-    
+
     /**
      * Requires that original training data names do <b>NOT</b> contain any spaces
      */
     @Test
     public void testBase() {
-        
+
         RegionNameProvider prov = new RegionNameProvider(123455);
-        
+
         for (int i = 0; i < 100; i++) {
             String name = prov.generateName();
             assertFalse(name.isEmpty());
         }
     }
-    
+
 }

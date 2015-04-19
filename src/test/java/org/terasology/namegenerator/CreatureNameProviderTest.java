@@ -28,7 +28,6 @@ import org.terasology.naming.Name;
 
 /**
  * Tests {@link CreatureNameProvider}
- * @author Martin Steiger
  */
 public class CreatureNameProviderTest {
 
@@ -50,15 +49,15 @@ public class CreatureNameProviderTest {
     public static void tearDownClass() throws Exception {
         env.close();
     }
-    
+
     /**
      * Requires that original training data names do <b>NOT</b> contain any spaces
      */
     @Test
     public void testBase() {
-        
+
         CreatureNameProvider prov = new CreatureNameProvider(123455);
-        
+
         for (int i = 0; i < 100; i++) {
             String name = prov.generateName();
             assertTrue(name.contains(" "));
@@ -70,5 +69,5 @@ public class CreatureNameProviderTest {
             assertTrue("Name \"" + name + "\" has not the form <FIRST> <LAST> the <ATTR>", name.matches("[\\S]+ [\\S]+ the [\\S]+"));
         }
     }
-    
+
 }

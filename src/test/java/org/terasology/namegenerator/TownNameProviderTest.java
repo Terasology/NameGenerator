@@ -30,7 +30,6 @@ import static org.junit.Assert.*;
 
 /**
  * Tests {@link TownNameProvider}
- * @author Martin Steiger
  */
 public class TownNameProviderTest {
 
@@ -53,40 +52,40 @@ public class TownNameProviderTest {
     public static void tearDownClass() throws Exception {
         env.close();
     }
-    
+
     /**
      * Requires that original training data names do <b>NOT</b> contain any spaces
      */
     @Test
     public void testBase() {
-        
+
         TownNameProvider townNameProv = new TownNameProvider(123455);
-        
+
         for (int i = 0; i < 1000; i++) {
             String name = townNameProv.generateName();
             assertFalse(name.contains(" "));
         }
-        
+
         for (int i = 0; i < 1000; i++) {
             TownAffinityVector aff = TownAffinityVector.create().prefix(1);
             String name = townNameProv.generateName(aff);
             assertTrue("The name \"" + name + "\" does not contain an affix", name.contains(" "));
         }
-        
+
         for (int i = 0; i < 1000; i++) {
             TownAffinityVector aff = TownAffinityVector.create().postfix(1);
             String name = townNameProv.generateName(aff);
             assertTrue("The name \"" + name + "\" does not contain an affix", name.contains(" "));
         }
     }
-    
+
     /**
      * Test affinity values != 1
      */
     @Test
     public void testAffinity() {
         TownNameProvider townNameProv = new TownNameProvider(123455);
-              
+
         int hits = 0;
         for (int i = 0; i < 1000; i++) {
             TownAffinityVector aff = TownAffinityVector.create().postfix(0.5);
@@ -95,18 +94,18 @@ public class TownNameProviderTest {
                 hits++;
             }
         }
-        
+
         logger.info("Towns with postfix out of 1000: " + hits);
-        assertTrue(hits > 400 && hits < 600); // should be 50% 
+        assertTrue(hits > 400 && hits < 600); // should be 50%
     }
-    
+
     /**
      * Test combined affinity values
      */
     @Test
     public void testAffinityCombined() {
         TownNameProvider townNameProv = new TownNameProvider(123455);
-              
+
         int hits = 0;
         for (int i = 0; i < 1000; i++) {
             TownAffinityVector aff = TownAffinityVector.create().prefix(0.5).postfix(0.5);
@@ -115,11 +114,11 @@ public class TownNameProviderTest {
                 hits++;
             }
         }
-        
+
         logger.info("Towns with postfix out of 1000: " + hits);
         assertTrue(hits == 1000); // should be 50% + 50%
     }
-    
+
     /**
      * Single affix > 1
      */
@@ -134,5 +133,5 @@ public class TownNameProviderTest {
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidArgs2() {
         TownAffinityVector.create().prefix(0.5).postfix(0.7);
-    }    
+    }
 }

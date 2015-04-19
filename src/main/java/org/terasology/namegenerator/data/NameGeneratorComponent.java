@@ -21,7 +21,7 @@ import org.terasology.entitySystem.Component;
 import java.util.List;
 
 /**
- * @author Tobias 'skaldarnar' Nett <skaldarnar@googlemail.com>
+ * Provides a list of training data items.
  */
 public class NameGeneratorComponent implements Component {
     /**

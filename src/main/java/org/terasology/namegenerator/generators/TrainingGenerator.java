@@ -26,7 +26,6 @@ import java.util.List;
 
 /**
  * Returns the training data set as-is in randomized order
- * @author Martin Steiger
  */
 public class TrainingGenerator implements NameGenerator {
 

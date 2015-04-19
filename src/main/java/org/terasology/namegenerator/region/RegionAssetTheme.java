@@ -25,15 +25,14 @@ import org.terasology.namegenerator.data.NameGeneratorComponent;
 
 /**
  * A {@link RegionTheme} that is based on Asset data
- * @author Martin Steiger
  */
 public enum RegionAssetTheme implements RegionTheme {
-    
+
     /**
      * Theme set based on real country names
      */
     REAL("countries");
-    
+
     private final List<String> names;
 
     /**
@@ -42,7 +41,7 @@ public enum RegionAssetTheme implements RegionTheme {
     RegionAssetTheme(String names) {
         this(Assets.getPrefab(names));
     }
-    
+
     /**
      * @param namesPf valid prefab with {@link NameGeneratorComponent}
      */
@@ -58,5 +57,5 @@ public enum RegionAssetTheme implements RegionTheme {
     public List<String> getNames() {
         return this.names;
     }
-    
+
 }

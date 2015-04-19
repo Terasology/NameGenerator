@@ -20,7 +20,6 @@ import java.util.List;
 
 /**
  * A theme for water names
- * @author Martin Steiger
  */
 public interface WaterTheme {
     /**

@@ -21,8 +21,7 @@ import java.util.List;
 import org.terasology.entitySystem.Component;
 
 /**
- * Contains affixes for town names
- * @author Martin Steiger
+ * Contains affixes for town names.
  */
 public class TownNameAffixComponent implements Component {
     /**

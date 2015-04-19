@@ -17,11 +17,9 @@ package org.terasology.namegenerator.generators;
 
 /**
  * Common interface for name generators.
- * <p/>
+ * <br>
  * A name generator produces pseudo random names. The desired
  * length of names can be specified as well.
- *
- * @author Tobias 'skaldarnar' Nett <skaldarnar@googlemail.com>
  */
 public interface NameGenerator {
 

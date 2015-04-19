@@ -28,7 +28,6 @@ import com.google.common.collect.Sets;
 
 /**
  * Tests {@link TrainingGenerator}
- * @author Martin Steiger
  */
 public class TrainingGeneratorTest {
 
@@ -39,16 +38,16 @@ public class TrainingGeneratorTest {
     public void testEquals() {
         Set<String> trainingData = Sets.newHashSet(Arrays.asList(ElvenMaleNames.NAMES));
         TrainingGenerator tg = new TrainingGenerator(1234, trainingData);
-        
+
         Set<String> gen = Sets.newHashSet();
-        
+
         for (int i = 0; i < trainingData.size(); i++) {
             gen.add(tg.nextName());
         }
-        
+
         assertEquals(trainingData, gen);
     }
-    
+
     /**
      * See if all names were generated when running over full size twice
      */
@@ -56,13 +55,13 @@ public class TrainingGeneratorTest {
     public void testOverrun() {
         Set<String> trainingData = Sets.newHashSet(Arrays.asList(ElvenMaleNames.NAMES));
         TrainingGenerator tg = new TrainingGenerator(1234, trainingData);
-        
+
         Set<String> gen = Sets.newHashSet();
-        
+
         for (int i = 0; i < trainingData.size() * 2; i++) {
             gen.add(tg.nextName());
         }
-        
+
         assertEquals(trainingData, gen);
     }
 }

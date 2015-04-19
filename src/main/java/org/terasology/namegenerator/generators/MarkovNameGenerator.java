@@ -33,7 +33,6 @@ import java.util.Set;
 /**
  * Implementation of the {@link org.terasology.namegenerator.generators.NameGenerator} interface, using Markov chain model.
  * The look-ahead for analysis and generation is two characters.
- * @author Tobias 'skaldarnar' Nett <skaldarnar@googlemail.com>
  */
 public class MarkovNameGenerator implements NameGenerator {
 

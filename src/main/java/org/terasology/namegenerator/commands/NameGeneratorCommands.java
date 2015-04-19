@@ -23,11 +23,11 @@ import org.terasology.namegenerator.region.RegionNameProvider;
 import org.terasology.namegenerator.town.TownNameProvider;
 
 /**
- * @author Martin Steiger
+ * A set of commands, mostly used for debugging.
  */
 @RegisterSystem
 public class NameGeneratorCommands extends BaseComponentSystem {
-    
+
     private static final long DEFAULT_SEED = 0xDEADBEEF;
 
     private final CreatureNameProvider creatureNameGen = new CreatureNameProvider(DEFAULT_SEED);

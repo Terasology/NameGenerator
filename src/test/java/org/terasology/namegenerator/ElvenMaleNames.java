@@ -19,7 +19,6 @@ package org.terasology.namegenerator;
 /**
  * The names in this class are used for testing only.
  * The prefabs are not accessible in JUnit tests.
- * @author Martin Steiger
  */
 final class ElvenMaleNames {
 

@@ -21,14 +21,13 @@ import java.util.List;
 
 /**
  * Simple theme that works without assets
- * @author Martin Steiger
  */
 public final class DebugRegionTheme implements RegionTheme {
     @Override
     public List<String> getNames() {
-        return Arrays.asList("Chad", "Polynesia", "Uzbekistan", "Palmyra Atoll", "Mauritius", "Principe", 
-                "Chile", "Morocco", "Niue", "India", "Vanuatu", "Liechtenstein", "Slovakia", "Nauru", "Guam", 
-                "Turks", "South Africa", "Navassa", "Croatia", "Lithuania", "Palau", "Libya", "Sao Tome", "Arctic", 
+        return Arrays.asList("Chad", "Polynesia", "Uzbekistan", "Palmyra Atoll", "Mauritius", "Principe",
+                "Chile", "Morocco", "Niue", "India", "Vanuatu", "Liechtenstein", "Slovakia", "Nauru", "Guam",
+                "Turks", "South Africa", "Navassa", "Croatia", "Lithuania", "Palau", "Libya", "Sao Tome", "Arctic",
                 "Germany", "Algeria", "Georgia", "Taiwan", "Uganda", "Brunei");
     }
 }
