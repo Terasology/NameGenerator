@@ -16,12 +16,12 @@
 
 package org.terasology.namegenerator.region;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.terasology.asset.Assets;
 import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.namegenerator.data.NameGeneratorComponent;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * A {@link RegionTheme} that is based on Asset data
@@ -39,7 +39,7 @@ public enum RegionAssetTheme implements RegionTheme {
      * @param names valid prefab with {@link NameGeneratorComponent}
      */
     RegionAssetTheme(String names) {
-        this(Assets.getPrefab(names));
+        this(Assets.getPrefab(names).get());
     }
 
     /**

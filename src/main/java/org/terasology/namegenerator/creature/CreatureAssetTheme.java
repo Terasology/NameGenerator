@@ -16,12 +16,12 @@
 
 package org.terasology.namegenerator.creature;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.terasology.asset.Assets;
 import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.namegenerator.data.NameGeneratorComponent;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * A {@link CreatureTheme} that is based on Asset data
@@ -56,10 +56,10 @@ public enum CreatureAssetTheme implements CreatureTheme {
      * @param nobilityAttribs valid prefab with {@link NameGeneratorComponent}
      */
     CreatureAssetTheme(String maleNames, String femaleNames, String surnames, String nobilityAttribs) {
-        this(Assets.getPrefab(maleNames),
-             Assets.getPrefab(femaleNames),
-             Assets.getPrefab(surnames),
-             Assets.getPrefab(nobilityAttribs));
+        this(Assets.getPrefab(maleNames).get(),
+                Assets.getPrefab(femaleNames).get(),
+                Assets.getPrefab(surnames).get(),
+                Assets.getPrefab(nobilityAttribs).get());
     }
 
     /**

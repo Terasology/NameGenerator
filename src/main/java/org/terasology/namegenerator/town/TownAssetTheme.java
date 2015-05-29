@@ -16,13 +16,13 @@
 
 package org.terasology.namegenerator.town;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.terasology.asset.Assets;
 import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.namegenerator.data.NameGeneratorComponent;
 import org.terasology.namegenerator.data.TownNameAffixComponent;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Asset-based themes for towns
@@ -48,7 +48,7 @@ public enum TownAssetTheme implements TownTheme {
      * @param affixPrefab valid prefab with {@link TownNameAffixComponent}
      */
     TownAssetTheme(String namePrefab, String affixPrefab) {
-        this(Assets.getPrefab(namePrefab), Assets.getPrefab(affixPrefab));
+        this(Assets.getPrefab(namePrefab).get(), Assets.getPrefab(affixPrefab).get());
     }
 
     /**

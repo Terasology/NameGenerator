@@ -16,12 +16,12 @@
 
 package org.terasology.namegenerator.waters;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.terasology.asset.Assets;
 import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.namegenerator.data.NameGeneratorComponent;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Asset-based themes for waters
@@ -41,7 +41,7 @@ public enum WaterAssetTheme implements WaterTheme {
      * @param typePrefab valid prefab with {@link NameGeneratorComponent}
      */
     WaterAssetTheme(String namePrefab, String typePrefab) {
-        this(Assets.getPrefab(namePrefab), Assets.getPrefab(typePrefab));
+        this(Assets.getPrefab(namePrefab).get(), Assets.getPrefab(typePrefab).get());
     }
 
     /**
