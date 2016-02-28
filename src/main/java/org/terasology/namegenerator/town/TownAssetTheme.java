@@ -16,7 +16,7 @@
 
 package org.terasology.namegenerator.town;
 
-import org.terasology.asset.Assets;
+import org.terasology.utilities.Assets;
 import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.namegenerator.data.NameGeneratorComponent;
 import org.terasology.namegenerator.data.TownNameAffixComponent;
