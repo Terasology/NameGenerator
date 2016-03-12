@@ -18,36 +18,14 @@ package org.terasology.namegenerator;
 
 import static org.junit.Assert.assertFalse;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+
 import org.junit.Test;
-import org.terasology.HeadlessEnvironment;
 import org.terasology.namegenerator.waters.WaterNameProvider;
-import org.terasology.naming.Name;
 
 /**
  * Tests {@link WaterNameProvider}
  */
-public class WaterNameProviderTest {
-
-    private static HeadlessEnvironment env;
-
-    /**
-     * Setup headless environment
-     */
-    @BeforeClass
-    public static void setUpClass() {
-        env = new HeadlessEnvironment(new Name("NameGenerator"));
-    }
-
-    /**
-     * Clean up
-     * @throws Exception never
-     */
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-        env.close();
-    }
+public class WaterNameProviderTest extends NameGeneratorTestingEnvironment {
 
     /**
      * A very simple test

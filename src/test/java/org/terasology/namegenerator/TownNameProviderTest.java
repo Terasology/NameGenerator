@@ -16,42 +16,21 @@
 
 package org.terasology.namegenerator;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.terasology.HeadlessEnvironment;
 import org.terasology.namegenerator.town.TownAffinityVector;
 import org.terasology.namegenerator.town.TownNameProvider;
-import org.terasology.naming.Name;
+
 
 import static org.junit.Assert.*;
 
 /**
  * Tests {@link TownNameProvider}
  */
-public class TownNameProviderTest {
+public class TownNameProviderTest extends NameGeneratorTestingEnvironment {
 
     private static final Logger logger = LoggerFactory.getLogger(TownNameProviderTest.class);
-    private static HeadlessEnvironment env;
-
-    /**
-     * Setup headless environment
-     */
-    @BeforeClass
-    public static void setUpClass() {
-        env = new HeadlessEnvironment(new Name("NameGenerator"));
-    }
-
-    /**
-     * Clean up
-     * @throws Exception never
-     */
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-        env.close();
-    }
 
     /**
      * Requires that original training data names do <b>NOT</b> contain any spaces

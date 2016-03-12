@@ -16,12 +16,9 @@
 
 package org.terasology.namegenerator;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.terasology.HeadlessEnvironment;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.entitySystem.entity.internal.EngineEntityManager;
 import org.terasology.entitySystem.entity.lifecycleEvents.OnAddedComponent;
@@ -29,34 +26,15 @@ import org.terasology.logic.common.DisplayNameComponent;
 import org.terasology.namegenerator.creature.CreatureNameComponent;
 import org.terasology.namegenerator.creature.CreatureNameGeneratorComponent;
 import org.terasology.namegenerator.creature.CreatureNameGeneratorSystem;
-import org.terasology.naming.Name;
 import org.terasology.registry.CoreRegistry;
 
 /**
  * Tests {@link CreatureNameGeneratorSystem}
  */
-public class CreatureNameGeneratorSystemTest {
-
-    private static HeadlessEnvironment env;
+public class CreatureNameGeneratorSystemTest extends NameGeneratorTestingEnvironment {
 
     private static final Logger logger = LoggerFactory.getLogger(CreatureNameGeneratorSystemTest.class);
 
-    /**
-     * Setup headless environment
-     */
-    @BeforeClass
-    public static void setUpClass() {
-        env = new HeadlessEnvironment(new Name("NameGenerator"));
-    }
-
-    /**
-     * Clean up
-     * @throws Exception never
-     */
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-        env.close();
-    }
 
     @Test
     public void test() {
