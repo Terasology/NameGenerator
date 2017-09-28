@@ -39,9 +39,9 @@ public enum CreatureAssetTheme implements CreatureTheme {
     DWARF("dwarvenMaleNames", "dwarvenFemaleNames", "dwarvenMaleNames", "nobilityAttribs"),
 
     /**
-     * Animal names; doesn't differentiate between genders at the moment
+     * Animal names
      */
-    ANIMAL("animalNames", "animalNames", null, "nobilityAttribs");
+    ANIMAL("animalMaleNames", "animalFemaleNames", null, "nobilityAttribs");
 
     /**
      * Returns the default theme
