@@ -28,9 +28,13 @@ public class CreatureNameComponent implements Component {
     public String lastName;
     public String attr;
 
+    private String fullName() {
+        return (firstName + " " + lastName).trim();
+    }
+
     @Override
     public String toString() {
-        String name = firstName + " " + lastName;
+        String name = fullName();
 
         if (attr != null && !attr.isEmpty()) {
             name += " the " + attr;
@@ -45,7 +49,7 @@ public class CreatureNameComponent implements Component {
     public DisplayNameComponent toDisplayInformation() {
         DisplayNameComponent dic = new DisplayNameComponent();
 
-        dic.name = firstName + " " + lastName;
+        dic.name = fullName();
 
         if (attr != null && !attr.isEmpty()) {
             dic.description = "The " + attr;

@@ -16,11 +16,14 @@
 
 package org.terasology.namegenerator.creature;
 
+import org.terasology.namegenerator.generators.EmptyNameGenerator;
 import org.terasology.namegenerator.generators.MarkovNameGenerator;
 import org.terasology.namegenerator.generators.NameGenerator;
 import org.terasology.namegenerator.generators.TrainingGenerator;
 import org.terasology.utilities.random.MersenneRandom;
 import org.terasology.utilities.random.Random;
+
+import java.util.List;
 
 /**
  * Provides access to generated names. Thread-safe.
@@ -51,17 +54,38 @@ public class CreatureNameProvider {
 
         random = new MersenneRandom(seed);
 
+        final boolean markov = true;
+        final boolean noMarkov = false;
+
         long saltedSeed = seed + SALT;
-        maleNameGen = new MarkovNameGenerator(saltedSeed, theme.getMaleNames());
+        maleNameGen = createNameGenerator(saltedSeed, theme.getMaleNames(), markov);
 
         saltedSeed += SALT;
-        femaleNameGen = new MarkovNameGenerator(saltedSeed, theme.getFemaleNames());
+        femaleNameGen = createNameGenerator(saltedSeed, theme.getFemaleNames(), markov);
 
         saltedSeed += SALT;
-        surnameGen = new MarkovNameGenerator(saltedSeed, theme.getSurnames());
+        surnameGen = createNameGenerator(saltedSeed, theme.getSurnames(), markov);
 
         saltedSeed += SALT;
-        nobilityGen = new TrainingGenerator(saltedSeed, theme.getNobilityAttributes());
+        nobilityGen = createNameGenerator(saltedSeed, theme.getSurnames(), noMarkov);
+    }
+
+    /**
+     * Factory method for {@code NameGenerator}s.
+     *
+     * @param seed the seed for the {@code NameGenerator}
+     * @param nameList the list of names for the {@code NameGenerator}; if null or empty, a {@link EmptyNameGenerator} is used, regardless of {@code useMarkov}
+     * @param useMarkov whether a {@link MarkovNameGenerator} should be used, or just a {@link TrainingGenerator}
+     * @return an appropriately-constructed {@code NameGenerator}
+     */
+    private static NameGenerator createNameGenerator(long seed, List<String> nameList, boolean useMarkov) {
+        if (nameList == null || nameList.isEmpty()) {
+            return new EmptyNameGenerator();
+        } else if (useMarkov) {
+            return new MarkovNameGenerator(seed, nameList);
+        } else {
+            return new TrainingGenerator(seed, nameList);
+        }
     }
 
     /**

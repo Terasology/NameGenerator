@@ -39,9 +39,9 @@ public enum CreatureAssetTheme implements CreatureTheme {
     DWARF("dwarvenMaleNames", "dwarvenFemaleNames", "dwarvenMaleNames", "nobilityAttribs"),
 
     /**
-     * Animal names - do they even need surnames? Doesn't differentiate between genders at the moment
+     * Animal names; doesn't differentiate between genders at the moment
      */
-    ANIMAL("animalNames", "animalNames", "animalNames", "nobilityAttribs");
+    ANIMAL("animalNames", "animalNames", null, "nobilityAttribs");
 
     /**
      * Returns the default theme
@@ -54,38 +54,43 @@ public enum CreatureAssetTheme implements CreatureTheme {
     private final List<String> nobAttribs;
 
     /**
-     * @param maleNames valid prefab with {@link NameGeneratorComponent}
-     * @param femaleNames valid prefab with {@link NameGeneratorComponent}
-     * @param surnames valid prefab with {@link NameGeneratorComponent}
-     * @param nobilityAttribs valid prefab with {@link NameGeneratorComponent}
+     * @param maleNames name of a valid prefab with {@link NameGeneratorComponent}, or null for an empty name list
+     * @param femaleNames name of a valid prefab with {@link NameGeneratorComponent}, or null for an empty name list
+     * @param surnames name of a valid prefab with {@link NameGeneratorComponent}, or null for an empty name list
+     * @param nobilityAttribs name of a valid prefab with {@link NameGeneratorComponent}, or null for an empty name list
      */
     CreatureAssetTheme(String maleNames, String femaleNames, String surnames, String nobilityAttribs) {
-        this(Assets.getPrefab(maleNames).get(),
-                Assets.getPrefab(femaleNames).get(),
-                Assets.getPrefab(surnames).get(),
-                Assets.getPrefab(nobilityAttribs).get());
+        this(fetchNameList(maleNames),
+             fetchNameList(femaleNames),
+             fetchNameList(surnames),
+             fetchNameList(nobilityAttribs));
+    }
+
+    CreatureAssetTheme(List<String> maleNames, List<String> femaleNames, List<String> surnames, List<String> nobAttribs) {
+        this.maleNames = maleNames;
+        this.femaleNames = femaleNames;
+        this.surnames = surnames;
+        this.nobAttribs = nobAttribs;
     }
 
     /**
-     * @param maleNamesPf valid prefab with {@link NameGeneratorComponent}
-     * @param femaleNamesPf valid prefab with {@link NameGeneratorComponent}
-     * @param surnamesPf valid prefab with {@link NameGeneratorComponent}
-     * @param nobilityAttribsPf valid prefab with {@link NameGeneratorComponent}
+     * Fetch a name list from a String naming a {@code Prefab}.
+     *
+     * The named {@link Prefab} should contain a {@link NameGeneratorComponent}.
+     *
+     * @param s the name of a prefab, null returns an empty list
+     * @return the list of names associated with the named prefab
+     * @throws java.util.NoSuchElementException if {@code s} is not null but does not have an associated prefab
      */
-    CreatureAssetTheme(Prefab maleNamesPf, Prefab femaleNamesPf, Prefab surnamesPf, Prefab nobilityAttribsPf) {
-        NameGeneratorComponent comp;
-
-        comp = maleNamesPf.getComponent(NameGeneratorComponent.class);
-        maleNames = Collections.unmodifiableList(comp.nameList);
-
-        comp = femaleNamesPf.getComponent(NameGeneratorComponent.class);
-        femaleNames = Collections.unmodifiableList(comp.nameList);
-
-        comp = surnamesPf.getComponent(NameGeneratorComponent.class);
-        surnames = Collections.unmodifiableList(comp.nameList);
-
-        comp = nobilityAttribsPf.getComponent(NameGeneratorComponent.class);
-        nobAttribs = Collections.unmodifiableList(comp.nameList);
+    private static List<String> fetchNameList(String s) {
+        if (s == null) {
+            return Collections.emptyList();
+        } else {
+            return Assets.getPrefab(s).map(prefab -> {
+                NameGeneratorComponent comp = prefab.getComponent(NameGeneratorComponent.class);
+                return Collections.unmodifiableList(comp.nameList);
+            }).get();
+        }
     }
 
     /**

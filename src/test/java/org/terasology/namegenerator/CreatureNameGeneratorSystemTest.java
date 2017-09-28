@@ -35,20 +35,19 @@ public class CreatureNameGeneratorSystemTest extends NameGeneratorTestingEnviron
 
     private static final Logger logger = LoggerFactory.getLogger(CreatureNameGeneratorSystemTest.class);
 
-
-    @Test
-    public void test() {
+    /**
+     * Test subroutine.  Generates {@code n} names and logs them.  Asserts nothing.
+     *
+     * @param genComp the {@code Component} configuring the name generator
+     * @param n the number of names to generate
+     */
+    private void generateNames(CreatureNameGeneratorComponent genComp, int n) {
         CreatureNameGeneratorSystem cngs = new CreatureNameGeneratorSystem();
         cngs.initialise();
 
-        CreatureNameGeneratorComponent genComp = new CreatureNameGeneratorComponent();
-        genComp.genderRatio = 0.5;
-        genComp.nobility = 0.1;
-        genComp.theme = "DwaRf";
-
         EngineEntityManager mgr = CoreRegistry.get(EngineEntityManager.class);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < n; i++) {
             OnAddedComponent event = OnAddedComponent.newInstance();
 
             EntityRef entityRef = mgr.create();
@@ -63,5 +62,25 @@ public class CreatureNameGeneratorSystemTest extends NameGeneratorTestingEnviron
         }
 
         cngs.shutdown();
+    }
+
+    @Test
+    public void testDwarfNames() {
+        CreatureNameGeneratorComponent genComp = new CreatureNameGeneratorComponent();
+        genComp.genderRatio = 0.5;
+        genComp.nobility = 0.1;
+        genComp.theme = "DwaRf";
+
+        generateNames(genComp, 10);
+    }
+
+    @Test
+    public void testAnimalNames() {
+        CreatureNameGeneratorComponent genComp = new CreatureNameGeneratorComponent();
+        genComp.genderRatio = 0.5;
+        genComp.nobility = 0.1;
+        genComp.theme = "Animal";
+
+        generateNames(genComp, 10);
     }
 }
