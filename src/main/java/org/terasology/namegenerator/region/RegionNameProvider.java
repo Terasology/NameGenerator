@@ -44,7 +44,7 @@ public class RegionNameProvider {
     }
 
     /**
-     * @return a town name without any affinities
+     * @return a region name without any affinities
      */
     public String generateName() {
         return generateName(new RegionAffinityVector());
@@ -52,7 +52,7 @@ public class RegionNameProvider {
 
     /**
      * @param affinity the list of affinities
-     * @return the town name
+     * @return the region name
      */
     public synchronized String generateName(RegionAffinityVector affinity) {
 
