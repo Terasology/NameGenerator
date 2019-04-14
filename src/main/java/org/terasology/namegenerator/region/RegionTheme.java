@@ -19,7 +19,7 @@ package org.terasology.namegenerator.region;
 import java.util.List;
 
 /**
- * A theme for town names
+ * A theme for region names
  */
 public interface RegionTheme {
     /**

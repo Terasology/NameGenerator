@@ -89,7 +89,7 @@ public class CreatureNameProvider {
     }
 
     /**
-     * @return a town name without any affinities
+     * @return a creature name without any affinities
      */
     public String generateName() {
         return generateName(new CreatureAffinityVector());

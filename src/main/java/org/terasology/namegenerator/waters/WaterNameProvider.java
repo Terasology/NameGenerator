@@ -62,7 +62,7 @@ public class WaterNameProvider {
 
     /**
      * @param affinity the list of affinities
-     * @return the town name
+     * @return the water name 
      */
     public synchronized String generateName(WaterAffinityVector affinity) {
 
