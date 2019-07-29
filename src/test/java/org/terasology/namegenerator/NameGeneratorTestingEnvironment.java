@@ -30,7 +30,7 @@ import org.terasology.entitySystem.prefab.PrefabData;
 import org.terasology.entitySystem.prefab.internal.PojoPrefab;
 import org.terasology.entitySystem.prefab.internal.PrefabFormat;
 import org.terasology.naming.Name;
-import org.terasology.persistence.typeHandling.TypeSerializationLibrary;
+import org.terasology.persistence.typeHandling.TypeHandlerLibrary;
 
 public class NameGeneratorTestingEnvironment {
     private static HeadlessEnvironment env;
@@ -51,7 +51,7 @@ public class NameGeneratorTestingEnvironment {
                 (AssetFactory<Prefab, PrefabData>) PojoPrefab::new, "prefabs");
 
         ComponentLibrary componentLibrary = context.get(ComponentLibrary.class);
-        TypeSerializationLibrary typeSerializationLibrary = context.get(TypeSerializationLibrary.class);
+        TypeHandlerLibrary typeSerializationLibrary = context.get(TypeHandlerLibrary.class);
         PrefabFormat prefabFormat = new PrefabFormat(componentLibrary, typeSerializationLibrary);
         assetTypeManager.registerCoreFormat(Prefab.class, prefabFormat);
 
