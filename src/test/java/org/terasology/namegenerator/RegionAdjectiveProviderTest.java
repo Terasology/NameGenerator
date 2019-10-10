@@ -17,7 +17,7 @@
 package org.terasology.namegenerator;
 
 import org.junit.Test;
-import org.terasology.namegenerator.creature.species.AnimalAdjectiveProvider;
+import org.terasology.namegenerator.creature.species.adjective.AnimalAdjectiveProvider;
 import org.terasology.namegenerator.region.adjective.RegionAdjectiveProvider;
 
 /**

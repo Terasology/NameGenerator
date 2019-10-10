@@ -1,6 +1,6 @@
 {
-  "NameGenerator": {
-    "nameList": [
+  "TownNameAffix": {
+    "prefixes": [
       "Barn",
       "Bush",
       "Cave",

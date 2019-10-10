@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.namegenerator.creature.species;
+package org.terasology.namegenerator.creature.species.adjective;
 
 import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.namegenerator.data.NameGeneratorComponent;

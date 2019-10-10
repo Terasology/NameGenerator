@@ -17,8 +17,8 @@
 package org.terasology.namegenerator;
 
 import org.junit.Test;
-import org.terasology.namegenerator.creature.species.AnimalAdjectiveProvider;
-import org.terasology.namegenerator.waters.WaterNameProvider;
+import org.terasology.namegenerator.creature.species.AnimalNameProvider;
+import org.terasology.namegenerator.creature.species.adjective.AnimalAdjectiveProvider;
 
 import static org.junit.Assert.assertFalse;
 
@@ -33,7 +33,7 @@ public class AnimalNameProviderTest extends NameGeneratorTestingEnvironment {
     @Test
     public void testBase() {
 
-        AnimalAdjectiveProvider prov = new AnimalAdjectiveProvider(123455);
+        AnimalNameProvider prov = new AnimalNameProvider(1234567);
 
         for (int i = 0; i < 100; i++) {
             String name = prov.generateName();

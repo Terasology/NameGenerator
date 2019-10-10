@@ -22,15 +22,15 @@ import org.terasology.namegenerator.AffinityVector;
 /**
  * Defines different attribute affinities for water names
  */
-public class AnimalAdjectiveAffinityVector implements AffinityVector {
+public class AnimalNameAffinityVector implements AffinityVector {
 
-    private double prefixAffinity;
-    private double postfixAffinity;
+    private double regionalAffinity;
+    private double adjectiveAffinity;
 
     /**
      * Initializes default values
      */
-    protected AnimalAdjectiveAffinityVector() {
+    protected AnimalNameAffinityVector() {
         // default values are 0
 
         // avoid direct instantiation
@@ -39,35 +39,35 @@ public class AnimalAdjectiveAffinityVector implements AffinityVector {
     /**
      * @return an instance with default values
      */
-    public static AnimalAdjectiveAffinityVector create() {
-        return new AnimalAdjectiveAffinityVector();
+    public static AnimalNameAffinityVector create() {
+        return new AnimalNameAffinityVector();
     }
 
     /**
      * @return the prefix type affinity in [0..1]
      */
-    public double getPrefixAffinity() {
-        return prefixAffinity;
+    public double getRegionalAffinity() {
+        return regionalAffinity;
     }
 
     /**
      * @return the postfix type affinity in [0..1]
      */
-    public double getPostfixAffinity() {
-        return postfixAffinity;
+    public double getAdjectiveAffinity() {
+        return adjectiveAffinity;
     }
 
     /**
-     * @param prefix the prefix in [0..1]
-     * @param postfix the postfix in [0..1]
+     * @param regional the regional in [0..1]
+     * @param adjective the adjective in [0..1]
      * @return this
      */
-    public AnimalAdjectiveAffinityVector type(double prefix, double postfix) {
-        Preconditions.checkArgument(prefix >= 0 && prefix <= 1, "Prefix must be in [0..1], but is " + prefix);
-        Preconditions.checkArgument(postfix >= 0 && postfix <= 1, "Postfix must be in [0..1], but is " + postfix);
+    public AnimalNameAffinityVector type(double regional, double adjective) {
+        Preconditions.checkArgument(regional >= 0 && regional <= 1, "Region must be in [0..1], but is " + regional);
+        Preconditions.checkArgument(adjective >= 0 && adjective <= 1, "Adjective must be in [0..1], but is " + adjective);
 
-        this.prefixAffinity = prefix;
-        this.postfixAffinity = postfix;
+        this.regionalAffinity = regional;
+        this.adjectiveAffinity = adjective;
 
         return this;
     }

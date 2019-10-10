@@ -13,10 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.terasology.namegenerator.creature.species;
+package org.terasology.namegenerator.creature.species.adjective;
 
-import org.terasology.namegenerator.generators.MarkovNameGenerator;
-import org.terasology.namegenerator.generators.NameGenerator;
 import org.terasology.utilities.random.MersenneRandom;
 import org.terasology.utilities.random.Random;
 

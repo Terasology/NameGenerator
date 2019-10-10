@@ -17,7 +17,7 @@ package org.terasology.namegenerator.creature.species;
 
 import java.util.List;
 
-public interface AnimalAdjectiveTheme {
+public interface AnimalNameTheme {
     /**
      * @return the names
      */
@@ -27,9 +27,4 @@ public interface AnimalAdjectiveTheme {
      * @return the prefixes
      */
     List<String> getPrefixes();
-
-    /**
-     * @return the postfixes
-     */
-    List<String> getPostfixes();
 }
