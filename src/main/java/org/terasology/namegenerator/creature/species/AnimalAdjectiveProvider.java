@@ -23,7 +23,7 @@ import org.terasology.utilities.random.Random;
 import java.util.List;
 
 public class AnimalAdjectiveProvider {
-    private final NameGenerator nameGen;
+    private final AnimalAdjectiveTheme theme;
     private final Random random;
     private final List<String> prefixes;
     private final List<String> postfixes;
@@ -40,13 +40,12 @@ public class AnimalAdjectiveProvider {
 
     /**
      * @param seed  the seed value
-     * @param theme the naming theme
+     * @param aTheme the naming theme
      */
-    public AnimalAdjectiveProvider(long seed, AnimalAdjectiveTheme theme) {
+    public AnimalAdjectiveProvider(long seed, AnimalAdjectiveTheme aTheme) {
 
         random = new MersenneRandom(seed);
-
-        nameGen = new MarkovNameGenerator(seed, theme.getNames());
+        theme = aTheme;
         prefixes = theme.getPrefixes();
         postfixes = theme.getPostfixes();
     }
@@ -60,12 +59,11 @@ public class AnimalAdjectiveProvider {
 
     /**
      * @param affinity the list of affinities
-     * @return the water name
+     * @return the adjective
      */
     public synchronized String generateName(AnimalAdjectiveAffinityVector affinity) {
-        if (random.nextBoolean() && random.nextBoolean() && random.nextBoolean()) return "";
-
-        String name = nameGen.nextName();
+        List<String> names = theme.getNames();
+        String name = names.get((int)(names.size() * random.nextDouble()));
 
         if (random.nextBoolean()) {
             int postfixIndex = (int) (affinity.getPostfixAffinity() * postfixes.size());
