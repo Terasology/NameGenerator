@@ -1,6 +1,6 @@
 {
-  "NameGenerator" : {
-    "nameList" : [
+  "TownNameAffix" : {
+    "prefixes" : [
       "American",
       "British",
       "East",
@@ -42,6 +42,9 @@
       "Upper",
       "West",
       "Western"
+    ],
+    "postfixes": [
+      ""
     ]
   }
 }
