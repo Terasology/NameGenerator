@@ -28,20 +28,14 @@ import java.util.List;
  */
 public enum CreatureAssetTheme implements CreatureTheme {
 
-    /**
-     * Elven theme set
-     */
-    ELVEN("elvenMaleNames", "elvenFemaleNames", "elvenSurnames", "nobilityAttribs"),
-
-    /**
-     * Dwarf names - surnames are not properly defined
-     */
+     //Pet names
+    ANIMAL("animalMaleNames", "animalFemaleNames", null, "nobilityAttribs"),
+    //Dwarf names - surnames are not properly defined
     DWARF("dwarvenMaleNames", "dwarvenFemaleNames", "dwarvenMaleNames", "nobilityAttribs"),
-
-    /**
-     * Animal names
-     */
-    ANIMAL("animalMaleNames", "animalFemaleNames", null, "nobilityAttribs");
+    //Elven theme set
+    ELVEN("elvenMaleNames", "elvenFemaleNames", "elvenSurnames", "nobilityAttribs"),
+    //Roman theme set
+    ROMAN("humanMaleRomanNames", "humanFemaleRomanNames", "humanRomanSurnames", "humanRomanSurnames");
 
     /**
      * Returns the default theme
