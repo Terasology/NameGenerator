@@ -28,10 +28,10 @@ import java.util.List;
  */
 public enum RegionAssetTheme implements RegionTheme {
 
-    /**
-     * Theme set based on real country names
-     */
-    REAL("countries");
+    //Theme set based on real country names
+    REAL("countries"),
+    //Roman provinces
+    ROMAN("romanRegionNames");
 
     private final List<String> names;
 
