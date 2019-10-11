@@ -23,32 +23,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.terasology.HeadlessEnvironment;
 import org.terasology.namegenerator.creature.CreatureAffinityVector;
+import org.terasology.namegenerator.creature.CreatureAssetTheme;
 import org.terasology.namegenerator.creature.CreatureNameProvider;
 import org.terasology.naming.Name;
 
 /**
  * Tests {@link CreatureNameProvider}
  */
-public class CreatureNameProviderTest {
-
-    private static HeadlessEnvironment env;
-
-    /**
-     * Setup headless environment
-     */
-    @BeforeClass
-    public static void setUpClass() {
-        env = new HeadlessEnvironment(new Name("NameGenerator"));
-    }
-
-    /**
-     * Clean up
-     * @throws Exception never
-     */
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-        env.close();
-    }
+public class CreatureNameProviderTest extends NameGeneratorTestingEnvironment {
 
     /**
      * Requires that original training data names do <b>NOT</b> contain any spaces
@@ -56,10 +38,11 @@ public class CreatureNameProviderTest {
     @Test
     public void testBase() {
 
-        CreatureNameProvider prov = new CreatureNameProvider(123455);
+        CreatureNameProvider prov = new CreatureNameProvider(123455, CreatureAssetTheme.ROMAN);
 
         for (int i = 0; i < 100; i++) {
-            String name = prov.generateName();
+            String name = prov.generateName(CreatureAffinityVector.create().nobility(0.2));
+            //System.out.println(name);
             assertTrue(name.contains(" "));
         }
 

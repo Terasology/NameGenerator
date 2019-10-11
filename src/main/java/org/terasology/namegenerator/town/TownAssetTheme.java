@@ -29,15 +29,12 @@ import java.util.List;
  */
 public enum TownAssetTheme implements TownTheme {
 
-    /**
-     * Conventional English names
-     */
+    //Conventional English names
     ENGLISH("englishTownNames", "englishTownNameAffixes"),
-
-    /**
-     * Fantasy names, English affixes
-     */
-    FANTASY("fantasyTownNames", "englishTownNameAffixes");
+    //Fantasy names, English affixes
+    FANTASY("fantasyTownNames", "englishTownNameAffixes"),
+    //Latin names from Ancient Rome
+    ROMAN("romanTownNames", null);
 
     private final List<String> names;
     private final List<String> prefixes;
