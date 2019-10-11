@@ -37,7 +37,7 @@ public class CreatureNameComponent implements Component {
         String name = fullName();
 
         if (attr != null && !attr.isEmpty()) {
-            name += " the " + attr;
+            name += " " + attr;
         }
 
         return name;
@@ -52,7 +52,7 @@ public class CreatureNameComponent implements Component {
         dic.name = fullName();
 
         if (attr != null && !attr.isEmpty()) {
-            dic.description = "The " + attr;
+            dic.description = attr.substring(0, 1).toUpperCase() + attr.substring(1);
         }
 
         return dic;
