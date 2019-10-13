@@ -2,7 +2,10 @@
   "NameGenerator": {
     "nameLists": [
       "animalNamesLargeBirds",
-      "animalNamesSmallBirds"
+      "animalNamesSmallBirds",
+      "animalNamesRodents",
+      "animalNamesSnakes",
+      "animalNamesUngulates"
     ]
   }
 }
