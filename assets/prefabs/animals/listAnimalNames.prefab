@@ -3,6 +3,8 @@
     "nameLists": [
       "animalNamesLargeBirds",
       "animalNamesSmallBirds",
+      "animalNamesLargeCarnivorousMammals",
+      "animalNamesSmallCarnivorousMammals",
       "animalNamesRodents",
       "animalNamesSnakes",
       "animalNamesUngulates"
