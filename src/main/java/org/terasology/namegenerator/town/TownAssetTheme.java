@@ -29,6 +29,8 @@ import java.util.List;
  */
 public enum TownAssetTheme implements TownTheme {
 
+    //Names from Ancient Egypt
+    EGYPT("egyptianTownNames", null),
     //Conventional English names
     ENGLISH("englishTownNames", "englishTownNameAffixes"),
     //Fantasy names, English affixes

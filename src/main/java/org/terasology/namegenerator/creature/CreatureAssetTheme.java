@@ -32,6 +32,8 @@ public enum CreatureAssetTheme implements CreatureTheme {
     ANIMAL("animalMaleNames", "animalFemaleNames", null, "nobilityAttribs"),
     //Dwarf names - surnames are not properly defined
     DWARF("dwarvenMaleNames", "dwarvenFemaleNames", "dwarvenMaleNames", "nobilityAttribs"),
+    //Ancient Egyptian theme set
+    EGYPT("humanMaleEgyptianNames", "humanFemaleEgyptianNames", null, "nobilityAttribs"),
     //Elven theme set
     ELVEN("elvenMaleNames", "elvenFemaleNames", "elvenSurnames", "nobilityAttribs"),
     //Greek theme set
