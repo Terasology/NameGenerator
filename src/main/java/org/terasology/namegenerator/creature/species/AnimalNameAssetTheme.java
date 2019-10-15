@@ -33,7 +33,12 @@ public enum AnimalNameAssetTheme implements AnimalNameTheme {
      * Conventional English names
      */
     BIRD_SMALL("animalNamesSmallBirds", "animalPrefixes"),
-    BIRD_LARGE("animalNamesLargeBirds", "animalPrefixes");
+    BIRD_LARGE("animalNamesLargeBirds", "animalPrefixes"),
+    CARNIVORE_SMALL("animalNamesSmallCarnivorousMammals", "animalPrefixes"),
+    CARNIVORE_LARGE("animalNamesLargeCarnivorousMammals", "animalPrefixes"),
+    RODENT("animalNamesRodents", "animalPrefixes"),
+    SNAKE("animalNamesSnakes", "animalPrefixes"),
+    UNGULATE("animalNamesUngulates", "animalPrefixes");
 
     private final List<String> names;
     private final List<String> prefixes;
