@@ -28,6 +28,8 @@ import java.util.List;
  */
 public enum RegionAssetTheme implements RegionTheme {
 
+    //Greek regions
+    GREEK("greenRegionNames"),
     //Theme set based on real country names
     REAL("countries"),
     //Roman provinces

@@ -34,6 +34,8 @@ public enum CreatureAssetTheme implements CreatureTheme {
     DWARF("dwarvenMaleNames", "dwarvenFemaleNames", "dwarvenMaleNames", "nobilityAttribs"),
     //Elven theme set
     ELVEN("elvenMaleNames", "elvenFemaleNames", "elvenSurnames", "nobilityAttribs"),
+    //Greek theme set
+    GREEK("humanMaleGreekNames", "humanFemaleGreekNames", "humanMaleGreekNames", "greekTownNames"),
     //Roman theme set
     ROMAN("humanMaleRomanNames", "humanFemaleRomanNames", "humanRomanSurnames", "humanRomanSurnames");
 
