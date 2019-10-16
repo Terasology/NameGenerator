@@ -1,0 +1,22 @@
+{
+  "TownNameAffix" : {
+     "prefixes" : [
+        "La",
+        "Los",
+        "Don",
+        "San",
+        "Santa",
+        "Fuente",
+        "Jerez de la"
+	],
+	
+	"postfixes" : [
+       "de la Cruz",
+       "de la Laguna",
+       "de la Plana",
+       "de la Frontero",
+       "del Campo",
+       "de Henares"
+    ]
+  }
+}

@@ -38,7 +38,9 @@ public enum TownAssetTheme implements TownTheme {
     //Ancient Greek names
     GREEK("greekTownNames", null),
     //Latin names from Ancient Rome
-    ROMAN("romanTownNames", null);
+    ROMAN("romanTownNames", null),
+    //Modern names from Spain
+    SPANISH("spanishTownNames", "spanishTownNameAffixes");
 
     private final List<String> names;
     private final List<String> prefixes;

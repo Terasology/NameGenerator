@@ -33,7 +33,9 @@ public enum RegionAssetTheme implements RegionTheme {
     //Theme set based on real country names
     REAL("countries"),
     //Roman provinces
-    ROMAN("romanRegionNames");
+    ROMAN("romanRegionNames"),
+    //Spanish provinces
+    SPANISH("spanishRegionNames");
 
     private final List<String> names;
 

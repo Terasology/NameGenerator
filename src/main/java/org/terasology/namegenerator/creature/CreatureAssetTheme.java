@@ -39,7 +39,9 @@ public enum CreatureAssetTheme implements CreatureTheme {
     //Greek theme set
     GREEK("humanMaleGreekNames", "humanFemaleGreekNames", "humanMaleGreekNames", "greekTownNames"),
     //Roman theme set
-    ROMAN("humanMaleRomanNames", "humanFemaleRomanNames", "humanRomanSurnames", "humanRomanSurnames");
+    ROMAN("humanMaleRomanNames", "humanFemaleRomanNames", "humanRomanSurnames", "humanRomanSurnames"),
+    //Names from modern Spain
+    SPANISH("humanMaleSpanishNames", "humanFemaleSpanishNames", "humanSpanishSurnames", "nobilityAttribs");
 
     /**
      * Returns the default theme
