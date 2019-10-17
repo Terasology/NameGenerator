@@ -29,6 +29,8 @@ import java.util.List;
  */
 public enum TownAssetTheme implements TownTheme {
 
+    //Names from 1600-1900 Edo Japan
+    EDO("edoTownNames", null),
     //Names from Ancient Egypt
     EGYPT("egyptianTownNames", null),
     //Conventional English names

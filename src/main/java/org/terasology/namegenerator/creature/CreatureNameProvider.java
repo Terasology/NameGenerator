@@ -37,6 +37,7 @@ public class CreatureNameProvider {
     private final NameGenerator nobilityGen;
     private final NameGenerator maleNameGen;
     private final NameGenerator femaleNameGen;
+    private boolean reversed = false;
 
     /**
      * Uses the default naming theme
@@ -53,6 +54,10 @@ public class CreatureNameProvider {
     public CreatureNameProvider(long seed, CreatureTheme theme) {
 
         random = new MersenneRandom(seed);
+        if (theme instanceof CreatureAssetTheme)
+        {
+            reversed = ((CreatureAssetTheme) theme).reversed;
+        }
 
         final boolean markov = true;
         final boolean noMarkov = false;
@@ -121,6 +126,13 @@ public class CreatureNameProvider {
 
         if (random.nextDouble() < affinity.getNobility()) {
             comp.attr = nobilityGen.nextName();
+        }
+
+        if (reversed)
+        {
+            String lastName = comp.lastName;
+            comp.lastName = comp.firstName;
+            comp.firstName = lastName;
         }
 
         return comp;

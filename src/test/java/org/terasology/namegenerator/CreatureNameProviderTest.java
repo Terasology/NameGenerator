@@ -38,10 +38,10 @@ public class CreatureNameProviderTest extends NameGeneratorTestingEnvironment {
     @Test
     public void testBase() {
 
-        CreatureNameProvider prov = new CreatureNameProvider(123455, CreatureAssetTheme.ROMAN);
+        CreatureNameProvider prov = new CreatureNameProvider(123455, CreatureAssetTheme.EDO);
 
         for (int i = 0; i < 100; i++) {
-            String name = prov.generateName(CreatureAffinityVector.create().nobility(0.2));
+            String name = prov.generateName(CreatureAffinityVector.create());
             //System.out.println(name);
             assertTrue(name.contains(" "));
         }
@@ -49,7 +49,7 @@ public class CreatureNameProviderTest extends NameGeneratorTestingEnvironment {
         for (int i = 0; i < 100; i++) {
             CreatureAffinityVector aff = CreatureAffinityVector.create().maleOnly().nobility(1);
             String name = prov.generateName(aff);
-            assertTrue("Name \"" + name + "\" has not the form <FIRST> <LAST> the <ATTR>", name.matches("[\\S]+ [\\S]+ the [\\S]+"));
+            assertTrue("Name \"" + name + "\" has not the form <FIRST> <LAST> the <ATTR>", name.matches("[\\S]+ [\\S]+ [\\S]+"));
         }
     }
 

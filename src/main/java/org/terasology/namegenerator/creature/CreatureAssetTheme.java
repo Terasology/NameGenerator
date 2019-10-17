@@ -32,6 +32,8 @@ public enum CreatureAssetTheme implements CreatureTheme {
     ANIMAL("animalMaleNames", "animalFemaleNames", null, "nobilityAttribs"),
     //Dwarf names - surnames are not properly defined
     DWARF("dwarvenMaleNames", "dwarvenFemaleNames", "dwarvenMaleNames", "nobilityAttribs"),
+    //Names from Edo Japan, 1600-1900
+    EDO("humanMaleEdoNames", "humanFemaleEdoNames", "humanEdoSurnames", null, true),
     //Ancient Egyptian theme set
     EGYPT("humanMaleEgyptianNames", "humanFemaleEgyptianNames", null, "nobilityAttribs"),
     //Elven theme set
@@ -52,6 +54,21 @@ public enum CreatureAssetTheme implements CreatureTheme {
     private final List<String> femaleNames;
     private final List<String> surnames;
     private final List<String> nobAttribs;
+    public boolean reversed = false;
+
+    /**
+     * @param maleNames name of a valid prefab with {@link NameGeneratorComponent}, or null for an empty name list
+     * @param femaleNames name of a valid prefab with {@link NameGeneratorComponent}, or null for an empty name list
+     * @param surnames name of a valid prefab with {@link NameGeneratorComponent}, or null for an empty name list
+     * @param nobilityAttribs name of a valid prefab with {@link NameGeneratorComponent}, or null for an empty name list
+     */
+    CreatureAssetTheme(String maleNames, String femaleNames, String surnames, String nobilityAttribs, boolean reverse) {
+        this(fetchNameList(maleNames),
+                fetchNameList(femaleNames),
+                fetchNameList(surnames),
+                fetchNameList(nobilityAttribs));
+        reversed = reverse;
+    }
 
     /**
      * @param maleNames name of a valid prefab with {@link NameGeneratorComponent}, or null for an empty name list

@@ -28,6 +28,8 @@ import java.util.List;
  */
 public enum RegionAssetTheme implements RegionTheme {
 
+    //names from 1600-1900 Edo Japan
+    EDO("edoRegionNames"),
     //Greek regions
     GREEK("greenRegionNames"),
     //Theme set based on real country names
