@@ -53,20 +53,55 @@ public enum TownAssetTheme implements TownTheme {
      * @param affixPrefab valid prefab with {@link TownNameAffixComponent}
      */
     TownAssetTheme(String namePrefab, String affixPrefab) {
-        this(Assets.getPrefab(namePrefab).get(), Assets.getPrefab(affixPrefab).get());
+        this(fetchNameList(namePrefab), fetchPrefixesList(affixPrefab), fetchPostfixesList(affixPrefab));
+    }
+
+    TownAssetTheme(List<String> namePrefab, List<String> prefixPrefab, List<String> postfixPrefab) {
+        names = namePrefab;
+        prefixes = prefixPrefab;
+        postfixes  = postfixPrefab;
     }
 
     /**
-     * @param namePrefab valid prefab with {@link NameGeneratorComponent}
-     * @param affixPrefab valid prefab with {link {@link TownNameAffixComponent}
+     * Fetch a name list from a String naming a {@code Prefab}.
+     *
+     * The named {@link Prefab} should contain a {@link NameGeneratorComponent}.
+     *
+     * @param s the name of a prefab, null returns an empty list
+     * @return the list of names associated with the named prefab
+     * @throws java.util.NoSuchElementException if {@code s} is not null but does not have an associated prefab
      */
-    TownAssetTheme(Prefab namePrefab, Prefab affixPrefab) {
-        NameGeneratorComponent basenames = namePrefab.getComponent(NameGeneratorComponent.class);
-        names = Collections.unmodifiableList(basenames.nameList);
+    private static List<String> fetchNameList(String s) {
+        if (s == null) {
+            return Collections.emptyList();
+        } else {
+            return Assets.getPrefab(s).map(prefab -> {
+                NameGeneratorComponent comp = prefab.getComponent(NameGeneratorComponent.class);
+                return Collections.unmodifiableList(comp.nameList);
+            }).get();
+        }
+    }
 
-        TownNameAffixComponent affixes = affixPrefab.getComponent(TownNameAffixComponent.class);
-        prefixes = Collections.unmodifiableList(affixes.prefixes);
-        postfixes  = Collections.unmodifiableList(affixes.postfixes);
+    private static List<String> fetchPrefixesList(String s) {
+        if (s == null) {
+            return Collections.emptyList();
+        } else {
+            return Assets.getPrefab(s).map(prefab -> {
+                TownNameAffixComponent comp = prefab.getComponent(TownNameAffixComponent.class);
+                return Collections.unmodifiableList(comp.prefixes);
+            }).get();
+        }
+    }
+
+    private static List<String> fetchPostfixesList(String s) {
+        if (s == null) {
+            return Collections.emptyList();
+        } else {
+            return Assets.getPrefab(s).map(prefab -> {
+                TownNameAffixComponent comp = prefab.getComponent(TownNameAffixComponent.class);
+                return Collections.unmodifiableList(comp.postfixes);
+            }).get();
+        }
     }
 
     @Override

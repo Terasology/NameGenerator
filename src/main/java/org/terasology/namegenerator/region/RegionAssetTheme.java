@@ -20,8 +20,10 @@ import org.terasology.utilities.Assets;
 import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.namegenerator.data.NameGeneratorComponent;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * A {@link RegionTheme} that is based on Asset data
@@ -31,7 +33,7 @@ public enum RegionAssetTheme implements RegionTheme {
     //names from 1600-1900 Edo Japan
     EDO("edoRegionNames"),
     //Greek regions
-    GREEK("greenRegionNames"),
+    GREEK("greekRegionNames"),
     //Theme set based on real country names
     REAL("countries"),
     //Roman provinces
@@ -45,7 +47,19 @@ public enum RegionAssetTheme implements RegionTheme {
      * @param names valid prefab with {@link NameGeneratorComponent}
      */
     RegionAssetTheme(String names) {
-        this(Assets.getPrefab(names).get());
+        this(Assets.getPrefab(names));
+    }
+
+    RegionAssetTheme(Optional<Prefab> namesO) {
+        Prefab namesPf = null;
+        try {
+            namesPf = namesO.get();
+        } catch (Exception e) {
+            System.out.println("WARNING: Could not define prefab " + this.name());
+            e.printStackTrace();
+        }
+        NameGeneratorComponent comp = namesPf.getComponent(NameGeneratorComponent.class);
+        names = Collections.unmodifiableList(comp.nameList);
     }
 
     /**
