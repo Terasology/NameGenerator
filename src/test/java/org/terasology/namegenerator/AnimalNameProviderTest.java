@@ -17,6 +17,7 @@
 package org.terasology.namegenerator;
 
 import org.junit.Test;
+import org.terasology.namegenerator.creature.species.AnimalNameAssetTheme;
 import org.terasology.namegenerator.creature.species.AnimalNameProvider;
 import org.terasology.namegenerator.creature.species.adjective.AnimalAdjectiveProvider;
 
@@ -33,7 +34,7 @@ public class AnimalNameProviderTest extends NameGeneratorTestingEnvironment {
     @Test
     public void testBase() {
 
-        AnimalNameProvider prov = new AnimalNameProvider(1234567);
+        AnimalNameProvider prov = new AnimalNameProvider(123456, AnimalNameAssetTheme.RODENT);
 
         for (int i = 0; i < 100; i++) {
             String name = prov.generateName();

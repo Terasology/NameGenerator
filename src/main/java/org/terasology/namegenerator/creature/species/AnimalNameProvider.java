@@ -15,6 +15,7 @@
  */
 package org.terasology.namegenerator.creature.species;
 
+import org.terasology.namegenerator.creature.species.actions.AnimalActionProvider;
 import org.terasology.namegenerator.creature.species.adjective.AnimalAdjectiveProvider;
 import org.terasology.namegenerator.region.adjective.RegionAdjectiveProvider;
 import org.terasology.utilities.random.MersenneRandom;
@@ -29,6 +30,7 @@ public class AnimalNameProvider {
     private final AnimalNameAffinityVector defaultAffinity = AnimalNameAffinityVector.create();
     private final RegionAdjectiveProvider regionProvider;
     private final AnimalAdjectiveProvider adjectiveProvider;
+    private final AnimalActionProvider actionProvider;
 
     /**
      * Uses the default naming theme
@@ -50,6 +52,7 @@ public class AnimalNameProvider {
         prefixes = theme.getPrefixes();
         regionProvider = new RegionAdjectiveProvider(seed);
         adjectiveProvider = new AnimalAdjectiveProvider(seed);
+        actionProvider = new AnimalActionProvider(seed);
     }
 
     /**
@@ -71,23 +74,44 @@ public class AnimalNameProvider {
         String prefix = prefixes.get(prefixIndex);
         String region = regionProvider.generateName();
         String adjective = adjectiveProvider.generateName();
+        String action = actionProvider.generateName();
 
-        int choice = random.nextInt(14);
+        int choice = random.nextInt(33);
         switch(choice)
         {
             case 0:
-            case 1:return region + " " + adjective + " " + name;
-            case 2: return region + " " + adjective + " " + prefix + name.toLowerCase();
+            case 1:
+            case 2: return region + " " + adjective + " " + name;
             case 3:
-            case 4: return region + " " + name;
-            case 5: return region + " " + prefix + name.toLowerCase();
+            case 4: return region + " " + adjective + " " + prefix + name.toLowerCase();
+            case 5:
             case 6:
-            case 7: return adjective + " " + name;
-            case 8: return adjective + " " + prefix + name.toLowerCase();
-            case 9: return prefix + name.toLowerCase();
+            case 7: return region + " " + name;
+            case 8:
+            case 9: return region + " " + prefix + name.toLowerCase();
             case 10:
-            case 11: return adjective + " " + region + " " + name;
-            case 12: return adjective + " " + region + " " + prefix + name.toLowerCase();
+            case 11:
+            case 12: return adjective + " " + name;
+            case 13:
+            case 14: return adjective + " " + prefix + name.toLowerCase();
+            case 15: return prefix + name.toLowerCase();
+            case 16:
+            case 17:
+            case 18: return adjective + " " + region + " " + name;
+            case 19: return adjective + " " + region + " " + prefix + name.toLowerCase();
+            case 20: return adjective + " " + name;
+            case 21: return region + " " + adjective + " " + action + "er";
+            case 22: return region + " " + action + "er";
+            case 23: return adjective + " " + action + "er";
+            case 24: return adjective + " " + prefix + action.toLowerCase() + "er";
+            case 25: return prefix + action.toLowerCase() + "er";
+            case 26: return adjective + " " + region + " " + action + "er";
+            case 27: return adjective + " " + action + "er";
+            case 28: return region + " " + action + "ing" + " " + name;
+            case 29: return region + " " + action + "ing" + " " + prefix + name.toLowerCase();
+            case 30: return action + "ing" + " " + name;
+            case 31: return action + "ing" + " " + prefix + name.toLowerCase();
+            case 32: return action + "ing" + " " + name;
             default: return adjective + " " + name;
         }
     }
