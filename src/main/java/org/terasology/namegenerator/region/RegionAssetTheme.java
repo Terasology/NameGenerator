@@ -32,6 +32,8 @@ public enum RegionAssetTheme implements RegionTheme {
 
     //names from 1600-1900 Edo Japan
     EDO("edoRegionNames"),
+    //French divisions
+    FRENCH("frenchRegionNames"),
     //Greek regions
     GREEK("greekRegionNames"),
     //Theme set based on real country names

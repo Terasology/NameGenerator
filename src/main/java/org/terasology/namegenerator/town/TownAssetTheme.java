@@ -37,6 +37,8 @@ public enum TownAssetTheme implements TownTheme {
     ENGLISH("englishTownNames", "englishTownNameAffixes"),
     //Fantasy names, English affixes
     FANTASY("fantasyTownNames", "englishTownNameAffixes"),
+    //Modern names from France
+    FRENCH("frenchTownNames", "frenchTownNameAffixes"),
     //Ancient Greek names
     GREEK("greekTownNames", null),
     //Latin names from Ancient Rome

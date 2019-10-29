@@ -1,0 +1,57 @@
+{
+    "TownNameAffix" : {
+        "prefixes" : [
+            "La ",
+            "La ",
+            "Le ",
+            "Le ",
+            "Le ",
+            "Les ",
+            "Bas-",
+            "Bouches-de-",
+            "Val de ",
+            "Pays de la ",
+            "Côte d'",
+            "Côtes-d'",
+            "Île-de-",
+            "Pas-de-",
+            "Puy-de-",
+            "Hauts-de-",
+            "Grand ",
+            "Saint-",
+            "Saint-",
+            "Saint-",
+            "Saint-",
+            "Mont-"
+        ],
+
+        "postfixes" : [
+            "-Alpes",
+            "-Atlantique",
+            "-d'Olonne",
+            "-de-France",
+            "-de-l'Ouest",
+            "-du-Nord",
+            "-du-Sud",
+            "-en-France",
+            "-et-Loir",
+            "-le-Grand",
+            "-le-Pont",
+            "-le-Sec",
+            "-les-Roses",
+            "-lès-Rouen",
+            "-lès-Tours",
+            "-le-Temple",
+            "-Maritime",
+            "-Occidental",
+            "-Orientales",
+            "-Inférieure",
+            "-sous-Bois",
+            "-Supérieur",
+            "-sur-Marne",
+            "-sur-Mer",
+            "-sur-Seine",
+            "-sur-Yon"
+        ]
+    }
+}
