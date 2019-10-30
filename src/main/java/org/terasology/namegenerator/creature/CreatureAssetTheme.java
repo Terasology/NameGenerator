@@ -38,6 +38,8 @@ public enum CreatureAssetTheme implements CreatureTheme {
     EGYPT("humanMaleEgyptianNames", "humanFemaleEgyptianNames", null, "nobilityAttribs"),
     //Elven theme set
     ELVEN("elvenMaleNames", "elvenFemaleNames", "elvenSurnames", "nobilityAttribs"),
+    //Names from modern Franch
+    FRENCH("humanMaleFrenchNames", "humanFemaleFrenchNames", "humanFrenchSurnames", "nobilityAttribs"),
     //Greek theme set
     GREEK("humanMaleGreekNames", "humanFemaleGreekNames", "humanMaleGreekNames", "greekTownNames"),
     //Roman theme set
