@@ -42,6 +42,8 @@ public enum CreatureAssetTheme implements CreatureTheme {
     FRENCH("humanMaleFrenchNames", "humanFemaleFrenchNames", "humanFrenchSurnames", "nobilityAttribs"),
     //Greek theme set
     GREEK("humanMaleGreekNames", "humanFemaleGreekNames", "humanMaleGreekNames", "greekTownNames"),
+    //Hindu Indian theme set
+    HINDI("humanMaleHindiNames", "humanFemaleHindiNames", "humanHindiSurnames", "nobilityAttribs"),
     //Roman theme set
     ROMAN("humanMaleRomanNames", "humanFemaleRomanNames", "humanRomanSurnames", "humanRomanSurnames"),
     //Names from modern Spain

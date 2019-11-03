@@ -36,6 +36,8 @@ public enum RegionAssetTheme implements RegionTheme {
     FRENCH("frenchRegionNames"),
     //Greek regions
     GREEK("greekRegionNames"),
+    //Indian regions
+    INDIAN("indianRegionNames"),
     //Theme set based on real country names
     REAL("countries"),
     //Roman provinces

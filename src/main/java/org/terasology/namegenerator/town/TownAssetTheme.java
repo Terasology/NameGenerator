@@ -41,6 +41,8 @@ public enum TownAssetTheme implements TownTheme {
     FRENCH("frenchTownNames", "frenchTownNameAffixes"),
     //Ancient Greek names
     GREEK("greekTownNames", null),
+    //Hindu names from northern India
+    HINDU("hinduTownNames", "hinduTownNames"),
     //Latin names from Ancient Rome
     ROMAN("romanTownNames", null),
     //Modern names from Spain
