@@ -76,36 +76,27 @@ public enum TownAssetTheme implements TownTheme {
      * @throws java.util.NoSuchElementException if {@code s} is not null but does not have an associated prefab
      */
     private static List<String> fetchNameList(String s) {
-        if (s == null) {
-            return Collections.emptyList();
-        } else {
-            return Assets.getPrefab(s).map(prefab -> {
-                NameGeneratorComponent comp = prefab.getComponent(NameGeneratorComponent.class);
-                return Collections.unmodifiableList(comp.nameList);
-            }).get();
-        }
+        return
+                Assets.getPrefab(s)
+                        .map(prefab -> prefab.getComponent(NameGeneratorComponent.class))
+                        .map(comp -> comp.nameList)
+                        .orElse(Collections.emptyList());
     }
 
     private static List<String> fetchPrefixesList(String s) {
-        if (s == null) {
-            return Collections.emptyList();
-        } else {
-            return Assets.getPrefab(s).map(prefab -> {
-                TownNameAffixComponent comp = prefab.getComponent(TownNameAffixComponent.class);
-                return Collections.unmodifiableList(comp.prefixes);
-            }).get();
-        }
+        return
+                Assets.getPrefab(s)
+                        .map(prefab -> prefab.getComponent(TownNameAffixComponent.class))
+                        .map(comp -> comp.prefixes)
+                        .orElse(Collections.emptyList());
     }
 
     private static List<String> fetchPostfixesList(String s) {
-        if (s == null) {
-            return Collections.emptyList();
-        } else {
-            return Assets.getPrefab(s).map(prefab -> {
-                TownNameAffixComponent comp = prefab.getComponent(TownNameAffixComponent.class);
-                return Collections.unmodifiableList(comp.postfixes);
-            }).get();
-        }
+        return
+                Assets.getPrefab(s)
+                        .map(prefab -> prefab.getComponent(TownNameAffixComponent.class))
+                        .map(comp -> comp.postfixes)
+                        .orElse(Collections.emptyList());
     }
 
     @Override

@@ -39,7 +39,7 @@ public class AnimalNameProviderTest extends NameGeneratorTestingEnvironment {
         for (int i = 0; i < 100; i++) {
             String name = prov.generateName();
             System.out.println(name);
-            //assertFalse(name.isEmpty());
+            assertFalse(name.isEmpty());
         }
     }
 

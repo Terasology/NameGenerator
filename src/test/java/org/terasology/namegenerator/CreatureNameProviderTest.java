@@ -42,7 +42,6 @@ public class CreatureNameProviderTest extends NameGeneratorTestingEnvironment {
 
         for (int i = 0; i < 100; i++) {
             String name = prov.generateName(CreatureAffinityVector.create());
-            //System.out.println(name);
             assertTrue(name.contains(" "));
         }
 

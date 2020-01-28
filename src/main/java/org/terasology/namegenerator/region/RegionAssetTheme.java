@@ -54,16 +54,12 @@ public enum RegionAssetTheme implements RegionTheme {
         this(Assets.getPrefab(names));
     }
 
-    RegionAssetTheme(Optional<Prefab> namesO) {
-        Prefab namesPf = null;
-        try {
-            namesPf = namesO.get();
-        } catch (Exception e) {
-            System.out.println("WARNING: Could not define prefab " + this.name());
-            e.printStackTrace();
-        }
-        NameGeneratorComponent comp = namesPf.getComponent(NameGeneratorComponent.class);
-        names = Collections.unmodifiableList(comp.nameList);
+    RegionAssetTheme(Optional<Prefab> maybeNames) {
+        names =
+                maybeNames
+                        .map(namesPrefab -> namesPrefab.getComponent(NameGeneratorComponent.class))
+                        .map(nameGeneratorComponent -> nameGeneratorComponent.nameList)
+                        .orElse(Collections.emptyList());
     }
 
     /**
