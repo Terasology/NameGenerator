@@ -54,8 +54,7 @@ public class CreatureNameProvider {
     public CreatureNameProvider(long seed, CreatureTheme theme) {
 
         random = new MersenneRandom(seed);
-        if (theme instanceof CreatureAssetTheme)
-        {
+        if (theme instanceof CreatureAssetTheme) {
             reversed = ((CreatureAssetTheme) theme).reversed;
         }
 
@@ -128,8 +127,7 @@ public class CreatureNameProvider {
             comp.attr = nobilityGen.nextName();
         }
 
-        if (reversed)
-        {
+        if (reversed) {
             String lastName = comp.lastName;
             comp.lastName = comp.firstName;
             comp.firstName = lastName;

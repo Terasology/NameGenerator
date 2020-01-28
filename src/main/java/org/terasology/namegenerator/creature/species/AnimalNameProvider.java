@@ -77,8 +77,7 @@ public class AnimalNameProvider {
         String action = actionProvider.generateName();
 
         int choice = random.nextInt(33);
-        switch(choice)
-        {
+        switch(choice) {
             case 0:
             case 1:
             case 2: return region + " " + adjective + " " + name;

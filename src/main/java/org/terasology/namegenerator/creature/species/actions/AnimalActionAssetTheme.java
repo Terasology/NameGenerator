@@ -55,8 +55,7 @@ public enum AnimalActionAssetTheme implements AnimalActionTheme {
 
         List<String> listObjects = listPrefab.getComponent(NameGeneratorListComponent.class).nameLists;
         List<String> modifiableList = new ArrayList<>();
-        for (String val : listObjects)
-        {
+        for (String val : listObjects) {
             try {
                 Prefab prefab = Assets.getPrefab(val).get();
                 modifiableList.addAll(prefab.getComponent(NameGeneratorComponent.class).nameList);
