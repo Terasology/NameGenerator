@@ -41,7 +41,9 @@ public enum CreatureAssetTheme implements CreatureTheme {
     /**
      * Animal names
      */
-    ANIMAL("animalMaleNames", "animalFemaleNames", null, "nobilityAttribs");
+    ANIMAL("animalMaleNames", "animalFemaleNames", null, "nobilityAttribs"),
+
+    OLD_WEST("oldWestMaleNames", "oldWestFemaleNames","oldWestSurnames", null);
 
     /**
      * Returns the default theme
