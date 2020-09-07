@@ -16,15 +16,15 @@
 
 package org.terasology.namegenerator;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.terasology.HeadlessEnvironment;
+import org.terasology.gestalt.naming.Name;
 import org.terasology.namegenerator.creature.CreatureAffinityVector;
 import org.terasology.namegenerator.creature.CreatureNameProvider;
-import org.terasology.naming.Name;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Tests {@link CreatureNameProvider}

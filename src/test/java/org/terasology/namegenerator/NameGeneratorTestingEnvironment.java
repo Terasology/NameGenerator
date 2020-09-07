@@ -16,12 +16,8 @@
 package org.terasology.namegenerator;
 
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.terasology.HeadlessEnvironment;
-import org.terasology.assets.AssetFactory;
-import org.terasology.assets.management.AssetManager;
-import org.terasology.assets.module.ModuleAwareAssetTypeManager;
 import org.terasology.context.Context;
 import org.terasology.engine.module.ModuleManager;
 import org.terasology.entitySystem.metadata.ComponentLibrary;
@@ -29,7 +25,10 @@ import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.entitySystem.prefab.PrefabData;
 import org.terasology.entitySystem.prefab.internal.PojoPrefab;
 import org.terasology.entitySystem.prefab.internal.PrefabFormat;
-import org.terasology.naming.Name;
+import org.terasology.gestalt.assets.AssetFactory;
+import org.terasology.gestalt.assets.management.AssetManager;
+import org.terasology.gestalt.assets.module.ModuleAwareAssetTypeManager;
+import org.terasology.gestalt.naming.Name;
 import org.terasology.persistence.typeHandling.TypeHandlerLibrary;
 
 public class NameGeneratorTestingEnvironment {
