@@ -1,26 +1,13 @@
-/*
- * Copyright 2014 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.namegenerator.town;
 
+import org.terasology.engine.utilities.random.MersenneRandom;
+import org.terasology.engine.utilities.random.Random;
 import org.terasology.namegenerator.generators.MarkovNameGenerator;
 import org.terasology.namegenerator.generators.NameGenerator;
 import org.terasology.namegenerator.generators.TrainingGenerator;
-import org.terasology.utilities.random.MersenneRandom;
-import org.terasology.utilities.random.Random;
 
 /**
  * Provides access to generated names. Thread-safe.
@@ -34,6 +21,7 @@ public class TownNameProvider {
 
     /**
      * Uses the default naming theme
+     *
      * @param seed the seed
      */
     public TownNameProvider(long seed) {

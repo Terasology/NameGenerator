@@ -1,28 +1,14 @@
-/*
- * Copyright 2013 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 package org.terasology.namegenerator.generators;
 
 import com.google.common.base.Preconditions;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.terasology.engine.utilities.random.FastRandom;
+import org.terasology.engine.utilities.random.Random;
 import org.terasology.markovChains.MarkovChain;
 import org.terasology.markovChains.TrainingAlgorithms;
-import org.terasology.utilities.random.FastRandom;
-import org.terasology.utilities.random.Random;
 
 import java.util.AbstractList;
 import java.util.ArrayList;
@@ -31,8 +17,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Implementation of the {@link org.terasology.namegenerator.generators.NameGenerator} interface, using Markov chain model.
- * The look-ahead for analysis and generation is two characters.
+ * Implementation of the {@link org.terasology.namegenerator.generators.NameGenerator} interface, using Markov chain
+ * model. The look-ahead for analysis and generation is two characters.
  */
 public class MarkovNameGenerator implements NameGenerator {
 
@@ -42,7 +28,7 @@ public class MarkovNameGenerator implements NameGenerator {
 
     private final FastRandom random;
 
-    private MarkovChain<Character> markovChain;
+    private final MarkovChain<Character> markovChain;
 
     /**
      * Create a new name generator, using the given list as example source.
@@ -105,6 +91,7 @@ public class MarkovNameGenerator implements NameGenerator {
 
     /**
      * Generate the next name using the given random number generator.
+     *
      * @param minLength minimal length of generated name [0..12]
      * @param maxLength maximal length of generated name
      * @param rand random number generator to use for generation
@@ -159,7 +146,7 @@ public class MarkovNameGenerator implements NameGenerator {
      *
      * @param minLength minimal length of generated name [0..12]
      * @param maxLength maximal length of generated name
-     * @param seed      the seed value to use for this name
+     * @param seed the seed value to use for this name
      * @return a pseudo random name
      */
     public String getName(int minLength, int maxLength, long seed) {

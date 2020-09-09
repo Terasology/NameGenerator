@@ -1,27 +1,14 @@
-/*
- * Copyright 2014 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.namegenerator.creature;
 
+import org.terasology.engine.utilities.random.MersenneRandom;
+import org.terasology.engine.utilities.random.Random;
 import org.terasology.namegenerator.generators.EmptyNameGenerator;
 import org.terasology.namegenerator.generators.MarkovNameGenerator;
 import org.terasology.namegenerator.generators.NameGenerator;
 import org.terasology.namegenerator.generators.TrainingGenerator;
-import org.terasology.utilities.random.MersenneRandom;
-import org.terasology.utilities.random.Random;
 
 import java.util.List;
 
@@ -40,6 +27,7 @@ public class CreatureNameProvider {
 
     /**
      * Uses the default naming theme
+     *
      * @param seed the seed
      */
     public CreatureNameProvider(long seed) {
@@ -74,8 +62,10 @@ public class CreatureNameProvider {
      * Factory method for {@code NameGenerator}s.
      *
      * @param seed the seed for the {@code NameGenerator}
-     * @param nameList the list of names for the {@code NameGenerator}; if null or empty, a {@link EmptyNameGenerator} is used, regardless of {@code useMarkov}
-     * @param useMarkov whether a {@link MarkovNameGenerator} should be used, or just a {@link TrainingGenerator}
+     * @param nameList the list of names for the {@code NameGenerator}; if null or empty, a {@link
+     *         EmptyNameGenerator} is used, regardless of {@code useMarkov}
+     * @param useMarkov whether a {@link MarkovNameGenerator} should be used, or just a {@link
+     *         TrainingGenerator}
      * @return an appropriately-constructed {@code NameGenerator}
      */
     private static NameGenerator createNameGenerator(long seed, List<String> nameList, boolean useMarkov) {
