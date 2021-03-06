@@ -2,8 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 package org.terasology.namegenerator;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.Arrays;
 import java.util.Set;
 
@@ -11,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.terasology.namegenerator.generators.TrainingGenerator;
 
 import com.google.common.collect.Sets;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests {@link TrainingGenerator}
