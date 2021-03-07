@@ -13,7 +13,9 @@ import org.terasology.utilities.random.Random;
 import java.util.Arrays;
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 
 public class SeedNameGeneratorTest {
 
