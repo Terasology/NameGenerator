@@ -5,14 +5,14 @@ package org.terasology.namegenerator;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.terasology.entitySystem.entity.EntityRef;
-import org.terasology.entitySystem.entity.internal.EngineEntityManager;
-import org.terasology.entitySystem.entity.lifecycleEvents.OnAddedComponent;
-import org.terasology.logic.common.DisplayNameComponent;
+import org.terasology.engine.entitySystem.entity.EntityRef;
+import org.terasology.engine.entitySystem.entity.internal.EngineEntityManager;
+import org.terasology.engine.entitySystem.entity.lifecycleEvents.OnAddedComponent;
+import org.terasology.engine.logic.common.DisplayNameComponent;
+import org.terasology.engine.registry.CoreRegistry;
 import org.terasology.namegenerator.creature.CreatureNameComponent;
 import org.terasology.namegenerator.creature.CreatureNameGeneratorComponent;
 import org.terasology.namegenerator.creature.CreatureNameGeneratorSystem;
-import org.terasology.registry.CoreRegistry;
 
 /**
  * Tests {@link CreatureNameGeneratorSystem}

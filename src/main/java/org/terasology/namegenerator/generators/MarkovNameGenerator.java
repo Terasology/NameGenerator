@@ -16,13 +16,12 @@
 package org.terasology.namegenerator.generators;
 
 import com.google.common.base.Preconditions;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.terasology.engine.utilities.random.FastRandom;
+import org.terasology.engine.utilities.random.Random;
 import org.terasology.markovChains.MarkovChain;
 import org.terasology.markovChains.TrainingAlgorithms;
-import org.terasology.utilities.random.FastRandom;
-import org.terasology.utilities.random.Random;
 
 import java.util.AbstractList;
 import java.util.ArrayList;

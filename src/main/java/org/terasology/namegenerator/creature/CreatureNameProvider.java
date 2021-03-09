@@ -16,12 +16,12 @@
 
 package org.terasology.namegenerator.creature;
 
+import org.terasology.engine.utilities.random.MersenneRandom;
+import org.terasology.engine.utilities.random.Random;
 import org.terasology.namegenerator.generators.EmptyNameGenerator;
 import org.terasology.namegenerator.generators.MarkovNameGenerator;
 import org.terasology.namegenerator.generators.NameGenerator;
 import org.terasology.namegenerator.generators.TrainingGenerator;
-import org.terasology.utilities.random.MersenneRandom;
-import org.terasology.utilities.random.Random;
 
 import java.util.List;
 

@@ -15,9 +15,9 @@
  */
 package org.terasology.namegenerator.commands;
 
-import org.terasology.entitySystem.systems.BaseComponentSystem;
-import org.terasology.entitySystem.systems.RegisterSystem;
-import org.terasology.logic.console.commandSystem.annotations.Command;
+import org.terasology.engine.entitySystem.systems.BaseComponentSystem;
+import org.terasology.engine.entitySystem.systems.RegisterSystem;
+import org.terasology.engine.logic.console.commandSystem.annotations.Command;
 import org.terasology.namegenerator.creature.CreatureNameProvider;
 import org.terasology.namegenerator.region.RegionNameProvider;
 import org.terasology.namegenerator.town.TownNameProvider;

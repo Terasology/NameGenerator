@@ -17,8 +17,8 @@
 package org.terasology.namegenerator.generators;
 
 import com.google.common.collect.Lists;
-import org.terasology.utilities.random.FastRandom;
-import org.terasology.utilities.random.Random;
+import org.terasology.engine.utilities.random.FastRandom;
+import org.terasology.engine.utilities.random.Random;
 
 import java.util.Collection;
 import java.util.Collections;

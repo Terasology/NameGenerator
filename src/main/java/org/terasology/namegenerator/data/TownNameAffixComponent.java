@@ -16,9 +16,9 @@
 
 package org.terasology.namegenerator.data;
 
-import java.util.List;
+import org.terasology.engine.entitySystem.Component;
 
-import org.terasology.entitySystem.Component;
+import java.util.List;
 
 /**
  * Contains affixes for town names.

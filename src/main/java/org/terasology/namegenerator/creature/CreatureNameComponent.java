@@ -16,8 +16,8 @@
 
 package org.terasology.namegenerator.creature;
 
-import org.terasology.entitySystem.Component;
-import org.terasology.logic.common.DisplayNameComponent;
+import org.terasology.engine.entitySystem.Component;
+import org.terasology.engine.logic.common.DisplayNameComponent;
 
 /**
  * Defines a creature name

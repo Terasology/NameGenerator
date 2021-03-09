@@ -16,8 +16,8 @@
 
 package org.terasology.namegenerator.creature;
 
-import org.terasology.utilities.Assets;
-import org.terasology.entitySystem.prefab.Prefab;
+import org.terasology.engine.entitySystem.prefab.Prefab;
+import org.terasology.engine.utilities.Assets;
 import org.terasology.namegenerator.data.NameGeneratorComponent;
 
 import java.util.Collections;

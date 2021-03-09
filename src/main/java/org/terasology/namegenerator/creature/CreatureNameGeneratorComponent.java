@@ -16,7 +16,7 @@
 
 package org.terasology.namegenerator.creature;
 
-import org.terasology.entitySystem.Component;
+import org.terasology.engine.entitySystem.Component;
 
 /**
  * Defines a creature affinity vector

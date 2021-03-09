@@ -5,10 +5,10 @@ package org.terasology.namegenerator;
 
 import com.google.common.collect.Sets;
 import org.junit.jupiter.api.Test;
+import org.terasology.engine.utilities.random.FastRandom;
+import org.terasology.engine.utilities.random.Random;
 import org.terasology.namegenerator.generators.MarkovNameGenerator;
 import org.terasology.namegenerator.generators.TrainingGenerator;
-import org.terasology.utilities.random.FastRandom;
-import org.terasology.utilities.random.Random;
 
 import java.util.Arrays;
 import java.util.Set;
