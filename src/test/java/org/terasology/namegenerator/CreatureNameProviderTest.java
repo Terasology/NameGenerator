@@ -7,7 +7,7 @@ package org.terasology.namegenerator;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.terasology.HeadlessEnvironment;
+import org.terasology.engine.HeadlessEnvironment;
 import org.terasology.namegenerator.creature.CreatureAffinityVector;
 import org.terasology.namegenerator.creature.CreatureNameProvider;
 import org.terasology.naming.Name;
