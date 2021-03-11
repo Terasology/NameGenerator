@@ -4,10 +4,10 @@ package org.terasology.namegenerator;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.terasology.HeadlessEnvironment;
 import org.terasology.assets.AssetFactory;
 import org.terasology.assets.management.AssetManager;
 import org.terasology.assets.module.ModuleAwareAssetTypeManager;
+import org.terasology.engine.HeadlessEnvironment;
 import org.terasology.engine.context.Context;
 import org.terasology.engine.core.module.ModuleManager;
 import org.terasology.engine.entitySystem.metadata.ComponentLibrary;
