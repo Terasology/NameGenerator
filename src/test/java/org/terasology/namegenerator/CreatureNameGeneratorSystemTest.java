@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 package org.terasology.namegenerator;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import org.terasology.namegenerator.creature.CreatureNameGeneratorSystem;
 /**
  * Tests {@link CreatureNameGeneratorSystem}
  */
+@Tag("TteTest")
 public class CreatureNameGeneratorSystemTest extends NameGeneratorTestingEnvironment {
 
     private static final Logger logger = LoggerFactory.getLogger(CreatureNameGeneratorSystemTest.class);
