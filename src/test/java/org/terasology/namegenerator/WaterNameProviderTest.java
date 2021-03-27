@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 package org.terasology.namegenerator;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.terasology.namegenerator.waters.WaterNameProvider;
 
@@ -10,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 /**
  * Tests {@link WaterNameProvider}
  */
+@Tag("TteTest")
 public class WaterNameProviderTest extends NameGeneratorTestingEnvironment {
 
     /**
