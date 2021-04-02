@@ -3,40 +3,18 @@
 
 package org.terasology.namegenerator;
 
-
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.terasology.engine.HeadlessEnvironment;
 import org.terasology.namegenerator.creature.CreatureAffinityVector;
 import org.terasology.namegenerator.creature.CreatureNameProvider;
-import org.terasology.naming.Name;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 /**
  * Tests {@link CreatureNameProvider}
  */
-public class CreatureNameProviderTest {
-
-    private static HeadlessEnvironment env;
-
-    /**
-     * Setup headless environment
-     */
-    @BeforeAll
-    public static void setUpClass() {
-        env = new HeadlessEnvironment(new Name("NameGenerator"));
-    }
-
-    /**
-     * Clean up
-     *
-     * @throws Exception never
-     */
-    @AfterAll
-    public static void tearDownClass() throws Exception {
-        env.close();
-    }
+@Tag("TteTest")
+public class CreatureNameProviderTest extends NameGeneratorTestingEnvironment {
 
     /**
      * Requires that original training data names do <b>NOT</b> contain any spaces
@@ -54,7 +32,8 @@ public class CreatureNameProviderTest {
         for (int i = 0; i < 100; i++) {
             CreatureAffinityVector aff = CreatureAffinityVector.create().maleOnly().nobility(1);
             String name = prov.generateName(aff);
-            assertTrue(name.matches("[\\S]+ [\\S]+ the [\\S]+"), "Name \"" + name + "\" has not the form <FIRST> <LAST> the <ATTR>");
+            assertTrue(name.matches("[\\S]+ [\\S]+ the [\\S]+"), "Name \"" + name + "\" has not the form <FIRST> " +
+                    "<LAST> the <ATTR>");
         }
     }
 }
