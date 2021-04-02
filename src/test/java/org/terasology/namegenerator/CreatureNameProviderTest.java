@@ -32,8 +32,8 @@ public class CreatureNameProviderTest extends NameGeneratorTestingEnvironment {
         for (int i = 0; i < 100; i++) {
             CreatureAffinityVector aff = CreatureAffinityVector.create().maleOnly().nobility(1);
             String name = prov.generateName(aff);
-            assertTrue(name.matches("[\\S]+ [\\S]+ the [\\S]+"), "Name \"" + name + "\" has not the form <FIRST> " +
-                    "<LAST> the <ATTR>");
+            assertTrue(name.matches("[\\S]+ [\\S]+ the [\\S]+"),
+                    "Name \"" + name + "\" has not the form <FIRST> <LAST> the <ATTR>");
         }
     }
 }
