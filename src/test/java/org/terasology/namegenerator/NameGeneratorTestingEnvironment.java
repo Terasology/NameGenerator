@@ -27,6 +27,8 @@ public class NameGeneratorTestingEnvironment {
      */
     @BeforeAll
     public static void setUpClass() {
+        System.setProperty(ModuleManager.LOAD_CLASSPATH_MODULES_PROPERTY, "true");
+
         env = new HeadlessEnvironment(new Name("NameGenerator"));
 
         Context context = env.getContext();
@@ -52,6 +54,8 @@ public class NameGeneratorTestingEnvironment {
      */
     @AfterAll
     public static void tearDownClass() throws Exception {
-        env.close();
+        if (env != null) {
+            env.close();
+        }
     }
 }
