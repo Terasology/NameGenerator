@@ -4,9 +4,6 @@ package org.terasology.namegenerator;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.terasology.assets.AssetFactory;
-import org.terasology.assets.management.AssetManager;
-import org.terasology.assets.module.ModuleAwareAssetTypeManager;
 import org.terasology.engine.HeadlessEnvironment;
 import org.terasology.engine.context.Context;
 import org.terasology.engine.core.module.ModuleManager;
@@ -15,7 +12,11 @@ import org.terasology.engine.entitySystem.prefab.Prefab;
 import org.terasology.engine.entitySystem.prefab.PrefabData;
 import org.terasology.engine.entitySystem.prefab.internal.PojoPrefab;
 import org.terasology.engine.entitySystem.prefab.internal.PrefabFormat;
-import org.terasology.naming.Name;
+import org.terasology.gestalt.assets.AssetType;
+import org.terasology.gestalt.assets.management.AssetManager;
+import org.terasology.gestalt.assets.module.ModuleAwareAssetTypeManager;
+import org.terasology.gestalt.assets.module.ModuleAwareAssetTypeManagerImpl;
+import org.terasology.gestalt.naming.Name;
 import org.terasology.persistence.typeHandling.TypeHandlerLibrary;
 
 public class NameGeneratorTestingEnvironment {
@@ -26,20 +27,22 @@ public class NameGeneratorTestingEnvironment {
      */
     @BeforeAll
     public static void setUpClass() {
+        System.setProperty(ModuleManager.LOAD_CLASSPATH_MODULES_PROPERTY, "true");
+
         env = new HeadlessEnvironment(new Name("NameGenerator"));
 
         Context context = env.getContext();
         ModuleManager moduleManager = context.get(ModuleManager.class);
 
         // Taken from: org.terasology.TerasologyTestingEnvironment
-        ModuleAwareAssetTypeManager assetTypeManager = new ModuleAwareAssetTypeManager();
-        assetTypeManager.registerCoreAssetType(Prefab.class,
-                (AssetFactory<Prefab, PrefabData>) PojoPrefab::new, "prefabs");
+        ModuleAwareAssetTypeManager assetTypeManager = new ModuleAwareAssetTypeManagerImpl();
+        AssetType<Prefab, PrefabData> prefabDataAssetType = assetTypeManager.createAssetType(Prefab.class, PojoPrefab::new, "prefabs");
+
 
         ComponentLibrary componentLibrary = context.get(ComponentLibrary.class);
         TypeHandlerLibrary typeSerializationLibrary = context.get(TypeHandlerLibrary.class);
         PrefabFormat prefabFormat = new PrefabFormat(componentLibrary, typeSerializationLibrary);
-        assetTypeManager.registerCoreFormat(Prefab.class, prefabFormat);
+        assetTypeManager.getAssetFileDataProducer(prefabDataAssetType).addAssetFormat( prefabFormat);
 
         assetTypeManager.switchEnvironment(moduleManager.getEnvironment());
         context.put(AssetManager.class, assetTypeManager.getAssetManager());
@@ -51,6 +54,8 @@ public class NameGeneratorTestingEnvironment {
      */
     @AfterAll
     public static void tearDownClass() throws Exception {
-        env.close();
+        if (env != null) {
+            env.close();
+        }
     }
 }
