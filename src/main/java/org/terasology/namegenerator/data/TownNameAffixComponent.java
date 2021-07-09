@@ -1,29 +1,17 @@
-/*
- * Copyright 2014 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2021 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.namegenerator.data;
 
-import org.terasology.engine.entitySystem.Component;
+import com.google.common.collect.Lists;
+import org.terasology.gestalt.entitysystem.component.Component;
 
 import java.util.List;
 
 /**
  * Contains affixes for town names.
  */
-public class TownNameAffixComponent implements Component {
+public class TownNameAffixComponent implements Component<TownNameAffixComponent> {
     /**
      * A list of pre-fixes such as "Old" and "Nether"
      */
@@ -34,4 +22,9 @@ public class TownNameAffixComponent implements Component {
      */
     public List<String> postfixes;
 
+    @Override
+    public void copy(TownNameAffixComponent other) {
+        this.prefixes = Lists.newArrayList(other.prefixes);
+        this.postfixes = Lists.newArrayList(other.postfixes);
+    }
 }
