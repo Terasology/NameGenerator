@@ -9,6 +9,7 @@ package org.terasology.namegenerator;
  */
 final class ElvenMaleNames {
 
+    @SuppressWarnings("SpellCheckingInspection")
     static final String[] NAMES = {
         "Abadda",
         "Abarat",

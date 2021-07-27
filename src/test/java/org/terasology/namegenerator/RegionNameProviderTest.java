@@ -4,14 +4,20 @@ package org.terasology.namegenerator;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.terasology.moduletestingenvironment.MTEExtension;
+import org.terasology.moduletestingenvironment.extension.Dependencies;
 import org.terasology.namegenerator.region.RegionNameProvider;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * Tests {@link RegionNameProvider}
  */
-@Tag("TteTest")
-public class RegionNameProviderTest extends NameGeneratorTestingEnvironment {
+@Tag("MteTest")
+@ExtendWith(MTEExtension.class)
+@Dependencies("NameGenerator")
+public class RegionNameProviderTest {
 
     /**
      * Requires that original training data names do <b>NOT</b> contain any spaces
