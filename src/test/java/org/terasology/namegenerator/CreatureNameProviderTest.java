@@ -5,6 +5,9 @@ package org.terasology.namegenerator;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.terasology.moduletestingenvironment.MTEExtension;
+import org.terasology.moduletestingenvironment.extension.Dependencies;
 import org.terasology.namegenerator.creature.CreatureAffinityVector;
 import org.terasology.namegenerator.creature.CreatureNameProvider;
 
@@ -13,8 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Tests {@link CreatureNameProvider}
  */
-@Tag("TteTest")
-public class CreatureNameProviderTest extends NameGeneratorTestingEnvironment {
+@Tag("MteTest")
+@ExtendWith(MTEExtension.class)
+@Dependencies("NameGenerator")
+public class CreatureNameProviderTest {
 
     /**
      * Requires that original training data names do <b>NOT</b> contain any spaces
