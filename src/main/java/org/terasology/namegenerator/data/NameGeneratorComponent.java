@@ -18,7 +18,7 @@ public class NameGeneratorComponent implements Component<NameGeneratorComponent>
     public List<String> nameList;
 
     @Override
-    public void copy(NameGeneratorComponent other) {
+    public void copyFrom(NameGeneratorComponent other) {
         this.nameList = Lists.newArrayList(other.nameList);
     }
 }

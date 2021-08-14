@@ -23,7 +23,7 @@ public class TownNameAffixComponent implements Component<TownNameAffixComponent>
     public List<String> postfixes;
 
     @Override
-    public void copy(TownNameAffixComponent other) {
+    public void copyFrom(TownNameAffixComponent other) {
         this.prefixes = Lists.newArrayList(other.prefixes);
         this.postfixes = Lists.newArrayList(other.postfixes);
     }

@@ -46,7 +46,7 @@ public class CreatureNameComponent implements Component<CreatureNameComponent> {
     }
 
     @Override
-    public void copy(CreatureNameComponent other) {
+    public void copyFrom(CreatureNameComponent other) {
         this.firstName = other.firstName;
         this.lastName = other.lastName;
         this.attr = other.attr;

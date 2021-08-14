@@ -15,7 +15,7 @@ public class CreatureNameGeneratorComponent implements Component<CreatureNameGen
     public String theme;
 
     @Override
-    public void copy(CreatureNameGeneratorComponent other) {
+    public void copyFrom(CreatureNameGeneratorComponent other) {
         this.genderRatio = other.genderRatio;
         this.nobility = other.nobility;
         this.theme = other.theme;
