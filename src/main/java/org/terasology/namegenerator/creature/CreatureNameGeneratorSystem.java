@@ -17,9 +17,9 @@ package org.terasology.namegenerator.creature;
 
 import org.terasology.engine.entitySystem.entity.EntityRef;
 import org.terasology.engine.entitySystem.entity.lifecycleEvents.OnAddedComponent;
-import org.terasology.engine.entitySystem.event.ReceiveEvent;
 import org.terasology.engine.entitySystem.systems.BaseComponentSystem;
 import org.terasology.engine.entitySystem.systems.RegisterSystem;
+import org.terasology.gestalt.entitysystem.event.ReceiveEvent;
 
 import java.util.Locale;
 
