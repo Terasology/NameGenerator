@@ -1,4 +1,4 @@
-// Copyright 2021 The Terasology Foundation
+// Copyright 2022 The Terasology Foundation
 // SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.namegenerator;
@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.terasology.moduletestingenvironment.MTEExtension;
-import org.terasology.moduletestingenvironment.extension.Dependencies;
+import org.terasology.engine.integrationenvironment.jupiter.Dependencies;
+import org.terasology.engine.integrationenvironment.jupiter.MTEExtension;
 import org.terasology.namegenerator.town.TownAffinityVector;
 import org.terasology.namegenerator.town.TownNameProvider;
 
