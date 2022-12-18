@@ -2,16 +2,13 @@
 // SPDX-License-Identifier: Apache-2.0
 package org.terasology.namegenerator;
 
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.terasology.engine.entitySystem.entity.EntityRef;
 import org.terasology.engine.entitySystem.entity.internal.EngineEntityManager;
 import org.terasology.engine.entitySystem.entity.lifecycleEvents.OnAddedComponent;
-import org.terasology.engine.integrationenvironment.jupiter.Dependencies;
-import org.terasology.engine.integrationenvironment.jupiter.MTEExtension;
+import org.terasology.engine.integrationenvironment.jupiter.IntegrationEnvironment;
 import org.terasology.engine.logic.common.DisplayNameComponent;
 import org.terasology.engine.registry.In;
 import org.terasology.namegenerator.creature.CreatureNameComponent;
@@ -21,9 +18,7 @@ import org.terasology.namegenerator.creature.CreatureNameGeneratorSystem;
 /**
  * Tests {@link CreatureNameGeneratorSystem}
  */
-@ExtendWith(MTEExtension.class)
-@Dependencies("NameGenerator")
-@Tag("MteTest")
+@IntegrationEnvironment(dependencies = "NameGenerator")
 public class CreatureNameGeneratorSystemTest {
 
     private static final Logger logger = LoggerFactory.getLogger(CreatureNameGeneratorSystemTest.class);
