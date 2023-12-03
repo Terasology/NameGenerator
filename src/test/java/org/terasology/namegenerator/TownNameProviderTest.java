@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.terasology.engine.integrationenvironment.jupiter.Dependencies;
+import org.terasology.engine.integrationenvironment.jupiter.IntegrationEnvironment;
 import org.terasology.engine.integrationenvironment.jupiter.MTEExtension;
 import org.terasology.namegenerator.town.TownAffinityVector;
 import org.terasology.namegenerator.town.TownNameProvider;
@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 @Tag("MteTest")
 @ExtendWith(MTEExtension.class)
-@Dependencies("NameGenerator")
+@IntegrationEnvironment(dependencies = "NameGenerator")
 public class TownNameProviderTest {
 
     private static final Logger logger = LoggerFactory.getLogger(TownNameProviderTest.class);

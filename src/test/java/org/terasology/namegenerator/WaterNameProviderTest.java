@@ -5,7 +5,7 @@ package org.terasology.namegenerator;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.terasology.engine.integrationenvironment.jupiter.Dependencies;
+import org.terasology.engine.integrationenvironment.jupiter.IntegrationEnvironment;
 import org.terasology.engine.integrationenvironment.jupiter.MTEExtension;
 import org.terasology.namegenerator.waters.WaterNameProvider;
 
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  */
 @Tag("MteTest")
 @ExtendWith(MTEExtension.class)
-@Dependencies("NameGenerator")
+@IntegrationEnvironment(dependencies = "NameGenerator")
 public class WaterNameProviderTest {
 
     /**
