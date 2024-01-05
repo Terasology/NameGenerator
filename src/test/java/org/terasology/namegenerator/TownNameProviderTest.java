@@ -3,15 +3,12 @@
 
 package org.terasology.namegenerator;
 
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.terasology.engine.integrationenvironment.jupiter.Dependencies;
-import org.terasology.engine.integrationenvironment.jupiter.MTEExtension;
 import org.terasology.namegenerator.town.TownAffinityVector;
 import org.terasology.namegenerator.town.TownNameProvider;
+import org.terasology.engine.integrationenvironment.jupiter.IntegrationEnvironment;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -20,9 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Tests {@link TownNameProvider}
  */
-@Tag("MteTest")
-@ExtendWith(MTEExtension.class)
-@Dependencies("NameGenerator")
+@IntegrationEnvironment(dependencies = {"NameGenerator"})
 public class TownNameProviderTest {
 
     private static final Logger logger = LoggerFactory.getLogger(TownNameProviderTest.class);
